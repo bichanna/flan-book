@@ -50,7 +50,7 @@ match name {
     "Nobu" -> println("Cool name!"),
     "Sol" -> println("Nice name."),
     "Damian" -> println("Eh, nice, I guess?"),
-    _ => println("Hello, " + name),
+    _ -> println("Hello, " + name),
 }
 ```
 
