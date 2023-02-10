@@ -1,0 +1,6 @@
+[book]
+authors = ["bichanna"]
+language = "en"
+multilingual = false
+src = "src"
+title = "The Feo Book"
