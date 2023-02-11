@@ -34,7 +34,7 @@ description // "blah blah"
 
 ## Destructuring
 A `match` expression can be used to destructure values that contain other values, such as lists and objects.
-```
+```js
 match [number % 3, number % 5] {
     [0, 0] -> "FizzBuzz",
     [0, _] -> "Fizz",
