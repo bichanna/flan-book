@@ -11,3 +11,5 @@
 - [Assignment](./assignment.md)
 - [Functions](./functions.md)
 - [Match Expression](./match.md)
+- [Modules](./modules.md)
+- [Unsafe Expression](./unsafe.md)

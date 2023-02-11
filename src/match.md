@@ -5,7 +5,7 @@ It allows us to say "if the data has this shape then do that", which we call *pa
 Here, we match on an Int and return a specific string for the values 0, 1, and 2.
 The final pattern n matches any other value that did not match any of the previous patterns.
 ```js
-case some_number {
+match some_number {
   0 -> "zero",
   1 -> "one",
   2 -> "two",
