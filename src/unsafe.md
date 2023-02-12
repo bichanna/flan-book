@@ -1,4 +1,4 @@
-# Unsafe Expression
+# Exceptions
 
 Until now errors have never been mentioned, but if you have tried out the examples you have probably seen some.
 There are two distinguishable kinds of errors: *syntax errors* and *exceptions*.

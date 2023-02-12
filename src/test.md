@@ -14,7 +14,7 @@ testing.test({
             test: func(t) {
                 result := strings.uppercase("hello, world")
                 expected := "HELLO, WORLD"
-                t.assert_equal(result, expected)
+                testing.assert_equal(result, expected)
             }
         },
         {
@@ -22,7 +22,7 @@ testing.test({
             test: func(t) {
                 result := strings.lowercase("HELLO, WORLD")
                 expected := "hello, world"
-                t.assert_true(result == expected)
+                testing.assert_true(result == expected)
             }
         },
         {
@@ -30,9 +30,23 @@ testing.test({
             test: func(t) {
                 result := strings.capital("hello, world")
                 expected := "Hello, World"
-                t.assert_equal(result, expected)
+                testing.assert_equal(result, expected)
             }
         }
     ]
 })
 ```
+
+The `testing` module provides several assert methods to check for and report failures.
+The following table lists all the assert functions.
+
+| Function | Checks that |
+| ----------- | ----------- |
+| `assert_equal(a, b)` | `a == b` |
+| `assert_not_equal(a, b)` | `a != b` |
+| `assert_true(x)` | `bool(x) == true` |
+| `assert_false(x)` | `bool(x) == false` |
+| `assert_null(x)` | `x == null` |
+| `assert_not_null(x)` | `x != null` |
+| `assert_contains(a, b)` | `std.contains?(a, b) == true` |
+| `assert_not_contain(a, b)` | `std.contains?(a, b) == false` |

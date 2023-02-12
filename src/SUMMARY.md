@@ -12,5 +12,5 @@
 - [Functions](./functions.md)
 - [Match Expression](./match.md)
 - [Modules](./modules.md)
-- [Unsafe Expression](./unsafe.md)
+- [Exceptions](./unsafe.md)
 - [Testing](./test.md)
