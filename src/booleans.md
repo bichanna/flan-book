@@ -1,5 +1,5 @@
 # Booleans
-A Boolean can be either `true` or `false`.
+A Boolean can be either `true` or `false`. Atom values `:true` and `:false` are also evaluated as Booleans.
 
 Feo defines a handful of operators that work with Booleans.
 
