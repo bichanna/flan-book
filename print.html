@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Unsafe Expression</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Unsafe Expression</a></li><li class="chapter-item expanded "><a href="test.html"><strong aria-hidden="true">14.</strong> Testing</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -189,8 +189,8 @@ match name {
 }
 </code></pre>
 <p>But there is also a short-hand <code>match</code>, which is known as the ternary operator.</p>
-<pre><code class="language-js">damian_stinks = false
-command = damian_stinks ? &quot;go take a shower&quot; : &quot;go take a nap&quot;
+<pre><code class="language-js">damian_stinks := false
+command := damian_stinks ? &quot;go take a shower&quot; : &quot;go take a nap&quot;
 
 // de-sugars to this:
 command = match damian_stinks {
@@ -252,7 +252,7 @@ name + &quot;haru&quot;
 // Nobuharu, which is my full first name
 </code></pre>
 <h3 id="escape-sequences"><a class="header" href="#escape-sequences">Escape Sequences</a></h3>
-<p>Gleam supports common string escape sequences. Here's all of them:</p>
+<p>Feo supports common string escape sequences. Here's all of them:</p>
 <div class="table-wrapper"><table><thead><tr><th>Sequences</th><th>Result</th></tr></thead><tbody>
 <tr><td>\n</td><td>Newline</td></tr>
 <tr><td>\r</td><td>Carriage Return</td></tr>
@@ -274,7 +274,7 @@ name + &quot;haru&quot;
 <pre><code class="language-js">:some_atom
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="booleans"><a class="header" href="#booleans">Booleans</a></h1>
-<p>A Boolean can be either <code>true</code> or <code>false</code>.</p>
+<p>A Boolean can be either <code>true</code> or <code>false</code>. Atom values <code>:true</code> and <code>:false</code> are also evaluated as Booleans.</p>
 <p>Feo defines a handful of operators that work with Booleans.</p>
 <p><code>&amp;&amp;</code> evaluates the right hand side if the left hand side is <code>true</code>.</p>
 <p><code>||</code> evaluates the right hand side if the left hand side is <code>false</code>.</p>
@@ -291,9 +291,9 @@ true || false  // =&gt; true
 true || true   // =&gt; true
 true or false  // =&gt; true
 </code></pre>
-<p>Feo supports negation of Booleans using either the <code>!</code> unary operator.</p>
+<p>Feo supports negation of Booleans using either the <code>!</code> or <code>not</code> unary operators.</p>
 <pre><code class="language-js">!true  // =&gt; false
-!false // =&gt; true
+not false // =&gt; true
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="integers-and-floats"><a class="header" href="#integers-and-floats">Integers And Floats</a></h1>
 <p>Feo's main number types are Integers and Floats.</p>
@@ -334,9 +334,7 @@ true or false  // =&gt; true
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="null-and-empty"><a class="header" href="#null-and-empty">Null And Empty</a></h1>
 <h2 id="null"><a class="header" href="#null">Null</a></h2>
-<p><code>null</code> is a keyword in Feo for literal values. It is a literal similar to <code>true</code> and <code>false</code>.
-In Feo, <code>null</code> is a keyword much like the other keywords: <code>func</code>, <code>match</code>, or <code>and</code>.
-It is just a value that shows that the object is referring to nothing.</p>
+<p><code>null</code> is just a value that shows that the object is referring to nothing.</p>
 <pre><code class="language-js">null == null // =&gt; true
 null &lt;= 7.3  // =&gt; false
 </code></pre>
@@ -347,7 +345,7 @@ _ == &quot;hello&quot; // =&gt; true
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="lists"><a class="header" href="#lists">Lists</a></h2>
 <p>Lists are ordered collections of values. They're one of the most common data structures in Feo.</p>
-<p>Lists are <em>homogeneous</em>, meaning the elements of a list can be of different types.</p>
+<p>Lists are <em>heterogeneous</em>, meaning the elements of a list can be of different types.</p>
 <pre><code class="language-js">[:err, &quot;something wrong happened&quot;]
 [[&quot;abc&quot;, &quot;hello&quot;], 23, 3.14]
 </code></pre>
@@ -358,7 +356,7 @@ names |&gt; append(&quot;Sol&quot;)
 
 names // [&quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Sol&quot;]
 </code></pre>
-<p>You can access each element by <code>[]</code>.</p>
+<p>You can index an element in a list by using <code>[]</code>.</p>
 <pre><code class="language-js">ages := [16, 15, 15, 14]
 ages[0] // 16
 </code></pre>
@@ -481,10 +479,12 @@ command := match damian_stinks {
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="modules"><a class="header" href="#modules">Modules</a></h1>
-<p>In Feo, Modules are simply files with the “.feo” extension containing Feo code that can be imported inside another Feo program.
-You can import other modules using the built-in <code>import</code> function with relative paths.</p>
+<p>In Feo, modules are simply files with the “.feo” extension containing Feo code that can be imported inside another Feo program.
+Functions annotated with <code>*</code> are public functions, meaning they could be exported outside of their own module to be used by other modules.</p>
+<p>You can import other modules using the built-in <code>import</code> function with relative paths.</p>
 <pre><code class="language-js">// src/a_module.feo
 
+// public function func_in_a
 func *func_in_a() {
     &quot;Hello from a_module&quot;
 }
@@ -541,6 +541,42 @@ match error?(result) {
 <h3 id="user-defined-runtime-errors"><a class="header" href="#user-defined-runtime-errors">User-defined Runtime Errors</a></h3>
 <p>Programs may name their own exceptions by creating a new exception:</p>
 <pre><code class="language-js">error(:user_defined, &quot;user-defined error!&quot;)
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="testing"><a class="header" href="#testing">Testing</a></h2>
+<p>The <code>testing</code> module provides a set of tools for constructing tests.</p>
+<p>Here's a simple example to test three functions in <code>strings</code> module:</p>
+<pre><code class="language-js">strings := import(&quot;strings&quot;)
+testing := import(&quot;testing&quot;)
+
+testing.test({
+    title: &quot;Test strings module&quot;,
+    tests: [
+        {
+            name: &quot;test uppercase&quot;,
+            test: func(t) {
+                result := strings.uppercase(&quot;hello, world&quot;)
+                expected := &quot;HELLO, WORLD&quot;
+                t.assert_equal(result, expected)
+            }
+        },
+        {
+            name: &quot;test lowercase&quot;,
+            test: func(t) {
+                result := strings.lowercase(&quot;HELLO, WORLD&quot;)
+                expected := &quot;hello, world&quot;
+                t.assert_true(result == expected)
+            }
+        },
+        {
+            name: &quot;test capital&quot;,
+            test: func(t) {
+                result := strings.capital(&quot;hello, world&quot;)
+                expected := &quot;Hello, World&quot;
+                t.assert_equal(result, expected)
+            }
+        }
+    ]
+})
 </code></pre>
 
                     </main>
