@@ -42,3 +42,16 @@ match [number % 3, number % 5] {
     [a, b] -> a + b,
 }
 ```
+
+## Ternary Operator
+There is also a short-hand match, which is known as the ternary operator.
+```js
+damian_stinks = false
+command = damian_stinks ? "go take a shower" : "go take a nap"
+
+// de-sugars to this:
+command = match damian_stinks {
+    true -> "go take a shower",
+    _ -> "go take a nap",
+}
+```
