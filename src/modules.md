@@ -4,7 +4,7 @@ You can import other modules using the built-in `import` function with relative 
 ```js
 // src/a_module.feo
 
-pub func func_in_a() {
+func *func_in_a() {
     "Hello from a_module"
 }
 ```
