@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Unsafe Expression</a></li><li class="chapter-item expanded "><a href="test.html"><strong aria-hidden="true">14.</strong> Testing</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="test.html"><strong aria-hidden="true">14.</strong> Testing</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -511,7 +511,7 @@ a_mod.func_in_a() // &quot;Hello from a_module&quot;
 
 func_from_a() // &quot;Hello from a_module&quot;
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="unsafe-expression"><a class="header" href="#unsafe-expression">Unsafe Expression</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="exceptions"><a class="header" href="#exceptions">Exceptions</a></h1>
 <p>Until now errors have never been mentioned, but if you have tried out the examples you have probably seen some.
 There are two distinguishable kinds of errors: <em>syntax errors</em> and <em>exceptions</em>.</p>
 <h2 id="syntax-errors"><a class="header" href="#syntax-errors">Syntax Errors</a></h2>
@@ -556,7 +556,7 @@ testing.test({
             test: func(t) {
                 result := strings.uppercase(&quot;hello, world&quot;)
                 expected := &quot;HELLO, WORLD&quot;
-                t.assert_equal(result, expected)
+                testing.assert_equal(result, expected)
             }
         },
         {
@@ -564,7 +564,7 @@ testing.test({
             test: func(t) {
                 result := strings.lowercase(&quot;HELLO, WORLD&quot;)
                 expected := &quot;hello, world&quot;
-                t.assert_true(result == expected)
+                testing.assert_true(result == expected)
             }
         },
         {
@@ -572,13 +572,25 @@ testing.test({
             test: func(t) {
                 result := strings.capital(&quot;hello, world&quot;)
                 expected := &quot;Hello, World&quot;
-                t.assert_equal(result, expected)
+                testing.assert_equal(result, expected)
             }
         }
     ]
 })
 </code></pre>
-
+<p>The <code>testing</code> module provides several assert methods to check for and report failures.
+The following table lists all the assert functions.</p>
+<div class="table-wrapper"><table><thead><tr><th>Function</th><th>Checks that</th></tr></thead><tbody>
+<tr><td><code>assert_equal(a, b)</code></td><td><code>a == b</code></td></tr>
+<tr><td><code>assert_not_equal(a, b)</code></td><td><code>a != b</code></td></tr>
+<tr><td><code>assert_true(x)</code></td><td><code>bool(x) == true</code></td></tr>
+<tr><td><code>assert_false(x)</code></td><td><code>bool(x) == false</code></td></tr>
+<tr><td><code>assert_null(x)</code></td><td><code>x == null</code></td></tr>
+<tr><td><code>assert_not_null(x)</code></td><td><code>x != null</code></td></tr>
+<tr><td><code>assert_contains(a, b)</code></td><td><code>std.contains?(a, b) == true</code></td></tr>
+<tr><td><code>assert_not_contain(a, b)</code></td><td><code>std.contains?(a, b) == false</code></td></tr>
+</tbody></table>
+</div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
