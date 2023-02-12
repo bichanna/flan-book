@@ -180,11 +180,11 @@ description // &quot;blah blah&quot;
 </code></pre>
 <h2 id="ternary-operator"><a class="header" href="#ternary-operator">Ternary Operator</a></h2>
 <p>There is also a short-hand match, which is known as the ternary operator.</p>
-<pre><code class="language-js">damian_stinks = false
-command = damian_stinks ? &quot;go take a shower&quot; : &quot;go take a nap&quot;
+<pre><code class="language-js">damian_stinks := false
+command := damian_stinks ? &quot;go take a shower&quot; : &quot;go take a nap&quot;
 
 // de-sugars to this:
-command = match damian_stinks {
+command := match damian_stinks {
     true -&gt; &quot;go take a shower&quot;,
     _ -&gt; &quot;go take a nap&quot;,
 }
