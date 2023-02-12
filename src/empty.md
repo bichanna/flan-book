@@ -1,9 +1,7 @@
 # Null And Empty
 
 ## Null
-`null` is a keyword in Feo for literal values. It is a literal similar to `true` and `false`.
-In Feo, `null` is a keyword much like the other keywords: `func`, `match`, or `and`.
-It is just a value that shows that the object is referring to nothing.
+`null` is just a value that shows that the object is referring to nothing.
 ```js
 null == null // => true
 null <= 7.3  // => false
