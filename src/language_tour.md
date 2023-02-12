@@ -56,8 +56,8 @@ match name {
 
 But there is also a short-hand `match`, which is known as the ternary operator.
 ```js
-damian_stinks = false
-command = damian_stinks ? "go take a shower" : "go take a nap"
+damian_stinks := false
+command := damian_stinks ? "go take a shower" : "go take a nap"
 
 // de-sugars to this:
 command = match damian_stinks {

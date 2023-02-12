@@ -26,7 +26,7 @@ name + "haru"
 ```
 
 ### Escape Sequences
-Gleam supports common string escape sequences. Here's all of them:
+Feo supports common string escape sequences. Here's all of them:
 
 | Sequences | Result |
 | ----------- | ----------- |
