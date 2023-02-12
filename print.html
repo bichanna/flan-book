@@ -469,6 +469,17 @@ description // &quot;blah blah&quot;
     [a, b] -&gt; a + b,
 }
 </code></pre>
+<h2 id="ternary-operator"><a class="header" href="#ternary-operator">Ternary Operator</a></h2>
+<p>There is also a short-hand match, which is known as the ternary operator.</p>
+<pre><code class="language-js">damian_stinks = false
+command = damian_stinks ? &quot;go take a shower&quot; : &quot;go take a nap&quot;
+
+// de-sugars to this:
+command = match damian_stinks {
+    true -&gt; &quot;go take a shower&quot;,
+    _ -&gt; &quot;go take a nap&quot;,
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="modules"><a class="header" href="#modules">Modules</a></h1>
 <p>In Feo, Modules are simply files with the “.feo” extension containing Feo code that can be imported inside another Feo program.
 You can import other modules using the built-in <code>import</code> function with relative paths.</p>
