@@ -513,30 +513,34 @@ func_from_a() // &quot;Hello from a_module&quot;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="unsafe-expression"><a class="header" href="#unsafe-expression">Unsafe Expression</a></h1>
 <p>Until now errors have never been mentioned, but if you have tried out the examples you have probably seen some.
-There are two distinguishable kinds of errors: <em>syntax errors</em> and <em>runtime errors</em>.</p>
+There are two distinguishable kinds of errors: <em>syntax errors</em> and <em>exceptions</em>.</p>
 <h2 id="syntax-errors"><a class="header" href="#syntax-errors">Syntax Errors</a></h2>
 <p>Syntax errors, also known as parsing errors, are perhaps the most common kind of complaint you get while you are still learning Feo.</p>
 <pre><code class="language-js">some_file:1:14 error: expected ']'
 names[&quot;hello&quot;
 </code></pre>
-<h2 id="runtime-errors"><a class="header" href="#runtime-errors">Runtime Errors</a></h2>
+<h2 id="runtime-exceptions"><a class="header" href="#runtime-exceptions">Runtime Exceptions</a></h2>
 <p>Even if an expression is syntactically correct, it may cause an error when an attempt is made to execute it:</p>
 <pre><code class="language-js">some_file:1:11 zero division error: division by zero
 n := 10 / 0
 </code></pre>
-<h2 id="handling-runtime-errors"><a class="header" href="#handling-runtime-errors">Handling Runtime Errors</a></h2>
-<p>It is possible to write programs that handle selected runtime errors. The previous line of code can be improved like this:</p>
+<h2 id="handling-runtime-exceptions"><a class="header" href="#handling-runtime-exceptions">Handling Runtime Exceptions</a></h2>
+<p>It is possible to write programs that handle exceptions. The previous line of code can be handled like this:</p>
 <pre><code class="language-js">result := unsafe (10 / 0)
 match error?(result) {
     true -&gt; println!(&quot;Math still works!&quot;),
     false -&gt; println!(&quot;Math is broken :(&quot;),
 }
 </code></pre>
-<p>An error is just an object that has two properties: <code>error_type</code> and <code>error_message</code>. For example:</p>
+<p>An exception is just an object that has two properties: <code>error_type</code> and <code>error_message</code>. For example:</p>
 <pre><code class="language-js">{
     error_type: :zero_division,
     error_message: &quot;division by zero&quot;
 }
+</code></pre>
+<h3 id="user-defined-runtime-errors"><a class="header" href="#user-defined-runtime-errors">User-defined Runtime Errors</a></h3>
+<p>Programs may name their own exceptions by creating a new exception:</p>
+<pre><code class="language-js">error(:user_defined, &quot;user-defined error!&quot;)
 </code></pre>
 
                     </main>
