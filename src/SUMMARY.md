@@ -14,3 +14,6 @@
 - [Modules](./modules.md)
 - [Exceptions](./unsafe.md)
 - [Testing](./test.md)
+- [Standard Library](./std_library.md)
+    - [Built-in Functions](./library/builtins.md)
+    - [`std`](./library/std.md)

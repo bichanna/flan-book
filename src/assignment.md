@@ -8,7 +8,7 @@ a : = 1 // a is 1
 {first_name: name} := {first_name: "Nobuharu", last_name: "Shimazu"} // name is "Nobuharu"
 ```
 
-The nonlocal assignment operator `=` binds values on the right side to names on the left, but only when those variables already exist.
+The reassignment operator `=` binds values on the right side to names on the left, but only when those variables already exist.
 If the variable doesn't exist in the current scope, the operator ascends up parent scopes until it reaches the global scope to find the last scope where that name was bound.
 ```js
 n := 1
