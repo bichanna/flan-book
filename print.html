@@ -710,6 +710,21 @@ err.error_message // &quot;some error!&quot;
 <li><a href="library/std.html#reducexs-seed-f"><code>reduce</code></a></li>
 <li><a href="library/std.html#flattenxs"><code>flatten</code></a></li>
 <li><a href="library/std.html#appendxs-ys"><code>append</code></a></li>
+<li><a href="library/std.html#joinxs-ys"><code>join</code></a></li>
+<li><a href="library/std.html#zipxs-ys-zipper"><code>zip</code></a></li>
+<li><a href="library/std.html#partitionxs-by"><code>partition</code></a></li>
+<li><a href="library/std.html#uniquexs-pred"><code>unique</code></a></li>
+<li><a href="library/std.html#firstxs"><code>first</code></a></li>
+<li><a href="library/std.html#lastxs"><code>last</code></a></li>
+<li><a href="library/std.html#takexs-n"><code>take</code></a></li>
+<li><a href="library/std.html#take_lastxs-n"><code>take_last</code></a></li>
+<li><a href="library/std.html#findxs-pred"><code>find</code></a></li>
+<li><a href="library/std.html#rfindxs-pred"><code>rfind</code></a></li>
+<li><a href="library/std.html#index_ofxs-x"><code>index_of</code></a></li>
+<li><a href="library/std.html#rindex_ofxs-x"><code>rindex_of</code></a></li>
+<li><a href="library/std.html#containsxs-x"><code>contains?</code></a></li>
+<li><a href="library/std.html#loopmax-f"><code>loop</code></a></li>
+<li><a href="library/std.html#aloopmax-f-done"><code>aloop</code></a></li>
 </ul>
 <h3 id="identityx"><a class="header" href="#identityx"><code>identity(x)</code></a></h3>
 <p><code>identity</code> returns its first argument.</p>
@@ -803,6 +818,104 @@ If mutation is not desired, use <code>std.join</code>.</p>
 <pre><code class="language-js">names := [&quot;Nobu&quot;, &quot;Damian&quot;]
 append(names, [&quot;Sol&quot;, &quot;Thomas&quot;])
 names // [&quot;Nobu&quot;, &quot;Damian&quot;, &quot;Sol&quot;, &quot;Thomas&quot;]
+</code></pre>
+<h3 id="joinxs-ys"><a class="header" href="#joinxs-ys"><code>join(xs, ys)</code></a></h3>
+<p><code>join</code> joins two iterable values (strings or lists) together, while mutating neither values. If efficiency is desired, used <code>std.append</code>.</p>
+<pre><code class="language-js">names := [&quot;Nobu&quot;, &quot;Damian&quot;]
+join(names, [&quot;Sol&quot;, &quot;Thomas&quot;]) // [&quot;Nobu&quot;, &quot;Damian&quot;, &quot;Sol&quot;, &quot;Thomas&quot;]
+names // [&quot;Nobu&quot;, &quot;Damian&quot;], not mutated
+</code></pre>
+<h3 id="zipxs-ys-zipper"><a class="header" href="#zipxs-ys-zipper"><code>zip(xs, ys, zipper)</code></a></h3>
+<p><code>zip</code> &quot;zips&quot; together each pair of items from two iterables. If the zipper function is not given, each pair of items are put into a 2-element list.
+Otherwise, <code>zipper</code> is called on each pair of items and the result is placed into the resulting list.</p>
+<pre><code class="language-js">zip([1, 2, 3], [4, 5, 6]) // =&gt; [[1, 2], [3, 4], [5, 6]]
+
+zip([1, 2, 3], [4, 5, 6], fn(a, b) a * b) // =&gt; [4, 10, 18]
+</code></pre>
+<h3 id="partitionxs-by"><a class="header" href="#partitionxs-by"><code>partition(xs, by)</code></a></h3>
+<p><code>partition</code> divides the sequence of items in the iterable <code>xs</code> into a list of lists (partitions).</p>
+<p>If <code>by</code> is an integer, each partition will contain that number of items. If <code>by</code> is a function, the partition will be cut anywhere the result of the function changes from one item to the next. For any other values of <code>by</code>, partition returns null.</p>
+<pre><code class="language-js">list := [1, 2, 3, 4, 5, 6]
+partition(list, 3) // [[1, 2, 3], [4, 5, 6]]
+</code></pre>
+<h3 id="uniquexs-pred"><a class="header" href="#uniquexs-pred"><code>unique(xs, pred)</code></a></h3>
+<p><code>unique</code> takes a list <code>xs</code>, and returns a similar list where no element of <code>xs</code> occurs twice in a row.
+Elements may occur twice in the list if they are separated by other elements.
+<code>unique</code> takes an optional <code>pred</code> predicate, by which elements' equality may be compared. <code>unique</code> runs in <code>O(n)</code> time.</p>
+<pre><code class="language-js">list := [1, 1, 2, 2, 3]
+unique(list) // [1, 2, 3]
+</code></pre>
+<h3 id="firstxs"><a class="header" href="#firstxs"><code>first(xs)</code></a></h3>
+<p><code>first</code> returns the first item in an iterable. It's trivial, but useful to have in the stdlib for use in pipelines or iterators.</p>
+<pre><code class="language-js">name := &quot;Nobu&quot;
+first(name) // &quot;N&quot;
+</code></pre>
+<h3 id="lastxs"><a class="header" href="#lastxs"><code>last(xs)</code></a></h3>
+<p><code>last</code> returns the last item in an iterable. It's trivial, but useful to have in the stdlib for use in pipelines or iterators.</p>
+<pre><code class="language-js">name := &quot;Nobu&quot;
+first(name) // &quot;u&quot;
+</code></pre>
+<h3 id="takexs-n"><a class="header" href="#takexs-n"><code>take(xs, n)</code></a></h3>
+<p><code>take</code> accepts an iterable and returns a version of it containing the first N elements.</p>
+<pre><code class="language-js">email := &quot;nobu.bichanna@gmail.com&quot;
+take(email, 4) // &quot;nobu&quot;
+</code></pre>
+<h3 id="take_lastxs-n"><a class="header" href="#take_lastxs-n"><code>take_last(xs, n)</code></a></h3>
+<p><code>take_last</code> accepts an iterable and returns a version of it containing the last N elements.</p>
+<pre><code class="language-js">email := &quot;nobu.bichanna@gmail.com&quot;
+take_last(email, 9) // &quot;gmail.com&quot;
+</code></pre>
+<h3 id="findxs-pred"><a class="header" href="#findxs-pred"><code>find(xs, pred)</code></a></h3>
+<p><code>find</code> returns the index of the first item in the iterable <code>xs</code> for which the predicate returns <code>true</code>. If no match is found, find returns <code>-1</code>.</p>
+<pre><code class="language-js">nobu? := is(&quot;Nobu&quot;)
+names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
+find(names, nobu?) // 1
+</code></pre>
+<h3 id="rfindxs-pred"><a class="header" href="#rfindxs-pred"><code>rfind(xs, pred)</code></a></h3>
+<p><code>rfind</code> returns the index of the last item in the iterable <code>xs</code> for which the predicate returns <code>true</code>, searching backwards from the end.
+If no match is found, <code>rfind</code> returns <code>-1</code>.</p>
+<pre><code class="language-js">nobu? := is(&quot;Nobu&quot;)
+names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
+rfind(names, nobu?) // 5
+</code></pre>
+<h3 id="index_ofxs-x"><a class="header" href="#index_ofxs-x"><code>index_of(xs, x)</code></a></h3>
+<p><code>index_of</code> returns the index of the first item equal to <code>x</code> in the iterable <code>xs</code>. If no match is found, <code>index_of</code> returns <code>-1</code>.</p>
+<pre><code class="language-js">names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
+index_of(names, &quot;Nobu&quot;) // 1
+</code></pre>
+<h3 id="rindex_ofxs-x"><a class="header" href="#rindex_ofxs-x"><code>rindex_of(xs, x)</code></a></h3>
+<p>// <code>rindex_of</code> returns the index of the last item equal to <code>x</code> in the iterable <code>xs</code>, searching backwards from the end. If no match is found, <code>rindex_of</code> returns <code>-1</code>.</p>
+<pre><code class="language-js">names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
+index_of(names, &quot;Nobu&quot;) // 5
+</code></pre>
+<h3 id="containsxs-x"><a class="header" href="#containsxs-x"><code>contains?(xs, x)</code></a></h3>
+<p><code>contains?</code> reports whether an iterable contains an item equal to <code>x</code>.</p>
+<pre><code class="language-js">names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
+contains?(names, &quot;Nobu&quot;) // true
+</code></pre>
+<h3 id="loopmax-f"><a class="header" href="#loopmax-f"><code>loop(max, f)</code></a></h3>
+<p><code>loop</code> takes a loop count <code>max</code> and a callback, and invokes the callback <code>max</code> times.
+It can be used to infinitely loop if <code>max &lt; 0</code>. Callback is called with two arguments:</p>
+<ul>
+<li><code>count</code>: the current loop count starting from <code>0</code></li>
+<li><code>breaker</code>: a function to be called to exit early from the loop, which takes an optional return value to be returned by the <code>loop()</code> call</li>
+</ul>
+<pre><code class="language-js">loop(100) &lt;| func(count, breaker) { // prints &quot;Hello, world!&quot; to the console 100 times
+    println(&quot;Hello, world!&quot;)
+}
+</code></pre>
+<h3 id="aloopmax-f-done"><a class="header" href="#aloopmax-f-done"><code>aloop(max, f, done)</code></a></h3>
+<p><code>aloop</code> takes a loop count <code>max</code> and a callback, and invokes the callback <code>max</code> times <em>asynchronously</em>.
+It can be used to infinitely loop if <code>max &lt; 0</code>. Callback is called with three arguments:</p>
+<ul>
+<li>count: the current loop count starting from <code>0</code></li>
+<li>next: a function to be called when the current iteration is done</li>
+<li>done: a function to be called to exit early from the loop</li>
+</ul>
+<pre><code class="language-js">aloop(100) &lt;| func(count, next, done) {
+    // do something...
+    next()
+}
 </code></pre>
 
                     </main>
