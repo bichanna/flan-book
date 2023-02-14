@@ -17,6 +17,21 @@
  - [`reduce`](#reducexs-seed-f)
  - [`flatten`](#flattenxs)
  - [`append`](#appendxs-ys)
+ - [`join`](#joinxs-ys)
+ - [`zip`](#zipxs-ys-zipper)
+ - [`partition`](#partitionxs-by)
+ - [`unique`](#uniquexs-pred)
+ - [`first`](#firstxs)
+ - [`last`](#lastxs)
+ - [`take`](#takexs-n)
+ - [`take_last`](#take_lastxs-n)
+ - [`find`](#findxs-pred)
+ - [`rfind`](#rfindxs-pred)
+ - [`index_of`](#index_ofxs-x)
+ - [`rindex_of`](#rindex_ofxs-x)
+ - [`contains?`](#containsxs-x)
+ - [`loop`](#loopmax-f)
+ - [`aloop`](#aloopmax-f-done)
 
 ### `identity(x)`
 `identity` returns its first argument.
@@ -139,4 +154,129 @@ If mutation is not desired, use `std.join`.
 names := ["Nobu", "Damian"]
 append(names, ["Sol", "Thomas"])
 names // ["Nobu", "Damian", "Sol", "Thomas"]
+```
+
+### `join(xs, ys)`
+`join` joins two iterable values (strings or lists) together, while mutating neither values. If efficiency is desired, used `std.append`.
+```js
+names := ["Nobu", "Damian"]
+join(names, ["Sol", "Thomas"]) // ["Nobu", "Damian", "Sol", "Thomas"]
+names // ["Nobu", "Damian"], not mutated
+```
+
+### `zip(xs, ys, zipper)`
+`zip` "zips" together each pair of items from two iterables. If the zipper function is not given, each pair of items are put into a 2-element list.
+Otherwise, `zipper` is called on each pair of items and the result is placed into the resulting list.
+```js
+zip([1, 2, 3], [4, 5, 6]) // => [[1, 2], [3, 4], [5, 6]]
+
+zip([1, 2, 3], [4, 5, 6], fn(a, b) a * b) // => [4, 10, 18]
+```
+
+### `partition(xs, by)`
+`partition` divides the sequence of items in the iterable `xs` into a list of lists (partitions).
+
+If `by` is an integer, each partition will contain that number of items. If `by` is a function, the partition will be cut anywhere the result of the function changes from one item to the next. For any other values of `by`, partition returns null.
+```js
+list := [1, 2, 3, 4, 5, 6]
+partition(list, 3) // [[1, 2, 3], [4, 5, 6]]
+```
+
+### `unique(xs, pred)`
+`unique` takes a list `xs`, and returns a similar list where no element of `xs` occurs twice in a row.
+Elements may occur twice in the list if they are separated by other elements.
+`unique` takes an optional `pred` predicate, by which elements' equality may be compared. `unique` runs in `O(n)` time.
+```js
+list := [1, 1, 2, 2, 3]
+unique(list) // [1, 2, 3]
+```
+
+### `first(xs)`
+`first` returns the first item in an iterable. It's trivial, but useful to have in the stdlib for use in pipelines or iterators.
+```js
+name := "Nobu"
+first(name) // "N"
+```
+
+### `last(xs)`
+`last` returns the last item in an iterable. It's trivial, but useful to have in the stdlib for use in pipelines or iterators.
+```js
+name := "Nobu"
+first(name) // "u"
+```
+
+### `take(xs, n)`
+`take` accepts an iterable and returns a version of it containing the first N elements.
+```js
+email := "nobu.bichanna@gmail.com"
+take(email, 4) // "nobu"
+```
+
+### `take_last(xs, n)`
+`take_last` accepts an iterable and returns a version of it containing the last N elements.
+```js
+email := "nobu.bichanna@gmail.com"
+take_last(email, 9) // "gmail.com"
+```
+
+### `find(xs, pred)`
+`find` returns the index of the first item in the iterable `xs` for which the predicate returns `true`. If no match is found, find returns `-1`.
+```js
+nobu? := is("Nobu")
+names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+find(names, nobu?) // 1
+```
+
+### `rfind(xs, pred)`
+`rfind` returns the index of the last item in the iterable `xs` for which the predicate returns `true`, searching backwards from the end.
+If no match is found, `rfind` returns `-1`.
+```js
+nobu? := is("Nobu")
+names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+rfind(names, nobu?) // 5
+```
+
+### `index_of(xs, x)`
+`index_of` returns the index of the first item equal to `x` in the iterable `xs`. If no match is found, `index_of` returns `-1`.
+```js
+names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+index_of(names, "Nobu") // 1
+```
+
+### `rindex_of(xs, x)`
+// `rindex_of` returns the index of the last item equal to `x` in the iterable `xs`, searching backwards from the end. If no match is found, `rindex_of` returns `-1`.
+```js
+names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+index_of(names, "Nobu") // 5
+```
+
+### `contains?(xs, x)`
+`contains?` reports whether an iterable contains an item equal to `x`.
+```js
+names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+contains?(names, "Nobu") // true
+```
+
+### `loop(max, f)`
+`loop` takes a loop count `max` and a callback, and invokes the callback `max` times.
+It can be used to infinitely loop if `max < 0`. Callback is called with two arguments:
+- `count`: the current loop count starting from `0`
+- `breaker`: a function to be called to exit early from the loop, which takes an optional return value to be returned by the `loop()` call
+```js
+loop(100) <| func(count, breaker) { // prints "Hello, world!" to the console 100 times
+    println("Hello, world!")
+}
+```
+
+### `aloop(max, f, done)`
+`aloop` takes a loop count `max` and a callback, and invokes the callback `max` times *asynchronously*.
+It can be used to infinitely loop if `max < 0`. Callback is called with three arguments:
+- count: the current loop count starting from `0`
+- next: a function to be called when the current iteration is done
+- done: a function to be called to exit early from the loop
+```js
+aloop(100) <| func(count, next, done) {
+    // do something...
+    next()
+}
 ```
