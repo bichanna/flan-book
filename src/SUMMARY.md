@@ -17,3 +17,4 @@
 - [Standard Library](./std_library.md)
     - [Built-in Functions](./library/builtins.md)
     - [`std`](./library/std.md)
+    - [`strings`](./library/string.md)

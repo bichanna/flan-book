@@ -26,6 +26,14 @@ match error?(result) {
     false -> println!("Math is broken :("),
 }
 ```
+If an expression evaluates without any errors, the `unsafe` expression returns the value:
+```
+func return_one() 1
+
+result := unsafe return_one()
+result // 1
+```
+
 An exception is just an object that has two properties: `error_type` and `error_message`. For example:
 ```js
 {

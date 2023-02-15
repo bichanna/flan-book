@@ -1,5 +1,5 @@
 # `std`
-`std` library defines basic functions for working with Oak values and functions, iterators, and control flow.
+`std` module defines basic functions for working with Feo values and functions, iterators, and control flow.
 
  - [`identity`](#identityx)
  - [`is`](#isx)
