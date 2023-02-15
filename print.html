@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="test.html"><strong aria-hidden="true">14.</strong> Testing</a></li><li class="chapter-item expanded "><a href="std_library.html"><strong aria-hidden="true">15.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/builtins.html"><strong aria-hidden="true">15.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="library/std.html"><strong aria-hidden="true">15.2.</strong> std</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="test.html"><strong aria-hidden="true">14.</strong> Testing</a></li><li class="chapter-item expanded "><a href="std_library.html"><strong aria-hidden="true">15.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/builtins.html"><strong aria-hidden="true">15.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="library/std.html"><strong aria-hidden="true">15.2.</strong> std</a></li><li class="chapter-item expanded "><a href="library/string.html"><strong aria-hidden="true">15.3.</strong> strings</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -532,6 +532,12 @@ match error?(result) {
     false -&gt; println!(&quot;Math is broken :(&quot;),
 }
 </code></pre>
+<p>If an expression evaluates without any errors, the <code>unsafe</code> expression returns the value:</p>
+<pre><code>func return_one() 1
+
+result := unsafe return_one()
+result // 1
+</code></pre>
 <p>An exception is just an object that has two properties: <code>error_type</code> and <code>error_message</code>. For example:</p>
 <pre><code class="language-js">{
     error_type: :zero_division,
@@ -692,7 +698,7 @@ err.error_type    // :some_error
 err.error_message // &quot;some error!&quot;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="std"><a class="header" href="#std"><code>std</code></a></h1>
-<p><code>std</code> library defines basic functions for working with Oak values and functions, iterators, and control flow.</p>
+<p><code>std</code> module defines basic functions for working with Feo values and functions, iterators, and control flow.</p>
 <ul>
 <li><a href="library/std.html#identityx"><code>identity</code></a></li>
 <li><a href="library/std.html#isx"><code>is</code></a></li>
@@ -916,6 +922,115 @@ It can be used to infinitely loop if <code>max &lt; 0</code>. Callback is called
     // do something...
     next()
 }
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="strings-1"><a class="header" href="#strings-1"><code>strings</code></a></h1>
+<p><code>strings</code> module provides a set of utility functions for working with strings and data encoded in strings in Feo programs.</p>
+<ul>
+<li><a href="library/string.html#upperc"><code>upper?</code></a></li>
+<li><a href="library/string.html#lowerc"><code>lower?</code></a></li>
+<li><a href="library/string.html#digitc"><code>digit?</code></a></li>
+<li><a href="library/string.html#spacec"><code>space?</code></a></li>
+<li><a href="library/string.html#letterc"><code>letter?</code></a></li>
+<li><a href="library/string.html#wordc"><code>word?</code></a></li>
+<li><a href="library/string.html#joinstrings-joiner"><code>join</code></a></li>
+<li><a href="library/string.html#starts_withs-prefix"><code>starts_with?</code></a></li>
+<li><a href="library/string.html#ends_withs_suffix"><code>ends_with?</code></a></li>
+<li><a href="library/string.html#index_ofs-substr"><code>index_of</code></a></li>
+<li><a href="library/string.html#rindex_ofs-substr"><code>rindex_of</code></a></li>
+<li><a href="library/string.html#containss-substr"><code>contains?</code></a></li>
+<li><a href="library/string.html#replaces-old-new"><code>replace</code></a></li>
+<li><a href="library/string.html#splits-sep"><code>split</code></a></li>
+<li><a href="library/string.html#pad_starts-n-pad"><code>pad_start</code></a></li>
+<li><a href="library/string.html#pad_ends-n-pad"><code>pad_end</code></a></li>
+<li><a href="library/string.html#trim_starts-prefix"><code>trim_start</code></a></li>
+<li><a href="library/string.html#trim_ends-suffix"><code>trim_end</code></a></li>
+<li><a href="library/string.html#trims-part"><code>trim</code></a></li>
+</ul>
+<h2 id="upperc"><a class="header" href="#upperc"><code>upper?(c)</code></a></h2>
+<p><code>upper?</code> reports whether a given char is an uppercase ASCII letter.</p>
+<pre><code class="language-js">upper?(&quot;a&quot;) // false
+upper?(&quot;A&quot;) // true
+</code></pre>
+<h2 id="lowerc"><a class="header" href="#lowerc"><code>lower?(c)</code></a></h2>
+<p><code>lower?</code> reports whether a given char is a lowercase ASCII letter.</p>
+<pre><code class="language-js">lower?(&quot;a&quot;) // true
+lower?(&quot;A&quot;) // false
+</code></pre>
+<h2 id="digitc"><a class="header" href="#digitc"><code>digit?(c)</code></a></h2>
+<p><code>digit?</code> reports whether a given char is an ASCII digit.</p>
+<pre><code class="language-js">digit?(&quot;1&quot;) // true
+digit?(&quot;a&quot;) // false
+</code></pre>
+<h2 id="spacec"><a class="header" href="#spacec"><code>space?(c)</code></a></h2>
+<p><code>space?</code> reports whether a given char is an ASCII whitespace.</p>
+<pre><code class="language-js">space?(&quot;\n&quot;) // true
+space?(&quot;a&quot;) // false
+</code></pre>
+<h2 id="letterc"><a class="header" href="#letterc"><code>letter?(c)</code></a></h2>
+<p><code>letter?</code> reports whether a given char is an ASCII letter.</p>
+<pre><code class="language-js">letter?(&quot;a&quot;) // true
+letter?(&quot;A&quot;) // true
+</code></pre>
+<h2 id="wordc"><a class="header" href="#wordc"><code>word?(c)</code></a></h2>
+<p><code>word?</code> reports whether a given char is a letter or a digit.</p>
+<pre><code class="language-js">word?(&quot;1&quot;) // true
+word?(&quot;a&quot;) // true
+</code></pre>
+<h2 id="joinstrings-joiner"><a class="header" href="#joinstrings-joiner"><code>join(strings, joiner)</code></a></h2>
+<p><code>join</code> concatenates together a list of strings into a single string, where each original string in the list is separated by <code>joiner</code>.
+Joiner is the empty string by default.</p>
+<pre><code class="language-js">join([&quot;Nobu&quot;, &quot;Shimazu&quot;], &quot; &quot;) // &quot;Nobu Shimazu&quot;
+</code></pre>
+<h2 id="starts_withs-prefix"><a class="header" href="#starts_withs-prefix"><code>starts_with?(s, prefix)</code></a></h2>
+<p><code>starts_with?</code> reports whether a string starts with the substring <code>prefix</code>.</p>
+<pre><code class="language-js">starts_with?(&quot;abcdefg&quot;, &quot;abc&quot;) // true
+</code></pre>
+<h2 id="ends_withs-suffix"><a class="header" href="#ends_withs-suffix"><code>ends_with?(s, suffix)</code></a></h2>
+<p><code>ends_with?</code> reports whether a string ends with the substring <code>suffix</code>.</p>
+<pre><code class="language-js">ends_with?(&quot;abcdefg&quot;, &quot;efg&quot;) // true
+</code></pre>
+<h2 id="index_ofs-substr"><a class="header" href="#index_ofs-substr"><code>index_of(s, substr)</code></a></h2>
+<p><code>index_of</code> returns the first index at which the given substring <code>substr</code> appears in the string <code>s</code>. If the substring does not exist, it returns <code>-1</code>.</p>
+<pre><code class="language-js">index_of(&quot;nobu.bichanna@gmail.com&quot;, &quot;bichanna&quot;) // 5
+</code></pre>
+<h2 id="rindex_ofs-substr"><a class="header" href="#rindex_ofs-substr"><code>rindex_of(s, substr)</code></a></h2>
+<p><code>rindex_of</code> returns the last index at which the given substring <code>substr</code> appears in the string <code>s</code>. If the substring does not exist, it returns <code>-1</code>.</p>
+<pre><code class="language-js">rindex_of(&quot;nobu.bichanna@gmail.com&quot;, &quot;a&quot;) // 16 
+</code></pre>
+<h2 id="containss-substr"><a class="header" href="#containss-substr"><code>contains?(s, substr)</code></a></h2>
+<p><code>contains?</code> reports whether the string <code>s</code> contains the substring <code>substr</code>.</p>
+<pre><code class="language-js">contains?(&quot;nobu.bichanna@gmail.com&quot;, &quot;com&quot;) // true
+contains?(&quot;nobu.bichanna@gmail.com&quot;, &quot;asd&quot;) // false
+</code></pre>
+<h2 id="replaces-old-new"><a class="header" href="#replaces-old-new"><code>replace(s, old, new)</code></a></h2>
+<p><code>replace</code> returns a string where all occurrences of the substring <code>old</code> has been replaced by <code>new</code> in the string <code>s</code>. It does nothing for empty strings.</p>
+<pre><code class="language-js">replace(&quot;catcatcat&quot;, &quot;t&quot;, &quot;ts&quot;) // &quot;catscatscats&quot;
+</code></pre>
+<h2 id="splits-sep"><a class="header" href="#splits-sep"><code>split(s, sep)</code></a></h2>
+<p><code>split</code> splits the string <code>s</code> by every occurrence of the substring <code>sep</code> in it, and returns the result as a list of strings.
+If <code>sep</code> is not specified, split returns a list of every character in the string in order.</p>
+<pre><code class="language-js">split(&quot;blah blah blah&quot;, &quot; &quot;) // [&quot;blah&quot;, &quot;blah&quot;, &quot;blah&quot;]
+</code></pre>
+<h2 id="pad_starts-n-pad"><a class="header" href="#pad_starts-n-pad"><code>pad_start(s, n, pad)</code></a></h2>
+<p><code>pad_start</code> prepends the string <code>s</code> with one or more repetitions of pad until the total string is at least <code>n</code> characters long. If <code>len(s) &gt; n</code>, it returns <code>s</code>.</p>
+<pre><code class="language-js">pad_start(&quot;hello&quot;, 2, &quot;-&quot;) // &quot;--hello&quot;
+</code></pre>
+<h2 id="pad_ends-n-pad"><a class="header" href="#pad_ends-n-pad"><code>pad_end(s, n, pad)</code></a></h2>
+<p><code>trim_end</code> removes any (potentially repeated) occurrences of the string <code>suffix</code> from the end of string <code>s</code>.</p>
+<pre><code class="language-js">pad_end(&quot;hello&quot;, 2, &quot;-&quot;) // &quot;hello--&quot;
+</code></pre>
+<h2 id="trim_starts-prefix"><a class="header" href="#trim_starts-prefix"><code>trim_start(s, prefix)</code></a></h2>
+<p><code>trim_start</code> removes any (potentially repeated) occurrences of the string <code>prefix</code> from the beginning of string <code>s</code>.</p>
+<pre><code class="language-js">trim_start(&quot;Nobuharu&quot;, &quot;Nobu&quot;) // &quot;haru&quot;
+</code></pre>
+<h2 id="trim_ends-suffix"><a class="header" href="#trim_ends-suffix"><code>trim_end(s, suffix)</code></a></h2>
+<p><code>trim_end</code> removes any (potentially repeated) occurrences of the string <code>suffix</code> from the end of string <code>s</code>.</p>
+<pre><code class="language-js">trim_end(&quot;Nobuharu&quot;, &quot;ru&quot;) // &quot;Nobuha&quot;
+</code></pre>
+<h2 id="trims-part"><a class="header" href="#trims-part"><code>trim(s, part)</code></a></h2>
+<p><code>trim</code> removes any (potentially repeated) ocucrrences of the string <code>part</code> from either end of the string <code>s</code>.
+If <code>part</code> is not specified, trim removes all whitespace from either end of the string <code>s</code>.</p>
+<pre><code class="language-js">trim(&quot;  Hello  &quot;) // &quot;Hello&quot;
 </code></pre>
 
                     </main>
