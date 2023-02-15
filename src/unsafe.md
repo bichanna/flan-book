@@ -27,7 +27,7 @@ match error?(result) {
 }
 ```
 If an expression evaluates without any errors, the `unsafe` expression returns the value:
-```
+```js
 func return_one() 1
 
 result := unsafe return_one()
