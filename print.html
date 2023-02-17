@@ -624,6 +624,7 @@ All of them are listed here.</p>
 <li><a href="library/builtins.html#epintx"><code>eprint</code></a></li>
 <li><a href="library/builtins.html#eprintln"><code>eprintln</code></a></li>
 <li><a href="library/builtins.html#errort-msg"><code>error</code></a></li>
+<li><a href="library/builtins.html#errorx"><code>error?</code></a></li>
 </ul>
 <h3 id="absx"><a class="header" href="#absx"><code>abs(x)</code></a></h3>
 <p><code>abs</code> returns the absolute value of a number.</p>
@@ -635,6 +636,8 @@ All of them are listed here.</p>
 <p><code>float</code> converts <code>x</code> to a float.</p>
 <h3 id="stringx"><a class="header" href="#stringx"><code>string(x)</code></a></h3>
 <p><code>string</code> converts <code>x</code> to a string.</p>
+<h3 id="atomx"><a class="header" href="#atomx"><code>atom(x)</code></a></h3>
+<p><code>atom</code> converts <code>x</code> to an atom.</p>
 <h3 id="typex"><a class="header" href="#typex"><code>type(x)</code></a></h3>
 <p><code>type</code> returns the type of <code>x</code> as an atom: <code>:int</code>, <code>:float</code>, <code>:string</code>, <code>:atom</code>, <code>:list</code>, or <code>:object</code>.</p>
 <pre><code class="language-js">pi := 3.1415
@@ -696,6 +699,14 @@ get(obj, :name) // &quot;Nobu&quot;
 <pre><code class="language-js">err := unsafe error(:some_error, &quot;some error!&quot;)
 err.error_type    // :some_error
 err.error_message // &quot;some error!&quot;
+</code></pre>
+<h3 id="errorx"><a class="header" href="#errorx"><code>error?(x)</code></a></h3>
+<p><code>error?</code> checks if <code>x</code> is an error object or not.</p>
+<pre><code class="language-js">result := unsafe (10 / 0)
+match error?(result) {
+    true -&gt; &quot;Math still works!&quot;,
+    false -&gt; &quot;Math is broken ;(&quot;,
+}
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="std"><a class="header" href="#std"><code>std</code></a></h1>
 <p><code>std</code> module defines basic functions for working with Feo values and functions, iterators, and control flow.</p>
