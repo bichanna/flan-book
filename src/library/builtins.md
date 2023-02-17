@@ -22,6 +22,7 @@ All of them are listed here.
  - [`eprint`](#epintx)
  - [`eprintln`](#eprintln)
  - [`error`](#errort-msg)
+ - [`error?`](#errorx)
 
 ### `abs(x)`
 `abs` returns the absolute value of a number.
@@ -38,6 +39,9 @@ All of them are listed here.
 
 ### `string(x)`
 `string` converts `x` to a string.
+
+### `atom(x)`
+`atom` converts `x` to an atom.
 
 ### `type(x)`
 `type` returns the type of `x` as an atom: `:int`, `:float`, `:string`, `:atom`, `:list`, or `:object`.
@@ -125,4 +129,14 @@ eprintln("something wrong happened!")
 err := unsafe error(:some_error, "some error!")
 err.error_type    // :some_error
 err.error_message // "some error!"
+```
+
+### `error?(x)`
+`error?` checks if `x` is an error object or not.
+```js
+result := unsafe (10 / 0)
+match error?(result) {
+    true -> "Math still works!",
+    false -> "Math is broken ;(",
+}
 ```
