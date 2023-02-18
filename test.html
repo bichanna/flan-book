@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="test.html" class="active"><strong aria-hidden="true">14.</strong> Testing</a></li><li class="chapter-item expanded "><a href="std_library.html"><strong aria-hidden="true">15.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/builtins.html"><strong aria-hidden="true">15.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="library/std.html"><strong aria-hidden="true">15.2.</strong> std</a></li><li class="chapter-item expanded "><a href="library/string.html"><strong aria-hidden="true">15.3.</strong> strings</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="test.html" class="active"><strong aria-hidden="true">14.</strong> Testing</a></li><li class="chapter-item expanded "><a href="std_library.html"><strong aria-hidden="true">15.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/builtins.html"><strong aria-hidden="true">15.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="library/std.html"><strong aria-hidden="true">15.2.</strong> std</a></li><li class="chapter-item expanded "><a href="library/string.html"><strong aria-hidden="true">15.3.</strong> strings</a></li><li class="chapter-item expanded "><a href="library/fmt.html"><strong aria-hidden="true">15.4.</strong> fmt</a></li><li class="chapter-item expanded "><a href="library/testing.html"><strong aria-hidden="true">15.5.</strong> testing</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -143,12 +143,12 @@
                 <div id="content" class="content">
                     <main>
                         <h2 id="testing"><a class="header" href="#testing">Testing</a></h2>
-<p>The <code>testing</code> module provides a set of tools for constructing tests.</p>
+<p>The <a href="./library/testing.html"><code>testing</code></a> module provides a set of tools for constructing tests.</p>
 <p>Here's a simple example to test three functions in <code>strings</code> module:</p>
 <pre><code class="language-js">strings := import(&quot;strings&quot;)
 testing := import(&quot;testing&quot;)
 
-testing.test({
+testing.run({
     title: &quot;Test strings module&quot;,
     tests: [
         {
@@ -178,7 +178,7 @@ testing.test({
     ]
 })
 </code></pre>
-<p>The <code>testing</code> module provides several assert methods to check for and report failures.
+<p>The <a href="./library/testing.html"><code>testing</code></a> module provides several assert methods to check for and report failures.
 The following table lists all the assert functions.</p>
 <div class="table-wrapper"><table><thead><tr><th>Function</th><th>Checks that</th></tr></thead><tbody>
 <tr><td><code>assert_equal(a, b)</code></td><td><code>a == b</code></td></tr>
@@ -189,6 +189,7 @@ The following table lists all the assert functions.</p>
 <tr><td><code>assert_not_null(x)</code></td><td><code>x != null</code></td></tr>
 <tr><td><code>assert_contains(a, b)</code></td><td><code>std.contains?(a, b) == true</code></td></tr>
 <tr><td><code>assert_not_contain(a, b)</code></td><td><code>std.contains?(a, b) == false</code></td></tr>
+<tr><td><code>assert_error(a, t, msg)</code></td><td><code>unsafe a == error(t, msg)</code></td></tr>
 </tbody></table>
 </div>
                     </main>

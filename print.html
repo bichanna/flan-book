@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="test.html"><strong aria-hidden="true">14.</strong> Testing</a></li><li class="chapter-item expanded "><a href="std_library.html"><strong aria-hidden="true">15.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/builtins.html"><strong aria-hidden="true">15.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="library/std.html"><strong aria-hidden="true">15.2.</strong> std</a></li><li class="chapter-item expanded "><a href="library/string.html"><strong aria-hidden="true">15.3.</strong> strings</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="test.html"><strong aria-hidden="true">14.</strong> Testing</a></li><li class="chapter-item expanded "><a href="std_library.html"><strong aria-hidden="true">15.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/builtins.html"><strong aria-hidden="true">15.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="library/std.html"><strong aria-hidden="true">15.2.</strong> std</a></li><li class="chapter-item expanded "><a href="library/string.html"><strong aria-hidden="true">15.3.</strong> strings</a></li><li class="chapter-item expanded "><a href="library/fmt.html"><strong aria-hidden="true">15.4.</strong> fmt</a></li><li class="chapter-item expanded "><a href="library/testing.html"><strong aria-hidden="true">15.5.</strong> testing</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -549,12 +549,12 @@ result // 1
 <pre><code class="language-js">error(:user_defined, &quot;user-defined error!&quot;)
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="testing"><a class="header" href="#testing">Testing</a></h2>
-<p>The <code>testing</code> module provides a set of tools for constructing tests.</p>
+<p>The <a href="./library/testing.html"><code>testing</code></a> module provides a set of tools for constructing tests.</p>
 <p>Here's a simple example to test three functions in <code>strings</code> module:</p>
 <pre><code class="language-js">strings := import(&quot;strings&quot;)
 testing := import(&quot;testing&quot;)
 
-testing.test({
+testing.run({
     title: &quot;Test strings module&quot;,
     tests: [
         {
@@ -584,7 +584,7 @@ testing.test({
     ]
 })
 </code></pre>
-<p>The <code>testing</code> module provides several assert methods to check for and report failures.
+<p>The <a href="./library/testing.html"><code>testing</code></a> module provides several assert methods to check for and report failures.
 The following table lists all the assert functions.</p>
 <div class="table-wrapper"><table><thead><tr><th>Function</th><th>Checks that</th></tr></thead><tbody>
 <tr><td><code>assert_equal(a, b)</code></td><td><code>a == b</code></td></tr>
@@ -595,6 +595,7 @@ The following table lists all the assert functions.</p>
 <tr><td><code>assert_not_null(x)</code></td><td><code>x != null</code></td></tr>
 <tr><td><code>assert_contains(a, b)</code></td><td><code>std.contains?(a, b) == true</code></td></tr>
 <tr><td><code>assert_not_contain(a, b)</code></td><td><code>std.contains?(a, b) == false</code></td></tr>
+<tr><td><code>assert_error(a, t, msg)</code></td><td><code>unsafe a == error(t, msg)</code></td></tr>
 </tbody></table>
 </div><div style="break-before: page; page-break-before: always;"></div><h1 id="the-feo-standard-library"><a class="header" href="#the-feo-standard-library">The Feo Standard Library</a></h1>
 <p>Feo’s standard library is quite extensive, offering a wide range of facilities as indicated by the long table of contents listed below.
@@ -1042,6 +1043,109 @@ If <code>sep</code> is not specified, split returns a list of every character in
 <p><code>trim</code> removes any (potentially repeated) ocucrrences of the string <code>part</code> from either end of the string <code>s</code>.
 If <code>part</code> is not specified, trim removes all whitespace from either end of the string <code>s</code>.</p>
 <pre><code class="language-js">trim(&quot;  Hello  &quot;) // &quot;Hello&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="fmt"><a class="header" href="#fmt"><code>fmt</code></a></h1>
+<p><code>fmt</code> is the string formatting library for Feo.</p>
+<ul>
+<li><a href="library/fmt.html#formatraw-values"><code>format</code></a></li>
+<li><a href="library/fmt.html#printraw-values"><code>print</code></a></li>
+<li><a href="library/fmt.html#printlnraw-values"><code>println</code></a></li>
+</ul>
+<h2 id="formatraw-values"><a class="header" href="#formatraw-values"><code>format(raw, values...)</code></a></h2>
+<p><code>format</code> returns the format string <code>raw</code>, where each substring of the form &quot;{}&quot; has been replaced by the corresponding value given in the arguments.</p>
+<pre><code class="language-js">name := &quot;Nobu&quot;
+format(&quot;Hello, {}!&quot;, name) // &quot;Hello, Nobu!&quot;
+</code></pre>
+<h2 id="printraw-values"><a class="header" href="#printraw-values"><code>print(raw, values...)</code></a></h2>
+<p><code>print</code> prints the result of <code>format(raw, values...)</code> to the standard output stream.</p>
+<pre><code class="language-js">// Don't be confused with built-in function `print`!
+fmt.print(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!
+</code></pre>
+<h2 id="printlnraw-values"><a class="header" href="#printlnraw-values"><code>println(raw, values...)</code></a></h2>
+<p><code>println</code> prints the result of <code>format(raw, values...)</code> to the standard output stream with a newline.</p>
+<pre><code class="language-js">// Don't be confused with built-in function `println`!
+fmt.println(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!\n
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="testing-1"><a class="header" href="#testing-1"><code>Testing</code></a></h1>
+<p><code>testing</code> is a testing library for Feo, and it provides a set of tools for constructing tests.</p>
+<ul>
+<li><a href="library/testing.html#runtest_obj"><code>run</code></a></li>
+<li><a href="library/testing.html#assert_equala-b"><code>assert_equal</code></a></li>
+<li><a href="library/testing.html#assert_not_equala-b"><code>assert_not_equal</code></a></li>
+<li><a href="library/testing.html#assert_truex"><code>assert_true</code></a></li>
+<li><a href="library/testing.html#assert_falsex"><code>assert_false</code></a></li>
+<li><a href="library/testing.html#assert_nullx"><code>assert_null</code></a></li>
+<li><a href="library/testing.html#assert_not_nullx"><code>assert_not_null</code></a></li>
+<li><a href="library/testing.html#assert_containsa-b"><code>assert_contains</code></a></li>
+<li><a href="library/testing.html#assert_not_containa-b"><code>assert_not_contain</code></a></li>
+<li><a href="library/testing.html#assert_errora-t-msg"><code>assert_error</code></a></li>
+</ul>
+<h2 id="runtest_obj"><a class="header" href="#runtest_obj"><code>run(test_obj)</code></a></h2>
+<p><code>run</code> tests the given <code>test_obj</code> object.</p>
+<p>The <code>test_obj</code> is an object that looks like this:</p>
+<pre><code class="language-js">{
+    // The title of the test suite
+    title: &quot;The title of this particular test suite&quot;,
+    // The function that is executed once before all tests and returns
+    // an object that is passed to all tests as an argument
+    setup: func() {
+        { name: &quot;Nobu&quot; }
+    }
+    // The function that is executed once after all tests are run
+    cleanup: func(t) { // t is an object that is created in the setup function
+        // clean up something
+    }
+    // A list of smaller test chunks
+    tests: [
+        {
+            // The title of this small test chunk
+            name: &quot;The name of this test&quot;,
+            // The function that tests something
+            test: func(t) {
+                // test something
+            }
+        }
+    ]
+}
+</code></pre>
+<h2 id="assert_equala-b"><a class="header" href="#assert_equala-b"><code>assert_equal(a, b)</code></a></h2>
+<p><code>assert_equal</code> tests that <code>a</code> and <code>b</code> are equal. If the values do not compare equal, the test will fail.</p>
+<pre><code class="language-js">assert_equal(&quot;abc&quot;, &quot;abc&quot;) // checks that &quot;abc&quot; == &quot;abc&quot;
+</code></pre>
+<h2 id="assert_not_equala-b"><a class="header" href="#assert_not_equala-b"><code>assert_not_equal(a, b)</code></a></h2>
+<p><code>assert_not_equal</code> tests that <code>a</code> and <code>b</code> are not equal. If the values do compare equal, the test will fail.</p>
+<pre><code class="language-js">assert_not_equal(&quot;abc&quot;, &quot;ABC&quot;) // checks that &quot;abc&quot; != &quot;ABC&quot;
+</code></pre>
+<h2 id="assert_truex"><a class="header" href="#assert_truex"><code>assert_true(x)</code></a></h2>
+<p><code>assert_true</code> tests that <code>x</code> is <code>true</code>.</p>
+<pre><code class="language-js">assert_true(some_func()) // checks that some_func() == true
+</code></pre>
+<h2 id="assert_falsex"><a class="header" href="#assert_falsex"><code>assert_false(x)</code></a></h2>
+<p><code>assert_false</code> tests that <code>x</code> is <code>false</code>.</p>
+<pre><code class="language-js">assert_false(some_func()) // checks that some_func() == false
+</code></pre>
+<h2 id="assert_nullx"><a class="header" href="#assert_nullx"><code>assert_null(x)</code></a></h2>
+<p><code>assert_null</code> tests that <code>x</code> is <code>null</code>.</p>
+<pre><code class="language-js">assert_null(some_func()) // checks that some_func() == null
+</code></pre>
+<h2 id="assert_not_nullx"><a class="header" href="#assert_not_nullx"><code>assert_not_null(x)</code></a></h2>
+<pre><code class="language-js">assert_not_null(some_func()) // checks that some_func() != null
+</code></pre>
+<h2 id="assert_containsa-b"><a class="header" href="#assert_containsa-b"><code>assert_contains(a, b)</code></a></h2>
+<pre><code class="language-js">assert_contains([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], &quot;c&quot;) // checks if [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] contains &quot;c&quot;
+</code></pre>
+<h2 id="assert_not_containa-b"><a class="header" href="#assert_not_containa-b"><code>assert_not_contain(a, b)</code></a></h2>
+<pre><code class="language-js">assert_not_contain(
+    [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;],
+    &quot;d&quot;
+) // checks if [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] doesn't contains &quot;d&quot;
+</code></pre>
+<h2 id="assert_errora-t-msg"><a class="header" href="#assert_errora-t-msg"><code>assert_error(a, t, msg)</code></a></h2>
+<pre><code class="language-js">assert_error(
+    some_func(),
+    :error_type,
+    &quot;error message&quot;
+) // checks if unsafe some_func() == error(:error_type, &quot;error_message&quot;)
 </code></pre>
 
                     </main>
