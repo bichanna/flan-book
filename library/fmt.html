@@ -149,18 +149,18 @@
 <li><a href="#printraw-values"><code>print</code></a></li>
 <li><a href="#printlnraw-values"><code>println</code></a></li>
 </ul>
-<h2 id="formatraw-values"><a class="header" href="#formatraw-values"><code>format(raw, values...)</code></a></h2>
+<h2 id="formatraw-values"><a class="header" href="#formatraw-values"><code>format(raw, values+)</code></a></h2>
 <p><code>format</code> returns the format string <code>raw</code>, where each substring of the form &quot;{}&quot; has been replaced by the corresponding value given in the arguments.</p>
 <pre><code class="language-js">name := &quot;Nobu&quot;
 format(&quot;Hello, {}!&quot;, name) // &quot;Hello, Nobu!&quot;
 </code></pre>
-<h2 id="printraw-values"><a class="header" href="#printraw-values"><code>print(raw, values...)</code></a></h2>
-<p><code>print</code> prints the result of <code>format(raw, values...)</code> to the standard output stream.</p>
+<h2 id="printraw-values"><a class="header" href="#printraw-values"><code>print(raw, values+)</code></a></h2>
+<p><code>print</code> prints the result of <code>format(raw, values+)</code> to the standard output stream.</p>
 <pre><code class="language-js">// Don't be confused with built-in function `print`!
 fmt.print(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!
 </code></pre>
-<h2 id="printlnraw-values"><a class="header" href="#printlnraw-values"><code>println(raw, values...)</code></a></h2>
-<p><code>println</code> prints the result of <code>format(raw, values...)</code> to the standard output stream with a newline.</p>
+<h2 id="printlnraw-values"><a class="header" href="#printlnraw-values"><code>println(raw, values+)</code></a></h2>
+<p><code>println</code> prints the result of <code>format(raw, values+)</code> to the standard output stream with a newline.</p>
 <pre><code class="language-js">// Don't be confused with built-in function `println`!
 fmt.println(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!\n
 </code></pre>

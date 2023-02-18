@@ -159,6 +159,28 @@ func add_one(x) x + 1
 
 func add_two(x) twice(add_one, x)
 </code></pre>
+<h3 id="default-arguments"><a class="header" href="#default-arguments">Default Arguments</a></h3>
+<p>If a function is not passed a sufficient amout of arguments, it becomes <code>null</code> by default:</p>
+<pre><code class="language-js">func some_func(a, b) {}
+some_func(:hello) // a = :hello and b = null
+</code></pre>
+<p>There is <a href="./library/std.html#defaultx-base"><code>default</code></a> function in <a href="./library/std.html"><code>std</code> module</a>.</p>
+<pre><code class="language-js">{default: default} := import(&quot;std&quot;)
+
+func some_func(a, b) {
+    b = default(b, &quot;Hello&quot;)
+}
+</code></pre>
+<h3 id="rest-parameters"><a class="header" href="#rest-parameters">Rest Parameters</a></h3>
+<p>You can add <code>+</code> after parameter name if you are unsure about the number of arguments to pass in the functions.</p>
+<pre><code class="language-js">{each: each} := import(&quot;std&quot;)
+
+func sum(nums+) {
+    reduce(nums, 0) &lt;| func(accumulator, elem) accumulator + elem
+}
+
+sum(1, 4, 5, 3, 6)
+</code></pre>
 <h2 id="pipe-operator"><a class="header" href="#pipe-operator">Pipe Operator</a></h2>
 <p>Feo provides syntax for passing the result of one function to the arguments of another function, the pipe operator (<code>|&gt;</code>).
 This is similar in functionality to the same operator in Elixir or F#.</p>

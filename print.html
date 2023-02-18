@@ -407,6 +407,28 @@ func add_one(x) x + 1
 
 func add_two(x) twice(add_one, x)
 </code></pre>
+<h3 id="default-arguments"><a class="header" href="#default-arguments">Default Arguments</a></h3>
+<p>If a function is not passed a sufficient amout of arguments, it becomes <code>null</code> by default:</p>
+<pre><code class="language-js">func some_func(a, b) {}
+some_func(:hello) // a = :hello and b = null
+</code></pre>
+<p>There is <a href="./library/std.html#defaultx-base"><code>default</code></a> function in <a href="./library/std.html"><code>std</code> module</a>.</p>
+<pre><code class="language-js">{default: default} := import(&quot;std&quot;)
+
+func some_func(a, b) {
+    b = default(b, &quot;Hello&quot;)
+}
+</code></pre>
+<h3 id="rest-parameters"><a class="header" href="#rest-parameters">Rest Parameters</a></h3>
+<p>You can add <code>+</code> after parameter name if you are unsure about the number of arguments to pass in the functions.</p>
+<pre><code class="language-js">{each: each} := import(&quot;std&quot;)
+
+func sum(nums+) {
+    reduce(nums, 0) &lt;| func(accumulator, elem) accumulator + elem
+}
+
+sum(1, 4, 5, 3, 6)
+</code></pre>
 <h2 id="pipe-operator-1"><a class="header" href="#pipe-operator-1">Pipe Operator</a></h2>
 <p>Feo provides syntax for passing the result of one function to the arguments of another function, the pipe operator (<code>|&gt;</code>).
 This is similar in functionality to the same operator in Elixir or F#.</p>
@@ -1051,18 +1073,18 @@ If <code>part</code> is not specified, trim removes all whitespace from either e
 <li><a href="library/fmt.html#printraw-values"><code>print</code></a></li>
 <li><a href="library/fmt.html#printlnraw-values"><code>println</code></a></li>
 </ul>
-<h2 id="formatraw-values"><a class="header" href="#formatraw-values"><code>format(raw, values...)</code></a></h2>
+<h2 id="formatraw-values"><a class="header" href="#formatraw-values"><code>format(raw, values+)</code></a></h2>
 <p><code>format</code> returns the format string <code>raw</code>, where each substring of the form &quot;{}&quot; has been replaced by the corresponding value given in the arguments.</p>
 <pre><code class="language-js">name := &quot;Nobu&quot;
 format(&quot;Hello, {}!&quot;, name) // &quot;Hello, Nobu!&quot;
 </code></pre>
-<h2 id="printraw-values"><a class="header" href="#printraw-values"><code>print(raw, values...)</code></a></h2>
-<p><code>print</code> prints the result of <code>format(raw, values...)</code> to the standard output stream.</p>
+<h2 id="printraw-values"><a class="header" href="#printraw-values"><code>print(raw, values+)</code></a></h2>
+<p><code>print</code> prints the result of <code>format(raw, values+)</code> to the standard output stream.</p>
 <pre><code class="language-js">// Don't be confused with built-in function `print`!
 fmt.print(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!
 </code></pre>
-<h2 id="printlnraw-values"><a class="header" href="#printlnraw-values"><code>println(raw, values...)</code></a></h2>
-<p><code>println</code> prints the result of <code>format(raw, values...)</code> to the standard output stream with a newline.</p>
+<h2 id="printlnraw-values"><a class="header" href="#printlnraw-values"><code>println(raw, values+)</code></a></h2>
+<p><code>println</code> prints the result of <code>format(raw, values+)</code> to the standard output stream with a newline.</p>
 <pre><code class="language-js">// Don't be confused with built-in function `println`!
 fmt.println(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!\n
 </code></pre>
