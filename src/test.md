@@ -1,12 +1,12 @@
 ## Testing
-The `testing` module provides a set of tools for constructing tests.
+The [`testing`](./library/testing.md) module provides a set of tools for constructing tests.
 
 Here's a simple example to test three functions in `strings` module:
 ```js
 strings := import("strings")
 testing := import("testing")
 
-testing.test({
+testing.run({
     title: "Test strings module",
     tests: [
         {
@@ -37,7 +37,7 @@ testing.test({
 })
 ```
 
-The `testing` module provides several assert methods to check for and report failures.
+The [`testing`](./library/testing.md) module provides several assert methods to check for and report failures.
 The following table lists all the assert functions.
 
 | Function | Checks that |
@@ -50,3 +50,4 @@ The following table lists all the assert functions.
 | `assert_not_null(x)` | `x != null` |
 | `assert_contains(a, b)` | `std.contains?(a, b) == true` |
 | `assert_not_contain(a, b)` | `std.contains?(a, b) == false` |
+| `assert_error(a, t, msg)` | `unsafe a == error(t, msg)` |

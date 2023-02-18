@@ -18,3 +18,5 @@
     - [Built-in Functions](./library/builtins.md)
     - [`std`](./library/std.md)
     - [`strings`](./library/string.md)
+    - [`fmt`](./library/fmt.md)
+    - [`testing`](./library/testing.md)
