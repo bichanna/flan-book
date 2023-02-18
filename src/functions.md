@@ -20,6 +20,33 @@ func add_one(x) x + 1
 func add_two(x) twice(add_one, x)
 ```
 
+### Default Arguments
+If a function is not passed a sufficient amout of arguments, it becomes `null` by default:
+```js
+func some_func(a, b) {}
+some_func(:hello) // a = :hello and b = null
+```
+There is [`default`](./library/std.md#defaultx-base) function in [`std` module](./library/std.md).
+```js
+{default: default} := import("std")
+
+func some_func(a, b) {
+    b = default(b, "Hello")
+}
+```
+
+### Rest Parameters
+You can add `+` after parameter name if you are unsure about the number of arguments to pass in the functions.
+```js
+{each: each} := import("std")
+
+func sum(nums+) {
+    reduce(nums, 0) <| func(accumulator, elem) accumulator + elem
+}
+
+sum(1, 4, 5, 3, 6)
+```
+
 ## Pipe Operator
 Feo provides syntax for passing the result of one function to the arguments of another function, the pipe operator (`|>`).
 This is similar in functionality to the same operator in Elixir or F#.
