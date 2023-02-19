@@ -769,17 +769,17 @@ match error?(result) {
 <li><a href="library/std.html#loopmax-f"><code>loop</code></a></li>
 <li><a href="library/std.html#aloopmax-f-done"><code>aloop</code></a></li>
 </ul>
-<h3 id="identityx"><a class="header" href="#identityx"><code>identity(x)</code></a></h3>
+<h2 id="identityx"><a class="header" href="#identityx"><code>identity(x)</code></a></h2>
 <p><code>identity</code> returns its first argument.</p>
 <pre><code class="language-js">&quot;Hello&quot; == identity(&quot;Hello&quot;) // true
 </code></pre>
-<h3 id="isx"><a class="header" href="#isx"><code>is(x)</code></a></h3>
+<h2 id="isx"><a class="header" href="#isx"><code>is(x)</code></a></h2>
 <p><code>is</code> returns a predicate that reports whether its argument is equal to <code>x</code>.</p>
 <pre><code class="language-js">f := is(2)
 f(2)   // true
 f(&quot;a&quot;) // false
 </code></pre>
-<h3 id="defaultx-base"><a class="header" href="#defaultx-base"><code>default(x, base)</code></a></h3>
+<h2 id="defaultx-base"><a class="header" href="#defaultx-base"><code>default(x, base)</code></a></h2>
 <p><code>default</code> returns <code>x</code> if <code>x</code> is not <code>null</code>, or <code>base</code> otherwise. It is useful when taking optional arguments in functions with default values.</p>
 <pre><code class="language-js">func some_func(n, times) {
     // times = 1 by default
@@ -787,15 +787,15 @@ f(&quot;a&quot;) // false
     // do something
 }
 </code></pre>
-<h3 id="to_hexn"><a class="header" href="#to_hexn"><code>to_hex(n)</code></a></h3>
+<h2 id="to_hexn"><a class="header" href="#to_hexn"><code>to_hex(n)</code></a></h2>
 <p><code>to_hex</code> takes a number and returns its hexadecimal representation in a string. It fails for negative values.</p>
 <pre><code class="language-js">to_hex(50159747054) // &quot;BADC0FFEE&quot;
 </code></pre>
-<h3 id="from_hexs"><a class="header" href="#from_hexs"><code>from_hex(s)</code></a></h3>
+<h2 id="from_hexs"><a class="header" href="#from_hexs"><code>from_hex(s)</code></a></h2>
 <p><code>from_hex</code> takes a hexadecimal representation of a number and parses it to an integer. It returns <code>null</code> if the input is not a valid hexadecimal number.</p>
 <pre><code class="language-js">from_hex(&quot;BADC0FFEE&quot;) // 50159747054
 </code></pre>
-<h3 id="clampmin-max-n-m"><a class="header" href="#clampmin-max-n-m"><code>clamp(min, max, n, m)</code></a></h3>
+<h2 id="clampmin-max-n-m"><a class="header" href="#clampmin-max-n-m"><code>clamp(min, max, n, m)</code></a></h2>
 <p><code>clamp</code> takes values <code>n</code>, <code>m</code> and &quot;clamps&quot; or constrains it to the range [<code>min</code>, <code>max</code>], inclusive. If <code>n &gt; m</code>, <code>n</code> takes priority and clams <code>m</code> down to the lower
 value. In the returned value, the following are guaranteed:</p>
 <ul>
@@ -803,14 +803,14 @@ value. In the returned value, the following are guaranteed:</p>
 <li><code>min &lt;= m &lt;= max</code></li>
 <li><code>n &lt;= m</code></li>
 </ul>
-<h3 id="slicexs-min-max"><a class="header" href="#slicexs-min-max"><code>slice(xs, min, max)</code></a></h3>
+<h2 id="slicexs-min-max"><a class="header" href="#slicexs-min-max"><code>slice(xs, min, max)</code></a></h2>
 <p><code>slice</code> takes an iterable <code>xs</code> (string or list) and returns a &quot;slice&quot; of the original from the range [<code>min</code>, <code>max</code>).
 The slice is a copy, and mutating it will not mutate the original.</p>
 <p>Both <code>min</code> and <code>max</code> are optional and will default to <code>0</code> and <code>len(xs)</code> respectively.</p>
 <pre><code class="language-js">name := &quot;Sol David&quot;
 slice(name, 0, 3) // &quot;Sol&quot;
 </code></pre>
-<h3 id="clonex"><a class="header" href="#clonex"><code>clone(x)</code></a></h3>
+<h2 id="clonex"><a class="header" href="#clonex"><code>clone(x)</code></a></h2>
 <p><code>clone</code> takes any Feo value and produces a shallow copy of it that will not mutate if the original mutates.</p>
 <pre><code class="language-js">list := [1, 2, 3]
 new_list := clone(list)
@@ -818,125 +818,125 @@ new_list := clone(list)
 [list, _] = pop(list) // list is [1, 2]
 new_list // still [1, 2, 3]
 </code></pre>
-<h3 id="rangestart-end-step"><a class="header" href="#rangestart-end-step"><code>range(start, end, step)</code></a></h3>
+<h2 id="rangestart-end-step"><a class="header" href="#rangestart-end-step"><code>range(start, end, step)</code></a></h2>
 <p><code>range</code> returns a list of numbers in range [<code>start</code>, <code>end</code>), incrementing by <code>step</code>.
 It is analogous to Python's <code>range</code> builtin, and will default to <code>step = 0</code> and <code>start = 0</code> when those optional values are missing.</p>
 <pre><code class="language-js">range(0, 11, 2) // [0, 2, 4, 6, 8, 10]
 </code></pre>
-<h3 id="reversexs"><a class="header" href="#reversexs"><code>reverse(xs)</code></a></h3>
+<h2 id="reversexs"><a class="header" href="#reversexs"><code>reverse(xs)</code></a></h2>
 <p><code>reverse</code> reverses the order of all elements in a given iterable, producing a copy.</p>
 <pre><code class="language-js">reverse([1, 2, 3]) // [3, 2, 1]
 </code></pre>
-<h3 id="mapxs-f"><a class="header" href="#mapxs-f"><code>map(xs, f)</code></a></h3>
+<h2 id="mapxs-f"><a class="header" href="#mapxs-f"><code>map(xs, f)</code></a></h2>
 <p><code>map</code> produces a copy of the given iterable where each element has been put through some mapper predicate <code>f</code>.
 If <code>f</code> is a function, it receives arguments (<code>element</code>, <code>index</code>).</p>
 <pre><code class="language-js">[1, 2, 3] |&gt; map(func(element, index) element * 5) // [5, 10, 15]
 </code></pre>
-<h3 id="eachxs-f"><a class="header" href="#eachxs-f"><code>each(xs, f)</code></a></h3>
+<h2 id="eachxs-f"><a class="header" href="#eachxs-f"><code>each(xs, f)</code></a></h2>
 <p><code>each</code> calls the given iterator function <code>f</code> for each element of the given iterable <code>xs</code>.
 The iterator function receives arguments (<code>element</code>, <code>index</code>).</p>
 <pre><code class="language-js">[1, 2, 3] |&gt; each(func(element, index) print(element))
 // prints &quot;123&quot; to the console
 </code></pre>
-<h3 id="filterxs-f"><a class="header" href="#filterxs-f"><code>filter(xs, f)</code></a></h3>
+<h2 id="filterxs-f"><a class="header" href="#filterxs-f"><code>filter(xs, f)</code></a></h2>
 <p><code>filter</code> produces an iterable containing only the elements of <code>xs</code> that return <code>true</code> when passed to the filter predicate <code>f</code>.
 If <code>f</code> is a function, it receives arguments (<code>element</code>, <code>index</code>).</p>
 <pre><code class="language-js">list := [10, 4, 23, 13, 45] |&gt; filter(func(element, index) element &gt;= 15)
 list // [23, 45]
 </code></pre>
-<h3 id="reducexs-seed-f"><a class="header" href="#reducexs-seed-f"><code>reduce(xs, seed, f)</code></a></h3>
+<h2 id="reducexs-seed-f"><a class="header" href="#reducexs-seed-f"><code>reduce(xs, seed, f)</code></a></h2>
 <p><code>reduce</code> accumulates elements of the iterable <code>xs</code> on a value, starting with <code>seed</code> and passing it to the reducer function <code>f</code>.
 The reducer receives arguments (<code>accumulator</code>, <code>element</code>, <code>index</code>).</p>
 <pre><code class="language-js">// an example &quot;sum&quot; function implemented with reduce
 numbers |&gt; reduce(0) &lt;| func(accumulator, elem) accumulator + elem
 </code></pre>
-<h3 id="flattenxs"><a class="header" href="#flattenxs"><code>flatten(xs)</code></a></h3>
+<h2 id="flattenxs"><a class="header" href="#flattenxs"><code>flatten(xs)</code></a></h2>
 <p><code>flatten</code> takes a list of lists and flattens it to a list of elements. The flattening is only one level deep.</p>
 <pre><code class="language-js">list := [[1, 2, 3], [4, 5], [6, 7]]
 flatten(list) // [1, 2, 3, 4, 5, 6, 7]
 </code></pre>
-<h3 id="appendxs-ys"><a class="header" href="#appendxs-ys"><code>append(xs, ys)</code></a></h3>
+<h2 id="appendxs-ys"><a class="header" href="#appendxs-ys"><code>append(xs, ys)</code></a></h2>
 <p><code>append</code> joins two iterable values (strings or lists) together, mutating the first argument <code>xs</code>.
 If mutation is not desired, use <code>std.join</code>.</p>
 <pre><code class="language-js">names := [&quot;Nobu&quot;, &quot;Damian&quot;]
 append(names, [&quot;Sol&quot;, &quot;Thomas&quot;])
 names // [&quot;Nobu&quot;, &quot;Damian&quot;, &quot;Sol&quot;, &quot;Thomas&quot;]
 </code></pre>
-<h3 id="joinxs-ys"><a class="header" href="#joinxs-ys"><code>join(xs, ys)</code></a></h3>
+<h2 id="joinxs-ys"><a class="header" href="#joinxs-ys"><code>join(xs, ys)</code></a></h2>
 <p><code>join</code> joins two iterable values (strings or lists) together, while mutating neither values. If efficiency is desired, used <code>std.append</code>.</p>
 <pre><code class="language-js">names := [&quot;Nobu&quot;, &quot;Damian&quot;]
 join(names, [&quot;Sol&quot;, &quot;Thomas&quot;]) // [&quot;Nobu&quot;, &quot;Damian&quot;, &quot;Sol&quot;, &quot;Thomas&quot;]
 names // [&quot;Nobu&quot;, &quot;Damian&quot;], not mutated
 </code></pre>
-<h3 id="zipxs-ys-zipper"><a class="header" href="#zipxs-ys-zipper"><code>zip(xs, ys, zipper)</code></a></h3>
+<h2 id="zipxs-ys-zipper"><a class="header" href="#zipxs-ys-zipper"><code>zip(xs, ys, zipper)</code></a></h2>
 <p><code>zip</code> &quot;zips&quot; together each pair of items from two iterables. If the zipper function is not given, each pair of items are put into a 2-element list.
 Otherwise, <code>zipper</code> is called on each pair of items and the result is placed into the resulting list.</p>
 <pre><code class="language-js">zip([1, 2, 3], [4, 5, 6]) // =&gt; [[1, 2], [3, 4], [5, 6]]
 
 zip([1, 2, 3], [4, 5, 6], fn(a, b) a * b) // =&gt; [4, 10, 18]
 </code></pre>
-<h3 id="partitionxs-by"><a class="header" href="#partitionxs-by"><code>partition(xs, by)</code></a></h3>
+<h2 id="partitionxs-by"><a class="header" href="#partitionxs-by"><code>partition(xs, by)</code></a></h2>
 <p><code>partition</code> divides the sequence of items in the iterable <code>xs</code> into a list of lists (partitions).</p>
 <p>If <code>by</code> is an integer, each partition will contain that number of items. If <code>by</code> is a function, the partition will be cut anywhere the result of the function changes from one item to the next. For any other values of <code>by</code>, partition returns null.</p>
 <pre><code class="language-js">list := [1, 2, 3, 4, 5, 6]
 partition(list, 3) // [[1, 2, 3], [4, 5, 6]]
 </code></pre>
-<h3 id="uniquexs-pred"><a class="header" href="#uniquexs-pred"><code>unique(xs, pred)</code></a></h3>
+<h2 id="uniquexs-pred"><a class="header" href="#uniquexs-pred"><code>unique(xs, pred)</code></a></h2>
 <p><code>unique</code> takes a list <code>xs</code>, and returns a similar list where no element of <code>xs</code> occurs twice in a row.
 Elements may occur twice in the list if they are separated by other elements.
 <code>unique</code> takes an optional <code>pred</code> predicate, by which elements' equality may be compared. <code>unique</code> runs in <code>O(n)</code> time.</p>
 <pre><code class="language-js">list := [1, 1, 2, 2, 3]
 unique(list) // [1, 2, 3]
 </code></pre>
-<h3 id="firstxs"><a class="header" href="#firstxs"><code>first(xs)</code></a></h3>
+<h2 id="firstxs"><a class="header" href="#firstxs"><code>first(xs)</code></a></h2>
 <p><code>first</code> returns the first item in an iterable. It's trivial, but useful to have in the stdlib for use in pipelines or iterators.</p>
 <pre><code class="language-js">name := &quot;Nobu&quot;
 first(name) // &quot;N&quot;
 </code></pre>
-<h3 id="lastxs"><a class="header" href="#lastxs"><code>last(xs)</code></a></h3>
+<h2 id="lastxs"><a class="header" href="#lastxs"><code>last(xs)</code></a></h2>
 <p><code>last</code> returns the last item in an iterable. It's trivial, but useful to have in the stdlib for use in pipelines or iterators.</p>
 <pre><code class="language-js">name := &quot;Nobu&quot;
 first(name) // &quot;u&quot;
 </code></pre>
-<h3 id="takexs-n"><a class="header" href="#takexs-n"><code>take(xs, n)</code></a></h3>
+<h2 id="takexs-n"><a class="header" href="#takexs-n"><code>take(xs, n)</code></a></h2>
 <p><code>take</code> accepts an iterable and returns a version of it containing the first N elements.</p>
 <pre><code class="language-js">email := &quot;nobu.bichanna@gmail.com&quot;
 take(email, 4) // &quot;nobu&quot;
 </code></pre>
-<h3 id="take_lastxs-n"><a class="header" href="#take_lastxs-n"><code>take_last(xs, n)</code></a></h3>
+<h2 id="take_lastxs-n"><a class="header" href="#take_lastxs-n"><code>take_last(xs, n)</code></a></h2>
 <p><code>take_last</code> accepts an iterable and returns a version of it containing the last N elements.</p>
 <pre><code class="language-js">email := &quot;nobu.bichanna@gmail.com&quot;
 take_last(email, 9) // &quot;gmail.com&quot;
 </code></pre>
-<h3 id="findxs-pred"><a class="header" href="#findxs-pred"><code>find(xs, pred)</code></a></h3>
+<h2 id="findxs-pred"><a class="header" href="#findxs-pred"><code>find(xs, pred)</code></a></h2>
 <p><code>find</code> returns the index of the first item in the iterable <code>xs</code> for which the predicate returns <code>true</code>. If no match is found, find returns <code>-1</code>.</p>
 <pre><code class="language-js">nobu? := is(&quot;Nobu&quot;)
 names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
 find(names, nobu?) // 1
 </code></pre>
-<h3 id="rfindxs-pred"><a class="header" href="#rfindxs-pred"><code>rfind(xs, pred)</code></a></h3>
+<h2 id="rfindxs-pred"><a class="header" href="#rfindxs-pred"><code>rfind(xs, pred)</code></a></h2>
 <p><code>rfind</code> returns the index of the last item in the iterable <code>xs</code> for which the predicate returns <code>true</code>, searching backwards from the end.
 If no match is found, <code>rfind</code> returns <code>-1</code>.</p>
 <pre><code class="language-js">nobu? := is(&quot;Nobu&quot;)
 names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
 rfind(names, nobu?) // 5
 </code></pre>
-<h3 id="index_ofxs-x"><a class="header" href="#index_ofxs-x"><code>index_of(xs, x)</code></a></h3>
+<h2 id="index_ofxs-x"><a class="header" href="#index_ofxs-x"><code>index_of(xs, x)</code></a></h2>
 <p><code>index_of</code> returns the index of the first item equal to <code>x</code> in the iterable <code>xs</code>. If no match is found, <code>index_of</code> returns <code>-1</code>.</p>
 <pre><code class="language-js">names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
 index_of(names, &quot;Nobu&quot;) // 1
 </code></pre>
-<h3 id="rindex_ofxs-x"><a class="header" href="#rindex_ofxs-x"><code>rindex_of(xs, x)</code></a></h3>
+<h2 id="rindex_ofxs-x"><a class="header" href="#rindex_ofxs-x"><code>rindex_of(xs, x)</code></a></h2>
 <p>// <code>rindex_of</code> returns the index of the last item equal to <code>x</code> in the iterable <code>xs</code>, searching backwards from the end. If no match is found, <code>rindex_of</code> returns <code>-1</code>.</p>
 <pre><code class="language-js">names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
 index_of(names, &quot;Nobu&quot;) // 5
 </code></pre>
-<h3 id="containsxs-x"><a class="header" href="#containsxs-x"><code>contains?(xs, x)</code></a></h3>
+<h2 id="containsxs-x"><a class="header" href="#containsxs-x"><code>contains?(xs, x)</code></a></h2>
 <p><code>contains?</code> reports whether an iterable contains an item equal to <code>x</code>.</p>
 <pre><code class="language-js">names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
 contains?(names, &quot;Nobu&quot;) // true
 </code></pre>
-<h3 id="loopmax-f"><a class="header" href="#loopmax-f"><code>loop(max, f)</code></a></h3>
+<h2 id="loopmax-f"><a class="header" href="#loopmax-f"><code>loop(max, f)</code></a></h2>
 <p><code>loop</code> takes a loop count <code>max</code> and a callback, and invokes the callback <code>max</code> times.
 It can be used to infinitely loop if <code>max &lt; 0</code>. Callback is called with two arguments:</p>
 <ul>
@@ -947,7 +947,7 @@ It can be used to infinitely loop if <code>max &lt; 0</code>. Callback is called
     println(&quot;Hello, world!&quot;)
 }
 </code></pre>
-<h3 id="aloopmax-f-done"><a class="header" href="#aloopmax-f-done"><code>aloop(max, f, done)</code></a></h3>
+<h2 id="aloopmax-f-done"><a class="header" href="#aloopmax-f-done"><code>aloop(max, f, done)</code></a></h2>
 <p><code>aloop</code> takes a loop count <code>max</code> and a callback, and invokes the callback <code>max</code> times <em>asynchronously</em>.
 It can be used to infinitely loop if <code>max &lt; 0</code>. Callback is called with three arguments:</p>
 <ul>
