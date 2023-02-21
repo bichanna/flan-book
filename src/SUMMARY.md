@@ -20,4 +20,5 @@
     - [`strings`](./library/string.md)
     - [`math`](./library/math.md)
     - [`fmt`](./library/fmt.md)
+    - [`fs`](./library/fs.md)
     - [`testing`](./library/testing.md)
