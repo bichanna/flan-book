@@ -8,10 +8,10 @@ Lists are *heterogeneous*, meaning the elements of a list can be of different ty
 ```
 Under the hood, lists are just Rust `Vector`s.
 
-A built-in function `append` is provided to append a value to a list.
+A built-in function [`append`](./library/builtins.md#appendxs-x) is provided to append a value to a list.
 ```js
 names := ["Nobu", "Damian", "Thomas"]
-names |> append("Sol")
+names = append(names, "Sol")
 
 names // ["Nobu", "Damian", "Thomas", "Sol"]
 ```

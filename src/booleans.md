@@ -23,8 +23,9 @@ true || true   // => true
 true or false  // => true
 ```
 
-Feo supports negation of Booleans using either the `!` or `not` unary operators.
+Feo supports negation of Booleans using either one of the `!`, `not`, or `-` unary operators.
 ```js
-!true  // => false
+!true     // => false
 not false // => true
+-false    // => true
 ```

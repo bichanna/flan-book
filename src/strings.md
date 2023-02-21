@@ -21,8 +21,7 @@ Under the hood, strings are just Rust `String`s, which are encoded with [UTF-8](
 The addition operator can be used to join strings together, but not atoms:
 ```js
 name = "Nobu"
-name + "haru"
-// Nobuharu, which is my full first name
+name + "haru" // "Nobuharu"
 ```
 
 ### Escape Sequences

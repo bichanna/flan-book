@@ -76,3 +76,9 @@ func run() {
     add(1, 2) // 3
 }
 ```
+
+## Public Functions
+Functions annotated with `*` are public functions, meaning they could be exported outside of their own module to be used by other modules.
+```js
+func *public_func(xs+) {}
+```
