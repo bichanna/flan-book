@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>fmt - The Feo Book</title>
+        <title>fs - The Feo Book</title>
 
 
         <!-- Custom HTML head -->
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="../comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="../booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="../ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="../empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="../lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="../objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="../assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="../functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="../modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="../test.html"><strong aria-hidden="true">14.</strong> Testing</a></li><li class="chapter-item expanded "><a href="../std_library.html"><strong aria-hidden="true">15.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/builtins.html"><strong aria-hidden="true">15.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="../library/std.html"><strong aria-hidden="true">15.2.</strong> std</a></li><li class="chapter-item expanded "><a href="../library/string.html"><strong aria-hidden="true">15.3.</strong> strings</a></li><li class="chapter-item expanded "><a href="../library/math.html"><strong aria-hidden="true">15.4.</strong> math</a></li><li class="chapter-item expanded "><a href="../library/fmt.html" class="active"><strong aria-hidden="true">15.5.</strong> fmt</a></li><li class="chapter-item expanded "><a href="../library/fs.html"><strong aria-hidden="true">15.6.</strong> fs</a></li><li class="chapter-item expanded "><a href="../library/testing.html"><strong aria-hidden="true">15.7.</strong> testing</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="../comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="../booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="../ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="../empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="../lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="../objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="../assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="../functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="../modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="../test.html"><strong aria-hidden="true">14.</strong> Testing</a></li><li class="chapter-item expanded "><a href="../std_library.html"><strong aria-hidden="true">15.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/builtins.html"><strong aria-hidden="true">15.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="../library/std.html"><strong aria-hidden="true">15.2.</strong> std</a></li><li class="chapter-item expanded "><a href="../library/string.html"><strong aria-hidden="true">15.3.</strong> strings</a></li><li class="chapter-item expanded "><a href="../library/math.html"><strong aria-hidden="true">15.4.</strong> math</a></li><li class="chapter-item expanded "><a href="../library/fmt.html"><strong aria-hidden="true">15.5.</strong> fmt</a></li><li class="chapter-item expanded "><a href="../library/fs.html" class="active"><strong aria-hidden="true">15.6.</strong> fs</a></li><li class="chapter-item expanded "><a href="../library/testing.html"><strong aria-hidden="true">15.7.</strong> testing</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,38 +145,54 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="fmt"><a class="header" href="#fmt"><code>fmt</code></a></h1>
-<p><code>fmt</code> is the string formatting library for Feo.</p>
+                        <h1 id="fs"><a class="header" href="#fs"><code>fs</code></a></h1>
+<p><code>fs</code> module offers filesystem APIs to Feo programs.</p>
+<p>Some functions in <code>fs</code> are implemented in both synchronous and asynchronous variants.
+Sync variants of functions block, and return the value immediately for ease of use.
+For better performance, we can pass a callback to the function to invoke its asynchronous variant.
+In that case, the function will not block. Instead, the callback will be called some time later with the return value.</p>
 <ul>
-<li><a href="#formatraw-values"><code>format</code></a></li>
-<li><a href="#printraw-values"><code>print</code></a></li>
-<li><a href="#printlnraw-values"><code>println</code></a></li>
+<li><a href="#read_buf_size"><code>read_buf_size</code></a></li>
+<li><a href="#sync_read_filepath"><code>sync_read_file</code></a></li>
+<li><a href="#async_read_filepath-fn"><code>async_read_file</code></a></li>
+<li><a href="#write_filepath-file-flag"><code>write_file</code></a></li>
+<li><a href="#list_filespath"><code>list_files</code></a></li>
 </ul>
-<h2 id="formatraw-values"><a class="header" href="#formatraw-values"><code>format(raw, values+)</code></a></h2>
-<p><code>format</code> returns the format string <code>raw</code>, where each substring of the form &quot;{}&quot; has been replaced by the corresponding value given in the arguments.</p>
-<pre><code class="language-js">name := &quot;Nobu&quot;
-format(&quot;Hello, {}!&quot;, name) // &quot;Hello, Nobu!&quot;
+<h2 id="read_buf_size"><a class="header" href="#read_buf_size"><code>read_buf_size</code></a></h2>
+<p><code>read_buf_size</code> is the size of the buffer used to read a file in streaming file-read operations in <code>fs</code> module.
+This may be changed to alter the behavior of <code>fs</code>, but it will affect the behavior of libfs globally in your program.</p>
+<pre><code class="language-js">read_buf_size := 4096
 </code></pre>
-<h2 id="printraw-values"><a class="header" href="#printraw-values"><code>print(raw, values+)</code></a></h2>
-<p><code>print</code> prints the result of <code>format(raw, values+)</code> to the standard output stream.</p>
-<pre><code class="language-js">// Don't be confused with built-in function `print`!
-fmt.print(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!
+<h2 id="sync_read_filepath"><a class="header" href="#sync_read_filepath"><code>sync_read_file(path)</code></a></h2>
+<p><code>sync_read_file</code> reads the entire contents of a file at <code>path</code> and returns the file contents as a string if successful or throw an error.</p>
+<pre><code class="language-js">content := unsafe sync_read_file(&quot;./test.txt&quot;)
 </code></pre>
-<h2 id="printlnraw-values"><a class="header" href="#printlnraw-values"><code>println(raw, values+)</code></a></h2>
-<p><code>println</code> prints the result of <code>format(raw, values+)</code> to the standard output stream with a newline.</p>
-<pre><code class="language-js">// Don't be confused with built-in function `println`!
-fmt.println(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!\n
+<h2 id="async_read_filepath-fn"><a class="header" href="#async_read_filepath-fn"><code>async_read_file(path, fn)</code></a></h2>
+<p><code>async_read_file</code> reads the entire contents of a file at <code>path</code> and returns the file contents as a string to <code>fn</code> if successful or <code>null</code> on an error.</p>
+<pre><code class="language-js">async_read_file(&quot;./test.txt&quot;, func(content) {
+    println(content)
+})
+</code></pre>
+<h2 id="write_filepath-file-flag"><a class="header" href="#write_filepath-file-flag"><code>write_file(path, file, flag)</code></a></h2>
+<p><code>write_file</code> writes data in <code>file</code> to a file at <code>path</code> and returns <code>true</code> on success and throws an error on error.
+<code>flag</code> can control the behavior of <code>write_file</code>. Possible options for <code>flag</code> are <code>:append</code> and <code>:truncate</code>.</p>
+<pre><code class="language-js">result := unsafe write_file(&quot;./test.txt&quot;, &quot;Hello, world!&quot;, :append)
+</code></pre>
+<h2 id="list_filespath"><a class="header" href="#list_filespath"><code>list_files(path)</code></a></h2>
+<p><code>list_files</code> returns a list of files and directories in a directory at <code>path</code>.
+If the directory does not exist or is not a directory, or if the read failed, it throws an error.</p>
+<pre><code class="language-js">files := unsafe list_files(&quot;./&quot;)
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../library/math.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../library/fmt.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../library/fs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../library/testing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -186,11 +202,11 @@ fmt.println(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!\n
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../library/math.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../library/fmt.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../library/fs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../library/testing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
