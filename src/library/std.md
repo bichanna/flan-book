@@ -32,6 +32,8 @@
  - [`contains?`](#containsxs-x)
  - [`loop`](#loopmax-f)
  - [`aloop`](#aloopmax-f-done)
+ - [`sort!`](#sortxs-pred)
+ - [`sort`](#sortxs-pred-1)
 
 ## `identity(x)`
 `identity` returns its first argument.
@@ -279,4 +281,22 @@ aloop(100) <| func(count, next, done) {
     // do something...
     next()
 }
+```
+
+## `sort!(xs, pred)`
+`sort!` sorts items in the list `xs` by each item's `pred` value, using the Hoare partitioning strategy. If `pred` is not given, each item is sorted by its own value.
+It mutates the original list for efficiency. If mutation is not desired, use sort below.
+```js
+list := [3, 4, 2, 5, 1]
+sort!(list)
+list // [1, 2, 3, 4, 5]
+```
+
+## `sort(xs, pred)`
+`sort` returns a copy of `xs` that is sorted by `pred`, or by each item's value if `pred` is not given.
+If the performance cost of a copy is not desirable, use `sort!`.
+```js
+list := [3, 4, 2, 5, 1]
+list = sort(list)
+list // [1, 2, 3, 4, 5]
 ```
