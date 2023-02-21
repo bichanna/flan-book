@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="test.html"><strong aria-hidden="true">14.</strong> Testing</a></li><li class="chapter-item expanded "><a href="std_library.html"><strong aria-hidden="true">15.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/builtins.html"><strong aria-hidden="true">15.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="library/std.html"><strong aria-hidden="true">15.2.</strong> std</a></li><li class="chapter-item expanded "><a href="library/string.html"><strong aria-hidden="true">15.3.</strong> strings</a></li><li class="chapter-item expanded "><a href="library/fmt.html"><strong aria-hidden="true">15.4.</strong> fmt</a></li><li class="chapter-item expanded "><a href="library/testing.html"><strong aria-hidden="true">15.5.</strong> testing</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="test.html"><strong aria-hidden="true">14.</strong> Testing</a></li><li class="chapter-item expanded "><a href="std_library.html"><strong aria-hidden="true">15.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/builtins.html"><strong aria-hidden="true">15.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="library/std.html"><strong aria-hidden="true">15.2.</strong> std</a></li><li class="chapter-item expanded "><a href="library/string.html"><strong aria-hidden="true">15.3.</strong> strings</a></li><li class="chapter-item expanded "><a href="library/math.html"><strong aria-hidden="true">15.4.</strong> math</a></li><li class="chapter-item expanded "><a href="library/fmt.html"><strong aria-hidden="true">15.5.</strong> fmt</a></li><li class="chapter-item expanded "><a href="library/testing.html"><strong aria-hidden="true">15.6.</strong> testing</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -768,6 +768,8 @@ match error?(result) {
 <li><a href="library/std.html#containsxs-x"><code>contains?</code></a></li>
 <li><a href="library/std.html#loopmax-f"><code>loop</code></a></li>
 <li><a href="library/std.html#aloopmax-f-done"><code>aloop</code></a></li>
+<li><a href="library/std.html#sortxs-pred"><code>sort!</code></a></li>
+<li><a href="library/std.html#sortxs-pred-1"><code>sort</code></a></li>
 </ul>
 <h2 id="identityx"><a class="header" href="#identityx"><code>identity(x)</code></a></h2>
 <p><code>identity</code> returns its first argument.</p>
@@ -960,6 +962,20 @@ It can be used to infinitely loop if <code>max &lt; 0</code>. Callback is called
     next()
 }
 </code></pre>
+<h2 id="sortxs-pred"><a class="header" href="#sortxs-pred"><code>sort!(xs, pred)</code></a></h2>
+<p><code>sort!</code> sorts items in the list <code>xs</code> by each item's <code>pred</code> value, using the Hoare partitioning strategy. If <code>pred</code> is not given, each item is sorted by its own value.
+It mutates the original list for efficiency. If mutation is not desired, use sort below.</p>
+<pre><code class="language-js">list := [3, 4, 2, 5, 1]
+sort!(list)
+list // [1, 2, 3, 4, 5]
+</code></pre>
+<h2 id="sortxs-pred-1"><a class="header" href="#sortxs-pred-1"><code>sort(xs, pred)</code></a></h2>
+<p><code>sort</code> returns a copy of <code>xs</code> that is sorted by <code>pred</code>, or by each item's value if <code>pred</code> is not given.
+If the performance cost of a copy is not desirable, use <code>sort!</code>.</p>
+<pre><code class="language-js">list := [3, 4, 2, 5, 1]
+list = sort(list)
+list // [1, 2, 3, 4, 5]
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="strings-1"><a class="header" href="#strings-1"><code>strings</code></a></h1>
 <p><code>strings</code> module provides a set of utility functions for working with strings and data encoded in strings in Feo programs.</p>
 <ul>
@@ -1068,6 +1084,102 @@ If <code>sep</code> is not specified, split returns a list of every character in
 <p><code>trim</code> removes any (potentially repeated) ocucrrences of the string <code>part</code> from either end of the string <code>s</code>.
 If <code>part</code> is not specified, trim removes all whitespace from either end of the string <code>s</code>.</p>
 <pre><code class="language-js">trim(&quot;  Hello  &quot;) // &quot;Hello&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="math"><a class="header" href="#math"><code>math</code></a></h1>
+<p>For functions dealing with coordinate pairs and angles, the coordinate plane is assumed to be a Cartesian plane with +x to the east and +y to the north,
+where the angle is measured in radians from the +x axis, counterclockwise.</p>
+<ul>
+<li><a href="library/math.html#pi"><code>PI</code></a></li>
+<li><a href="library/math.html#e"><code>E</code></a></li>
+<li><a href="library/math.html#signn"><code>sign</code></a></li>
+<li><a href="library/math.html#absn"><code>abs</code></a></li>
+<li><a href="library/math.html#sqrtn"><code>sqrt</code></a></li>
+<li><a href="library/math.html#hypotx0-y0-x1-y1"><code>hypot</code></a></li>
+<li><a href="library/math.html#scalex-a-b-c-d"><code>scale</code></a></li>
+<li><a href="library/math.html#combn-k"><code>comb</code></a></li>
+<li><a href="library/math.html#sumxs"><code>sum</code></a></li>
+<li><a href="library/math.html#prodxs"><code>prod</code></a></li>
+<li><a href="library/math.html#minxs"><code>min</code></a></li>
+<li><a href="library/math.html#maxxs"><code>max</code></a></li>
+<li><a href="library/math.html#clampx-a-b"><code>clamp</code></a></li>
+<li><a href="library/math.html#meanxs"><code>mean</code></a></li>
+<li><a href="library/math.html#medianxs"><code>median</code></a></li>
+<li><a href="library/math.html#std_devxs"><code>std_dev</code></a></li>
+<li><a href="library/math.html#roundn-decimals"><code>round</code></a></li>
+</ul>
+<h2 id="pi"><a class="header" href="#pi"><code>PI</code></a></h2>
+<p>π, the circle constant.</p>
+<pre><code class="language-js">PI := 3.14159265358979323846264338327950288419716939937510
+</code></pre>
+<h2 id="e"><a class="header" href="#e"><code>E</code></a></h2>
+<p>e, the base of the natural logarith.</p>
+<pre><code class="language-js">e := 2.71828182845904523536028747135266249775724709369995
+</code></pre>
+<h2 id="signn"><a class="header" href="#signn"><code>sign(n)</code></a></h2>
+<p><code>sign</code> returns <code>-1</code> for all negative numbers, and <code>1</code> otherwise.</p>
+<pre><code class="language-js">sign(4)  // 1
+sign(-3) // -1
+</code></pre>
+<h2 id="absn"><a class="header" href="#absn"><code>abs(n)</code></a></h2>
+<p><code>abs</code> returns the absolute value of a real number.</p>
+<pre><code class="language-js">abs(-123) // 123
+abs(123)  // 123
+</code></pre>
+<h2 id="sqrtn"><a class="header" href="#sqrtn"><code>sqrt(n)</code></a></h2>
+<p><code>sqrt</code> returns the principal square root of a real number, or <code>null</code> if the number is negative.</p>
+<pre><code class="language-js">sqrt(64) // 8
+sqrt(-64) // null
+</code></pre>
+<h2 id="hypotx0-y0-x1-y1"><a class="header" href="#hypotx0-y0-x1-y1"><code>hypot(x0, y0, x1, y1)</code></a></h2>
+<p><code>hypot</code> returns the Euclidean distance between two points, equivalent to the hypotenuse of a right triangle with the given two points as vertices.
+If <code>x1</code> and <code>y1</code> default to <code>0</code>.</p>
+<pre><code class="language-js">hypot(3, 4) // 5
+</code></pre>
+<h2 id="scalex-a-b-c-d"><a class="header" href="#scalex-a-b-c-d"><code>scale(x, a, b, c, d)</code></a></h2>
+<p><code>scale</code> maps the value <code>x</code> in the range <code>[a, b]</code> to the range <code>[c, d]</code>. If <code>[c, d]</code> are not provided, they are assumed to be <code>[0, 1]</code>.
+<code>x</code> may be outside the range <code>[a, b]</code>, in which case the value is scaled to be an equal amount outside of the range <code>[c, d]</code>.</p>
+<h2 id="combn-k"><a class="header" href="#combn-k"><code>comb(n, k)</code></a></h2>
+<p><code>comb</code> returns the number of ways to choose <code>k</code> items from <code>n</code> items without repetition and without order. If <code>k &gt; n</code>, <code>comb</code> returns <code>0</code>.</p>
+<pre><code class="language-js">comb(4, 1) // 4
+</code></pre>
+<h2 id="sumxs"><a class="header" href="#sumxs"><code>sum(xs)</code></a></h2>
+<p><code>sum</code> takes a list of values and returns their sum.</p>
+<pre><code class="language-js">sum([1, 2, 3, 4]) // 10
+</code></pre>
+<h2 id="prodxs"><a class="header" href="#prodxs"><code>prod(xs)</code></a></h2>
+<p><code>prod</code> takes a list of values and returns their product.</p>
+<pre><code class="language-js">prod([1, 2, 3, 4]) // 24
+</code></pre>
+<h2 id="minxs"><a class="header" href="#minxs"><code>min(xs)</code></a></h2>
+<p><code>min</code> takes a list of values and returns the minimum value in the list.</p>
+<pre><code class="language-js">min([2, 4, 3, 5, 6, 1]) // 1
+</code></pre>
+<h2 id="maxxs"><a class="header" href="#maxxs"><code>max(xs)</code></a></h2>
+<p><code>max</code> takes a list of values and returns the maximum value in the list.</p>
+<pre><code class="language-js">max([2, 4, 3, 5, 6, 1]) // 6
+</code></pre>
+<h2 id="clampx-a-b"><a class="header" href="#clampx-a-b"><code>clamp(x, a, b)</code></a></h2>
+<p><code>clamp</code> returns a value bounded by some upper and lower bounds <code>a</code> and <code>b</code>.
+If the given <code>x</code> is between <code>a</code> and <code>b</code>, it is returned as-is, and if it is outside the bounds, the closer of the two bounds is returned.</p>
+<pre><code class="language-js">clamp(5, 3, 8) // 5
+clamp(2, 3, 8) // 3
+clamp(9, 3, 8) // 8
+</code></pre>
+<h2 id="meanxs"><a class="header" href="#meanxs"><code>mean(xs)</code></a></h2>
+<p><code>mean</code> returns the arithmetic mean, or average, of all given values. If the list is empty, mean returns <code>null</code>.</p>
+<pre><code class="language-js">mean([2, 3, 4]) // 3
+</code></pre>
+<h2 id="medianxs"><a class="header" href="#medianxs"><code>median(xs)</code></a></h2>
+<p><code>median</code> returns the median, or &quot;middle value&quot;, of all given values.
+If there is an even number of values given, median computes the mean of the middle two values in the list. If the list is empty, median returns <code>null</code>.</p>
+<pre><code class="language-js">median([3, 4, 1, 7, 5]) // 4
+</code></pre>
+<h2 id="std_devxs"><a class="header" href="#std_devxs"><code>std_dev(xs)</code></a></h2>
+<p><code>std_dev</code> returns the population standard deviation computed from the given list of values. If the list is empty, <code>std_dev</code> returns <code>null</code>.</p>
+<h2 id="roundn-decimals"><a class="header" href="#roundn-decimals"><code>round(n, decimals)</code></a></h2>
+<p><code>round</code> takes a number <code>n</code> and returns a floating-point number that represents <code>n</code> round to the nearest <code>decimals</code>-th decimal place.
+For negative values of <code>decimals</code>, no rounding occurs and <code>n</code> is returned exactly.</p>
+<pre><code class="language-js">round(PI, 2) // 3.14
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fmt"><a class="header" href="#fmt"><code>fmt</code></a></h1>
 <p><code>fmt</code> is the string formatting library for Feo.</p>
