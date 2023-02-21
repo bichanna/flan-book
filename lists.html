@@ -152,9 +152,9 @@
 [[&quot;abc&quot;, &quot;hello&quot;], 23, 3.14]
 </code></pre>
 <p>Under the hood, lists are just Rust <code>Vector</code>s.</p>
-<p>A built-in function <code>append</code> is provided to append a value to a list.</p>
+<p>A built-in function <a href="./library/builtins.html#appendxs-x"><code>append</code></a> is provided to append a value to a list.</p>
 <pre><code class="language-js">names := [&quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;]
-names |&gt; append(&quot;Sol&quot;)
+names = append(names, &quot;Sol&quot;)
 
 names // [&quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Sol&quot;]
 </code></pre>

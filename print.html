@@ -251,8 +251,7 @@ string!&quot;
 <h3 id="concatenation"><a class="header" href="#concatenation">Concatenation</a></h3>
 <p>The addition operator can be used to join strings together, but not atoms:</p>
 <pre><code class="language-js">name = &quot;Nobu&quot;
-name + &quot;haru&quot;
-// Nobuharu, which is my full first name
+name + &quot;haru&quot; // &quot;Nobuharu&quot;
 </code></pre>
 <h3 id="escape-sequences"><a class="header" href="#escape-sequences">Escape Sequences</a></h3>
 <p>Feo supports common string escape sequences. Here's all of them:</p>
@@ -294,9 +293,10 @@ true || false  // =&gt; true
 true || true   // =&gt; true
 true or false  // =&gt; true
 </code></pre>
-<p>Feo supports negation of Booleans using either the <code>!</code> or <code>not</code> unary operators.</p>
-<pre><code class="language-js">!true  // =&gt; false
+<p>Feo supports negation of Booleans using either one of the <code>!</code>, <code>not</code>, or <code>-</code> unary operators.</p>
+<pre><code class="language-js">!true     // =&gt; false
 not false // =&gt; true
+-false    // =&gt; true
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="integers-and-floats"><a class="header" href="#integers-and-floats">Integers And Floats</a></h1>
 <p>Feo's main number types are Integers and Floats.</p>
@@ -353,9 +353,9 @@ _ == &quot;hello&quot; // =&gt; true
 [[&quot;abc&quot;, &quot;hello&quot;], 23, 3.14]
 </code></pre>
 <p>Under the hood, lists are just Rust <code>Vector</code>s.</p>
-<p>A built-in function <code>append</code> is provided to append a value to a list.</p>
+<p>A built-in function <a href="./library/builtins.html#appendxs-x"><code>append</code></a> is provided to append a value to a list.</p>
 <pre><code class="language-js">names := [&quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;]
-names |&gt; append(&quot;Sol&quot;)
+names = append(names, &quot;Sol&quot;)
 
 names // [&quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Sol&quot;]
 </code></pre>
@@ -455,6 +455,10 @@ names // [&quot;Nobu&quot;, &quot;Sol&quot;, &quot;Damian&quot;, &quot;Thomas&qu
 
     add(1, 2) // 3
 }
+</code></pre>
+<h2 id="public-functions"><a class="header" href="#public-functions">Public Functions</a></h2>
+<p>Functions annotated with <code>*</code> are public functions, meaning they could be exported outside of their own module to be used by other modules.</p>
+<pre><code class="language-js">func *public_func(xs+) {}
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="match-expression"><a class="header" href="#match-expression">Match Expression</a></h1>
 <p>The <code>match</code> expression is the most common kind of flow control in Feo code.
@@ -652,81 +656,81 @@ All of them are listed here.</p>
 <li><a href="library/builtins.html#errort-msg"><code>error</code></a></li>
 <li><a href="library/builtins.html#errorx"><code>error?</code></a></li>
 </ul>
-<h3 id="absx"><a class="header" href="#absx"><code>abs(x)</code></a></h3>
+<h2 id="absx"><a class="header" href="#absx"><code>abs(x)</code></a></h2>
 <p><code>abs</code> returns the absolute value of a number.</p>
-<h3 id="importx"><a class="header" href="#importx"><code>import(x)</code></a></h3>
+<h2 id="importx"><a class="header" href="#importx"><code>import(x)</code></a></h2>
 <p><code>import</code> imports the module <code>x</code>.</p>
-<h3 id="intx"><a class="header" href="#intx"><code>int(x)</code></a></h3>
+<h2 id="intx"><a class="header" href="#intx"><code>int(x)</code></a></h2>
 <p><code>int</code> converts <code>x</code> to an integer.</p>
-<h3 id="floatx"><a class="header" href="#floatx"><code>float(x)</code></a></h3>
+<h2 id="floatx"><a class="header" href="#floatx"><code>float(x)</code></a></h2>
 <p><code>float</code> converts <code>x</code> to a float.</p>
-<h3 id="stringx"><a class="header" href="#stringx"><code>string(x)</code></a></h3>
+<h2 id="stringx"><a class="header" href="#stringx"><code>string(x)</code></a></h2>
 <p><code>string</code> converts <code>x</code> to a string.</p>
-<h3 id="atomx"><a class="header" href="#atomx"><code>atom(x)</code></a></h3>
+<h2 id="atomx"><a class="header" href="#atomx"><code>atom(x)</code></a></h2>
 <p><code>atom</code> converts <code>x</code> to an atom.</p>
-<h3 id="typex"><a class="header" href="#typex"><code>type(x)</code></a></h3>
+<h2 id="typex"><a class="header" href="#typex"><code>type(x)</code></a></h2>
 <p><code>type</code> returns the type of <code>x</code> as an atom: <code>:int</code>, <code>:float</code>, <code>:string</code>, <code>:atom</code>, <code>:list</code>, or <code>:object</code>.</p>
 <pre><code class="language-js">pi := 3.1415
 type(pi) // :float
 </code></pre>
-<h3 id="lenxs"><a class="header" href="#lenxs"><code>len(xs)</code></a></h3>
+<h2 id="lenxs"><a class="header" href="#lenxs"><code>len(xs)</code></a></h2>
 <p><code>len</code>returns the length of a string, a list, or an object.</p>
 <pre><code class="language-js">list := [&quot;Hello&quot;, &quot;World&quot;]
 len(list) // 2
 </code></pre>
-<h3 id="appendxs-x"><a class="header" href="#appendxs-x"><code>append(xs, x)</code></a></h3>
+<h2 id="appendxs-x"><a class="header" href="#appendxs-x"><code>append(xs, x)</code></a></h2>
 <p><code>append</code> creates a new list or string, <code>x</code> appended to <code>xs</code>.</p>
 <pre><code class="language-js">list := [1, 2]
 list = append(list, 3)
 list // [1, 2, 3]
 </code></pre>
-<h3 id="popxs-i"><a class="header" href="#popxs-i"><code>pop(xs, i)</code></a></h3>
+<h2 id="popxs-i"><a class="header" href="#popxs-i"><code>pop(xs, i)</code></a></h2>
 <p><code>pop</code> creates a new list or string, the item at index <code>i</code> popped from <code>xs</code>, and returns a list of the new value and the popped value. <code>i</code> is optional and defaults to <code>len(xs) - 1</code>.</p>
 <pre><code class="language-js">list := [1, 2, 3]
 [list, popped] := pop(list) // list is [1, 2], and popped is 3
 </code></pre>
-<h3 id="keysobj"><a class="header" href="#keysobj"><code>keys(obj)</code></a></h3>
+<h2 id="keysobj"><a class="header" href="#keysobj"><code>keys(obj)</code></a></h2>
 <p><code>keys</code> returns a list of the keys of the object <code>obj</code>.</p>
 <pre><code class="language-js">obj := {name: &quot;Nobu&quot;, email: &quot;nobu.bichanna@gmail.com&quot;}
 keys(obj) // [:name, :email]
 </code></pre>
-<h3 id="valuesobj"><a class="header" href="#valuesobj"><code>values(obj)</code></a></h3>
+<h2 id="valuesobj"><a class="header" href="#valuesobj"><code>values(obj)</code></a></h2>
 <p><code>values</code> returns a list of the values of the object <code>obj</code>.</p>
 <pre><code class="language-js">obj := {name: &quot;Nobu&quot;, email: &quot;nobu.bichanna@gmail.com&quot;}
 values(obj) // [&quot;Nobu&quot;, &quot;nobu.bichanna@gmail.com&quot;]
 </code></pre>
-<h3 id="args"><a class="header" href="#args"><code>args()</code></a></h3>
+<h2 id="args"><a class="header" href="#args"><code>args()</code></a></h2>
 <p><code>args</code> returns a list of command line arguments.</p>
-<h3 id="env"><a class="header" href="#env"><code>env()</code></a></h3>
+<h2 id="env"><a class="header" href="#env"><code>env()</code></a></h2>
 <p><code>env</code> returns all environment variables as an object.</p>
-<h3 id="getobj-key"><a class="header" href="#getobj-key"><code>get(obj, key)</code></a></h3>
+<h2 id="getobj-key"><a class="header" href="#getobj-key"><code>get(obj, key)</code></a></h2>
 <p><code>get</code> returns the value of the item with the key <code>key</code>, which could be an atom or a string. It is unsafe (might throw an error).</p>
 <pre><code class="language-js">obj := {name: &quot;Nobu&quot;}
 get(obj, :name) // &quot;Nobu&quot;
 </code></pre>
-<h3 id="printx"><a class="header" href="#printx"><code>print(x)</code></a></h3>
+<h2 id="printx"><a class="header" href="#printx"><code>print(x)</code></a></h2>
 <p><code>print</code> prints <code>x</code> to the standard output stream.</p>
 <pre><code class="language-js">print(&quot;Hello, world\n&quot;)
 </code></pre>
-<h3 id="printlnx"><a class="header" href="#printlnx"><code>println(x)</code></a></h3>
+<h2 id="printlnx"><a class="header" href="#printlnx"><code>println(x)</code></a></h2>
 <p><code>println</code> prints <code>x</code> to the standard output stream with a new line at the end.</p>
 <pre><code class="language-js">println(&quot;Hello, world&quot;)
 </code></pre>
-<h3 id="eprintx"><a class="header" href="#eprintx"><code>eprint(x)</code></a></h3>
+<h2 id="eprintx"><a class="header" href="#eprintx"><code>eprint(x)</code></a></h2>
 <p><code>eprint</code> prints <code>x</code> to the standard error stream.</p>
 <pre><code class="language-js">eprint(&quot;something wrong happened!\n&quot;)
 </code></pre>
-<h3 id="eprintlnx"><a class="header" href="#eprintlnx"><code>eprintln(x)</code></a></h3>
+<h2 id="eprintlnx"><a class="header" href="#eprintlnx"><code>eprintln(x)</code></a></h2>
 <p><code>eprintln</code> prints <code>x</code> to the standard error stream with a new line at the end.`</p>
 <pre><code class="language-js">eprintln(&quot;something wrong happened!&quot;)
 </code></pre>
-<h3 id="errort-msg"><a class="header" href="#errort-msg"><code>error(t, msg)</code></a></h3>
+<h2 id="errort-msg"><a class="header" href="#errort-msg"><code>error(t, msg)</code></a></h2>
 <p><code>error</code> creates a new error with type <code>t</code> and <code>msg</code>.</p>
 <pre><code class="language-js">err := unsafe error(:some_error, &quot;some error!&quot;)
 err.error_type    // :some_error
 err.error_message // &quot;some error!&quot;
 </code></pre>
-<h3 id="errorx"><a class="header" href="#errorx"><code>error?(x)</code></a></h3>
+<h2 id="errorx"><a class="header" href="#errorx"><code>error?(x)</code></a></h2>
 <p><code>error?</code> checks if <code>x</code> is an error object or not.</p>
 <pre><code class="language-js">result := unsafe (10 / 0)
 match error?(result) {
