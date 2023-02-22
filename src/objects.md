@@ -8,7 +8,7 @@ nobu := {
 }
 ```
 
-Once you have an object, the properties contained can be accessed using the `.something` accessor syntax.
+Once you have an object, the attributes contained can be accessed using the `.something` accessor syntax.
 ```js
 nobu.cool? // true
 ```

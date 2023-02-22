@@ -24,3 +24,4 @@
     - [`testing`](./library/testing.md)
 - [Experimental Features](./experimental/experimental.md)
     - [`try` Expression](./experimental/try.md)
+    - [References](./experimental/references.md)

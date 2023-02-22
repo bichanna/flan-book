@@ -1,13 +1,13 @@
 # Modules
 In Feo, modules are simply files with the “.feo” extension containing Feo code that can be imported inside another Feo program.
-Functions annotated with `*` are public functions, meaning they could be exported outside of their own module to be used by other modules.
+Functions annotated with `public` keyword are public functions, meaning they could be exported outside of their own module to be used by other modules.
 
 You can import other modules using the built-in `import` function with relative paths.
 ```js
 // src/a_module.feo
 
 // public function func_in_a
-func *func_in_a() {
+public func func_in_a() {
     "Hello from a_module"
 }
 ```
