@@ -21,6 +21,7 @@
     - [`math`](./library/math.md)
     - [`fmt`](./library/fmt.md)
     - [`fs`](./library/fs.md)
+    - [`json`](./library/json.md)
     - [`testing`](./library/testing.md)
 - [Experimental Features](./experimental/experimental.md)
     - [`try` Expression](./experimental/try.md)
