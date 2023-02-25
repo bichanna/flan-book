@@ -11,7 +11,9 @@ All of them are listed here.
  - [`type`](#typex)
  - [`len`](#lenxs)
  - [`append`](#appendxs-x)
+ - [`append!`](#appendxs-x-1)
  - [`pop`](#popxs-i)
+ - [`pop!`](#popxs-i-1)
  - [`keys`](#keysobj)
  - [`values`](#valuesobj)
  - [`args`](#args)
@@ -65,11 +67,27 @@ list = append(list, 3)
 list // [1, 2, 3]
 ```
 
+## `append!(xs, x)`
+`append!` appends `x` to `xs`, a list or string, mutating it.
+```js
+list := [1, 2]
+append!(list, 3)
+list // [1, 2, 3]
+```
+
 ## `pop(xs, i)`
-`pop` creates a new list or string, the item at index `i` popped from `xs`, and returns a list of the new value and the popped value. `i` is optional and defaults to `len(xs) - 1`.
+`pop` creates a new list or string, the item at index `i` popped from `xs`, and returns a list of the new value and the popped value.
+`i` is optional and defaults to `len(xs) - 1`.
 ```js
 list := [1, 2, 3]
 [list, popped] := pop(list) // list is [1, 2], and popped is 3
+```
+
+## `pop!(xs, i)`
+`pop!` pops the value of `xs` at index `i`, mutating the list or string. `i` is optional and defaults to `len(xs) - 1`.
+```js
+list := [1, 2, 3]
+popped := pop!(list) // popped is 3
 ```
 
 ## `keys(obj)`
