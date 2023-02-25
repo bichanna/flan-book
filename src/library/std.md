@@ -13,6 +13,7 @@
  - [`reverse`](#reversexs)
  - [`map`](#mapxs-f)
  - [`each`](#eachxs-f)
+ - [`if`](#ifcond-then-else)
  - [`filter`](#filterxs-f)
  - [`reduce`](#reducexs-seed-f)
  - [`flatten`](#flattenxs)
@@ -125,6 +126,17 @@ The iterator function receives arguments (`element`, `index`).
 [1, 2, 3] |> each(func(element, index) print(element))
 // prints "123" to the console
 ```
+
+## `if(cond, then, else)`
+When `cond` is `true`, predicate `then` gets called. When `cond` is `false`, predicate `else` gets called.
+```js
+if("abc" == "abc") <| func() {
+    println("gets executed")
+} <| func() {
+    println("don't get executed")
+}
+```
+
 
 ## `filter(xs, f)`
 `filter` produces an iterable containing only the elements of `xs` that return `true` when passed to the filter predicate `f`.
