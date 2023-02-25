@@ -130,9 +130,9 @@ The iterator function receives arguments (`element`, `index`).
 ## `if(cond, then, else)`
 When `cond` is `true`, predicate `then` gets called. When `cond` is `false`, predicate `else` gets called.
 ```js
-if("abc" == "abc") <| func() {
+if("abc" == "abc", func() {
     println("gets executed")
-} <| func() {
+}) <| func() {
     println("don't get executed")
 }
 ```
