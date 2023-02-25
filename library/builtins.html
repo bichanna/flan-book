@@ -158,7 +158,9 @@ All of them are listed here.</p>
 <li><a href="#typex"><code>type</code></a></li>
 <li><a href="#lenxs"><code>len</code></a></li>
 <li><a href="#appendxs-x"><code>append</code></a></li>
+<li><a href="#appendxs-x-1"><code>append!</code></a></li>
 <li><a href="#popxs-i"><code>pop</code></a></li>
+<li><a href="#popxs-i-1"><code>pop!</code></a></li>
 <li><a href="#keysobj"><code>keys</code></a></li>
 <li><a href="#valuesobj"><code>values</code></a></li>
 <li><a href="#args"><code>args</code></a></li>
@@ -199,10 +201,22 @@ len(list) // 2
 list = append(list, 3)
 list // [1, 2, 3]
 </code></pre>
+<h2 id="appendxs-x-1"><a class="header" href="#appendxs-x-1"><code>append!(xs, x)</code></a></h2>
+<p><code>append!</code> appends <code>x</code> to <code>xs</code>, a list or string, mutating it.</p>
+<pre><code class="language-js">list := [1, 2]
+append!(list, 3)
+list // [1, 2, 3]
+</code></pre>
 <h2 id="popxs-i"><a class="header" href="#popxs-i"><code>pop(xs, i)</code></a></h2>
-<p><code>pop</code> creates a new list or string, the item at index <code>i</code> popped from <code>xs</code>, and returns a list of the new value and the popped value. <code>i</code> is optional and defaults to <code>len(xs) - 1</code>.</p>
+<p><code>pop</code> creates a new list or string, the item at index <code>i</code> popped from <code>xs</code>, and returns a list of the new value and the popped value.
+<code>i</code> is optional and defaults to <code>len(xs) - 1</code>.</p>
 <pre><code class="language-js">list := [1, 2, 3]
 [list, popped] := pop(list) // list is [1, 2], and popped is 3
+</code></pre>
+<h2 id="popxs-i-1"><a class="header" href="#popxs-i-1"><code>pop!(xs, i)</code></a></h2>
+<p><code>pop!</code> pops the value of <code>xs</code> at index <code>i</code>, mutating the list or string. <code>i</code> is optional and defaults to <code>len(xs) - 1</code>.</p>
+<pre><code class="language-js">list := [1, 2, 3]
+popped := pop!(list) // popped is 3
 </code></pre>
 <h2 id="keysobj"><a class="header" href="#keysobj"><code>keys(obj)</code></a></h2>
 <p><code>keys</code> returns a list of the keys of the object <code>obj</code>.</p>

@@ -643,7 +643,9 @@ All of them are listed here.</p>
 <li><a href="library/builtins.html#typex"><code>type</code></a></li>
 <li><a href="library/builtins.html#lenxs"><code>len</code></a></li>
 <li><a href="library/builtins.html#appendxs-x"><code>append</code></a></li>
+<li><a href="library/builtins.html#appendxs-x-1"><code>append!</code></a></li>
 <li><a href="library/builtins.html#popxs-i"><code>pop</code></a></li>
+<li><a href="library/builtins.html#popxs-i-1"><code>pop!</code></a></li>
 <li><a href="library/builtins.html#keysobj"><code>keys</code></a></li>
 <li><a href="library/builtins.html#valuesobj"><code>values</code></a></li>
 <li><a href="library/builtins.html#args"><code>args</code></a></li>
@@ -684,10 +686,22 @@ len(list) // 2
 list = append(list, 3)
 list // [1, 2, 3]
 </code></pre>
+<h2 id="appendxs-x-1"><a class="header" href="#appendxs-x-1"><code>append!(xs, x)</code></a></h2>
+<p><code>append!</code> appends <code>x</code> to <code>xs</code>, a list or string, mutating it.</p>
+<pre><code class="language-js">list := [1, 2]
+append!(list, 3)
+list // [1, 2, 3]
+</code></pre>
 <h2 id="popxs-i"><a class="header" href="#popxs-i"><code>pop(xs, i)</code></a></h2>
-<p><code>pop</code> creates a new list or string, the item at index <code>i</code> popped from <code>xs</code>, and returns a list of the new value and the popped value. <code>i</code> is optional and defaults to <code>len(xs) - 1</code>.</p>
+<p><code>pop</code> creates a new list or string, the item at index <code>i</code> popped from <code>xs</code>, and returns a list of the new value and the popped value.
+<code>i</code> is optional and defaults to <code>len(xs) - 1</code>.</p>
 <pre><code class="language-js">list := [1, 2, 3]
 [list, popped] := pop(list) // list is [1, 2], and popped is 3
+</code></pre>
+<h2 id="popxs-i-1"><a class="header" href="#popxs-i-1"><code>pop!(xs, i)</code></a></h2>
+<p><code>pop!</code> pops the value of <code>xs</code> at index <code>i</code>, mutating the list or string. <code>i</code> is optional and defaults to <code>len(xs) - 1</code>.</p>
+<pre><code class="language-js">list := [1, 2, 3]
+popped := pop!(list) // popped is 3
 </code></pre>
 <h2 id="keysobj"><a class="header" href="#keysobj"><code>keys(obj)</code></a></h2>
 <p><code>keys</code> returns a list of the keys of the object <code>obj</code>.</p>
@@ -753,6 +767,7 @@ match error?(result) {
 <li><a href="library/std.html#reversexs"><code>reverse</code></a></li>
 <li><a href="library/std.html#mapxs-f"><code>map</code></a></li>
 <li><a href="library/std.html#eachxs-f"><code>each</code></a></li>
+<li><a href="library/std.html#ifcond-then-else"><code>if</code></a></li>
 <li><a href="library/std.html#filterxs-f"><code>filter</code></a></li>
 <li><a href="library/std.html#reducexs-seed-f"><code>reduce</code></a></li>
 <li><a href="library/std.html#flattenxs"><code>flatten</code></a></li>
@@ -843,6 +858,14 @@ If <code>f</code> is a function, it receives arguments (<code>element</code>, <c
 The iterator function receives arguments (<code>element</code>, <code>index</code>).</p>
 <pre><code class="language-js">[1, 2, 3] |&gt; each(func(element, index) print(element))
 // prints &quot;123&quot; to the console
+</code></pre>
+<h2 id="ifcond-then-else"><a class="header" href="#ifcond-then-else"><code>if(cond, then, else)</code></a></h2>
+<p>When <code>cond</code> is <code>true</code>, predicate <code>then</code> gets called. When <code>cond</code> is <code>false</code>, predicate <code>else</code> gets called.</p>
+<pre><code class="language-js">if(&quot;abc&quot; == &quot;abc&quot;) &lt;| func() {
+    println(&quot;gets executed&quot;)
+} &lt;| func() {
+    println(&quot;don't get executed&quot;)
+}
 </code></pre>
 <h2 id="filterxs-f"><a class="header" href="#filterxs-f"><code>filter(xs, f)</code></a></h2>
 <p><code>filter</code> produces an iterable containing only the elements of <code>xs</code> that return <code>true</code> when passed to the filter predicate <code>f</code>.

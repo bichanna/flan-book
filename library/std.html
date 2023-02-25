@@ -160,6 +160,7 @@
 <li><a href="#reversexs"><code>reverse</code></a></li>
 <li><a href="#mapxs-f"><code>map</code></a></li>
 <li><a href="#eachxs-f"><code>each</code></a></li>
+<li><a href="#ifcond-then-else"><code>if</code></a></li>
 <li><a href="#filterxs-f"><code>filter</code></a></li>
 <li><a href="#reducexs-seed-f"><code>reduce</code></a></li>
 <li><a href="#flattenxs"><code>flatten</code></a></li>
@@ -250,6 +251,14 @@ If <code>f</code> is a function, it receives arguments (<code>element</code>, <c
 The iterator function receives arguments (<code>element</code>, <code>index</code>).</p>
 <pre><code class="language-js">[1, 2, 3] |&gt; each(func(element, index) print(element))
 // prints &quot;123&quot; to the console
+</code></pre>
+<h2 id="ifcond-then-else"><a class="header" href="#ifcond-then-else"><code>if(cond, then, else)</code></a></h2>
+<p>When <code>cond</code> is <code>true</code>, predicate <code>then</code> gets called. When <code>cond</code> is <code>false</code>, predicate <code>else</code> gets called.</p>
+<pre><code class="language-js">if(&quot;abc&quot; == &quot;abc&quot;) &lt;| func() {
+    println(&quot;gets executed&quot;)
+} &lt;| func() {
+    println(&quot;don't get executed&quot;)
+}
 </code></pre>
 <h2 id="filterxs-f"><a class="header" href="#filterxs-f"><code>filter(xs, f)</code></a></h2>
 <p><code>filter</code> produces an iterable containing only the elements of <code>xs</code> that return <code>true</code> when passed to the filter predicate <code>f</code>.
