@@ -254,9 +254,9 @@ The iterator function receives arguments (<code>element</code>, <code>index</cod
 </code></pre>
 <h2 id="ifcond-then-else"><a class="header" href="#ifcond-then-else"><code>if(cond, then, else)</code></a></h2>
 <p>When <code>cond</code> is <code>true</code>, predicate <code>then</code> gets called. When <code>cond</code> is <code>false</code>, predicate <code>else</code> gets called.</p>
-<pre><code class="language-js">if(&quot;abc&quot; == &quot;abc&quot;) &lt;| func() {
+<pre><code class="language-js">if(&quot;abc&quot; == &quot;abc&quot;, func() {
     println(&quot;gets executed&quot;)
-} &lt;| func() {
+}) &lt;| func() {
     println(&quot;don't get executed&quot;)
 }
 </code></pre>
