@@ -16,8 +16,8 @@ names = append(names, "Sol")
 names // ["Nobu", "Damian", "Thomas", "Sol"]
 ```
 
-You can index an element in a list by using `[]`.
+You can index an element in a list by using `.`.
 ```js
 ages := [16, 15, 15, 14]
-ages[0] // 16
+ages.0 // 16
 ```
