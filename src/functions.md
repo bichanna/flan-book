@@ -47,6 +47,17 @@ func sum(nums+) {
 sum(1, 4, 5, 3, 6)
 ```
 
+### Unpacking Argument Lists
+The reverse situation occurs when the arguments are already in a list but need to be unpacked for a function call requiring separate arguments.
+For instance, the [`range()`](./library/std.md#rangestart-end-step) function expects separate `start` and `end` arguments.
+If they are not available separately, write the function call with the `...` operator to unpack the arguments out of a list.
+```js
+{range: range} := import("std")
+
+args := [1, 5]
+range(...args) // [1, 2, 3, 4]
+```
+
 ## Pipe Operator
 Feo provides syntax for passing the result of one function to the arguments of another function, the pipe operator (`|>`).
 This is similar in functionality to the same operator in Elixir or F#.
