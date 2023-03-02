@@ -24,6 +24,7 @@
     - [`json`](./library/json.md)
     - [`random`](./library/random.md)
     - [`testing`](./library/testing.md)
+    - [`thread`](./library/thread.md)
 - [Experimental Features](./experimental/experimental.md)
     - [`try` Expression](./experimental/try.md)
     - [References](./experimental/references.md)
