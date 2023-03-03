@@ -457,6 +457,23 @@ names // [&quot;Nobu&quot;, &quot;Sol&quot;, &quot;Damian&quot;, &quot;Thomas&qu
 |&gt; append(&quot;Thomas&quot;)
 </code></pre>
 <p>Each line of this expression applies the function to the result of the previous line.</p>
+<h2 id="decorators"><a class="header" href="#decorators">Decorators</a></h2>
+<p>Decorators are wrapper functions that modify the functionality of other functions.</p>
+<p>This is an example of an example.</p>
+<pre><code class="language-js">func example_decorator(function) {
+    func (args+) {
+        print(&quot;Hello, &quot;)
+        function(...args)
+    }
+}
+
+#[example_decorator]
+func some_func(name) {
+    println(name)
+}
+
+some_func(&quot;Nobu&quot;) // prints out &quot;Hello, Nobu&quot;
+</code></pre>
 <h2 id="anonymous-functions"><a class="header" href="#anonymous-functions">Anonymous Functions</a></h2>
 <p>Anonymous functions can be defined with a similar syntax:</p>
 <pre><code class="language-js">func run() {
