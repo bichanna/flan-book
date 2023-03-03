@@ -78,6 +78,26 @@ names
 ```
 Each line of this expression applies the function to the result of the previous line.
 
+## Decorators
+Decorators are wrapper functions that modify the functionality of other functions.
+
+This is an example of an example.
+```js
+func example_decorator(function) {
+    func (args+) {
+        print("Hello, ")
+        function(...args)
+    }
+}
+
+#[example_decorator]
+func some_func(name) {
+    println(name)
+}
+
+some_func("Nobu") // prints out "Hello, Nobu"
+```
+
 ## Anonymous Functions
 Anonymous functions can be defined with a similar syntax:
 ```js
