@@ -212,10 +212,10 @@ names // [&quot;Nobu&quot;, &quot;Sol&quot;, &quot;Damian&quot;, &quot;Thomas&qu
 <h2 id="decorators"><a class="header" href="#decorators">Decorators</a></h2>
 <p>Decorators are wrapper functions that modify the functionality of other functions.</p>
 <p>This is an example of an example.</p>
-<pre><code class="language-js">func example_decorator(function) {
+<pre><code class="language-js">func example_decorator(f) {
     func (args+) {
         print(&quot;Hello, &quot;)
-        function(...args)
+        f(...args)
     }
 }
 
