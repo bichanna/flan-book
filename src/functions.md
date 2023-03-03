@@ -83,10 +83,10 @@ Decorators are wrapper functions that modify the functionality of other function
 
 This is an example of an example.
 ```js
-func example_decorator(function) {
+func example_decorator(f) {
     func (args+) {
         print("Hello, ")
-        function(...args)
+        f(...args)
     }
 }
 
