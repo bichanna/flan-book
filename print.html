@@ -71,10 +71,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -82,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="test.html"><strong aria-hidden="true">14.</strong> Testing</a></li><li class="chapter-item expanded "><a href="std_library.html"><strong aria-hidden="true">15.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/builtins.html"><strong aria-hidden="true">15.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="library/std.html"><strong aria-hidden="true">15.2.</strong> std</a></li><li class="chapter-item expanded "><a href="library/string.html"><strong aria-hidden="true">15.3.</strong> strings</a></li><li class="chapter-item expanded "><a href="library/math.html"><strong aria-hidden="true">15.4.</strong> math</a></li><li class="chapter-item expanded "><a href="library/fmt.html"><strong aria-hidden="true">15.5.</strong> fmt</a></li><li class="chapter-item expanded "><a href="library/fs.html"><strong aria-hidden="true">15.6.</strong> fs</a></li><li class="chapter-item expanded "><a href="library/json.html"><strong aria-hidden="true">15.7.</strong> json</a></li><li class="chapter-item expanded "><a href="library/random.html"><strong aria-hidden="true">15.8.</strong> random</a></li><li class="chapter-item expanded "><a href="library/testing.html"><strong aria-hidden="true">15.9.</strong> testing</a></li><li class="chapter-item expanded "><a href="library/thread.html"><strong aria-hidden="true">15.10.</strong> thread</a></li></ol></li><li class="chapter-item expanded "><a href="experimental/experimental.html"><strong aria-hidden="true">16.</strong> Experimental Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="experimental/try.html"><strong aria-hidden="true">16.1.</strong> try Expression</a></li><li class="chapter-item expanded "><a href="experimental/references.html"><strong aria-hidden="true">16.2.</strong> References</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="test.html"><strong aria-hidden="true">14.</strong> Testing</a></li><li class="chapter-item expanded "><a href="std_library.html"><strong aria-hidden="true">15.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/builtins.html"><strong aria-hidden="true">15.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="library/fmt.html"><strong aria-hidden="true">15.2.</strong> fmt</a></li><li class="chapter-item expanded "><a href="library/json.html"><strong aria-hidden="true">15.3.</strong> json</a></li><li class="chapter-item expanded "><a href="library/math.html"><strong aria-hidden="true">15.4.</strong> math</a></li><li class="chapter-item expanded "><a href="library/os.html"><strong aria-hidden="true">15.5.</strong> os</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/file.html"><strong aria-hidden="true">15.5.1.</strong> file</a></li><li class="chapter-item expanded "><a href="library/path.html"><strong aria-hidden="true">15.5.2.</strong> path</a></li></ol></li><li class="chapter-item expanded "><a href="library/random.html"><strong aria-hidden="true">15.6.</strong> random</a></li><li class="chapter-item expanded "><a href="library/range.html"><strong aria-hidden="true">15.7.</strong> range</a></li><li class="chapter-item expanded "><a href="library/std.html"><strong aria-hidden="true">15.8.</strong> std</a></li><li class="chapter-item expanded "><a href="library/string.html"><strong aria-hidden="true">15.9.</strong> strings</a></li><li class="chapter-item expanded "><a href="library/testing.html"><strong aria-hidden="true">15.10.</strong> testing</a></li><li class="chapter-item expanded "><a href="library/thread.html"><strong aria-hidden="true">15.11.</strong> thread</a></li></ol></li><li class="chapter-item expanded "><a href="experimental/experimental.html"><strong aria-hidden="true">16.</strong> Experimental Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="experimental/try.html"><strong aria-hidden="true">16.1.</strong> try Expression</a></li><li class="chapter-item expanded "><a href="experimental/references.html"><strong aria-hidden="true">16.2.</strong> References</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -778,6 +780,417 @@ match error?(result) {
     false -&gt; &quot;Math is broken ;(&quot;,
 }
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="fmt"><a class="header" href="#fmt"><code>fmt</code></a></h1>
+<p><code>fmt</code> is the string formatting library for Feo.</p>
+<ul>
+<li><a href="library/fmt.html#formatraw-values"><code>format</code></a></li>
+<li><a href="library/fmt.html#printraw-values"><code>print</code></a></li>
+<li><a href="library/fmt.html#printlnraw-values"><code>println</code></a></li>
+</ul>
+<h2 id="formatraw-values"><a class="header" href="#formatraw-values"><code>format(raw, values+)</code></a></h2>
+<p><code>format</code> returns the format string <code>raw</code>, where each substring of the form &quot;{}&quot; has been replaced by the corresponding value given in the arguments.</p>
+<pre><code class="language-js">name := &quot;Nobu&quot;
+format(&quot;Hello, {}!&quot;, name) // &quot;Hello, Nobu!&quot;
+</code></pre>
+<h2 id="printraw-values"><a class="header" href="#printraw-values"><code>print(raw, values+)</code></a></h2>
+<p><code>print</code> prints the result of <code>format(raw, values+)</code> to the standard output stream.</p>
+<pre><code class="language-js">// Don't be confused with built-in function `print`!
+fmt.print(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!
+</code></pre>
+<h2 id="printlnraw-values"><a class="header" href="#printlnraw-values"><code>println(raw, values+)</code></a></h2>
+<p><code>println</code> prints the result of <code>format(raw, values+)</code> to the standard output stream with a newline.</p>
+<pre><code class="language-js">// Don't be confused with built-in function `println`!
+fmt.println(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!\n
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="json"><a class="header" href="#json"><code>json</code></a></h1>
+<p><code>json</code> module implements a JSON parser and serializer for Feo values.</p>
+<ul>
+<li><a href="library/json.html#escape_charc"><code>escape_char</code></a></li>
+<li><a href="library/json.html#escapes"><code>escape</code></a></li>
+<li><a href="library/json.html#serializec"><code>serialize</code></a></li>
+<li><a href="library/json.html#parses"><code>parse</code></a></li>
+</ul>
+<h2 id="escape_charc"><a class="header" href="#escape_charc"><code>escape_char(c)</code></a></h2>
+<p>string escape '&quot;'</p>
+<pre><code class="language-js">escape_char(&quot;   &quot;) // &quot;\\t&quot;
+</code></pre>
+<h2 id="escapes"><a class="header" href="#escapes"><code>escape(s)</code></a></h2>
+<p>escapes whole string</p>
+<pre><code class="language-js">escape(&quot;Hello\nWorld&quot;) // &quot;Hello\\nWorld&quot;
+</code></pre>
+<h2 id="serializec"><a class="header" href="#serializec"><code>serialize(c)</code></a></h2>
+<p><code>serialize</code> takes a Feo value and returns its JSON representation.</p>
+<pre><code class="language-js">obj := {
+    name: &quot;nobu&quot;,
+    email: &quot;nobu.bichanna@gmail.com&quot;,
+    cool?: true,
+    siblings: 1
+}
+serialize(obj)
+/*
+    {
+        &quot;name&quot;: &quot;nobu&quot;,
+        &quot;email&quot;: &quot;nobu.bichanna@gmail.com&quot;,
+        &quot;is_cool&quot;: true,
+        &quot;siblings&quot;: 1
+    }
+*/
+</code></pre>
+<h2 id="parses"><a class="header" href="#parses"><code>parse(s)</code></a></h2>
+<p><code>parse</code> takes a potentially valid JSON string, and returns its Feo representation if valid JSON, or throws an error if the parse fails.</p>
+<pre><code class="language-js">parse(&quot;{\&quot;name\&quot;: \&quot;nobu\&quot;, \&quot;is_cool\&quot;: true}&quot;)
+/*
+    {
+        name: &quot;nobu&quot;,
+        is_cool: true
+    }
+*/
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="math"><a class="header" href="#math"><code>math</code></a></h1>
+<p>For functions dealing with coordinate pairs and angles, the coordinate plane is assumed to be a Cartesian plane with +x to the east and +y to the north,
+where the angle is measured in radians from the +x axis, counterclockwise.</p>
+<ul>
+<li><a href="library/math.html#pi"><code>PI</code></a></li>
+<li><a href="library/math.html#e"><code>E</code></a></li>
+<li><a href="library/math.html#signn"><code>sign</code></a></li>
+<li><a href="library/math.html#absn"><code>abs</code></a></li>
+<li><a href="library/math.html#sqrtn"><code>sqrt</code></a></li>
+<li><a href="library/math.html#hypotx0-y0-x1-y1"><code>hypot</code></a></li>
+<li><a href="library/math.html#scalex-a-b-c-d"><code>scale</code></a></li>
+<li><a href="library/math.html#combn-k"><code>comb</code></a></li>
+<li><a href="library/math.html#sumxs"><code>sum</code></a></li>
+<li><a href="library/math.html#prodxs"><code>prod</code></a></li>
+<li><a href="library/math.html#minxs"><code>min</code></a></li>
+<li><a href="library/math.html#maxxs"><code>max</code></a></li>
+<li><a href="library/math.html#clampx-a-b"><code>clamp</code></a></li>
+<li><a href="library/math.html#meanxs"><code>mean</code></a></li>
+<li><a href="library/math.html#medianxs"><code>median</code></a></li>
+<li><a href="library/math.html#std_devxs"><code>std_dev</code></a></li>
+<li><a href="library/math.html#roundn-decimals"><code>round</code></a></li>
+</ul>
+<h2 id="pi"><a class="header" href="#pi"><code>PI</code></a></h2>
+<p>π, the circle constant.</p>
+<pre><code class="language-js">PI := 3.14159265358979323846264338327950288419716939937510
+</code></pre>
+<h2 id="e"><a class="header" href="#e"><code>E</code></a></h2>
+<p>e, the base of the natural logarith.</p>
+<pre><code class="language-js">e := 2.71828182845904523536028747135266249775724709369995
+</code></pre>
+<h2 id="signn"><a class="header" href="#signn"><code>sign(n)</code></a></h2>
+<p><code>sign</code> returns <code>-1</code> for all negative numbers, and <code>1</code> otherwise.</p>
+<pre><code class="language-js">sign(4)  // 1
+sign(-3) // -1
+</code></pre>
+<h2 id="absn"><a class="header" href="#absn"><code>abs(n)</code></a></h2>
+<p><code>abs</code> returns the absolute value of a real number.</p>
+<pre><code class="language-js">abs(-123) // 123
+abs(123)  // 123
+</code></pre>
+<h2 id="sqrtn"><a class="header" href="#sqrtn"><code>sqrt(n)</code></a></h2>
+<p><code>sqrt</code> returns the principal square root of a real number, or <code>null</code> if the number is negative.</p>
+<pre><code class="language-js">sqrt(64) // 8
+sqrt(-64) // null
+</code></pre>
+<h2 id="hypotx0-y0-x1-y1"><a class="header" href="#hypotx0-y0-x1-y1"><code>hypot(x0, y0, x1, y1)</code></a></h2>
+<p><code>hypot</code> returns the Euclidean distance between two points, equivalent to the hypotenuse of a right triangle with the given two points as vertices.
+If <code>x1</code> and <code>y1</code> default to <code>0</code>.</p>
+<pre><code class="language-js">hypot(3, 4) // 5
+</code></pre>
+<h2 id="scalex-a-b-c-d"><a class="header" href="#scalex-a-b-c-d"><code>scale(x, a, b, c, d)</code></a></h2>
+<p><code>scale</code> maps the value <code>x</code> in the range <code>[a, b]</code> to the range <code>[c, d]</code>. If <code>[c, d]</code> are not provided, they are assumed to be <code>[0, 1]</code>.
+<code>x</code> may be outside the range <code>[a, b]</code>, in which case the value is scaled to be an equal amount outside of the range <code>[c, d]</code>.</p>
+<h2 id="combn-k"><a class="header" href="#combn-k"><code>comb(n, k)</code></a></h2>
+<p><code>comb</code> returns the number of ways to choose <code>k</code> items from <code>n</code> items without repetition and without order. If <code>k &gt; n</code>, <code>comb</code> returns <code>0</code>.</p>
+<pre><code class="language-js">comb(4, 1) // 4
+</code></pre>
+<h2 id="sumxs"><a class="header" href="#sumxs"><code>sum(xs)</code></a></h2>
+<p><code>sum</code> takes a list of values and returns their sum.</p>
+<pre><code class="language-js">sum([1, 2, 3, 4]) // 10
+</code></pre>
+<h2 id="prodxs"><a class="header" href="#prodxs"><code>prod(xs)</code></a></h2>
+<p><code>prod</code> takes a list of values and returns their product.</p>
+<pre><code class="language-js">prod([1, 2, 3, 4]) // 24
+</code></pre>
+<h2 id="minxs"><a class="header" href="#minxs"><code>min(xs)</code></a></h2>
+<p><code>min</code> takes a list of values and returns the minimum value in the list.</p>
+<pre><code class="language-js">min([2, 4, 3, 5, 6, 1]) // 1
+</code></pre>
+<h2 id="maxxs"><a class="header" href="#maxxs"><code>max(xs)</code></a></h2>
+<p><code>max</code> takes a list of values and returns the maximum value in the list.</p>
+<pre><code class="language-js">max([2, 4, 3, 5, 6, 1]) // 6
+</code></pre>
+<h2 id="clampx-a-b"><a class="header" href="#clampx-a-b"><code>clamp(x, a, b)</code></a></h2>
+<p><code>clamp</code> returns a value bounded by some upper and lower bounds <code>a</code> and <code>b</code>.
+If the given <code>x</code> is between <code>a</code> and <code>b</code>, it is returned as-is, and if it is outside the bounds, the closer of the two bounds is returned.</p>
+<pre><code class="language-js">clamp(5, 3, 8) // 5
+clamp(2, 3, 8) // 3
+clamp(9, 3, 8) // 8
+</code></pre>
+<h2 id="meanxs"><a class="header" href="#meanxs"><code>mean(xs)</code></a></h2>
+<p><code>mean</code> returns the arithmetic mean, or average, of all given values. If the list is empty, mean returns <code>null</code>.</p>
+<pre><code class="language-js">mean([2, 3, 4]) // 3
+</code></pre>
+<h2 id="medianxs"><a class="header" href="#medianxs"><code>median(xs)</code></a></h2>
+<p><code>median</code> returns the median, or &quot;middle value&quot;, of all given values.
+If there is an even number of values given, median computes the mean of the middle two values in the list. If the list is empty, median returns <code>null</code>.</p>
+<pre><code class="language-js">median([3, 4, 1, 7, 5]) // 4
+</code></pre>
+<h2 id="std_devxs"><a class="header" href="#std_devxs"><code>std_dev(xs)</code></a></h2>
+<p><code>std_dev</code> returns the population standard deviation computed from the given list of values. If the list is empty, <code>std_dev</code> returns <code>null</code>.</p>
+<h2 id="roundn-decimals"><a class="header" href="#roundn-decimals"><code>round(n, decimals)</code></a></h2>
+<p><code>round</code> takes a number <code>n</code> and returns a floating-point number that represents <code>n</code> round to the nearest <code>decimals</code>-th decimal place.
+For negative values of <code>decimals</code>, no rounding occurs and <code>n</code> is returned exactly.</p>
+<pre><code class="language-js">round(PI, 2) // 3.14
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="os"><a class="header" href="#os"><code>os</code></a></h1>
+<p><code>os</code> module provides a few functions related to operating system dependent functionality.
+If you just want to read or write a file see <a href="library/./file.html"><code>os/file</code> module</a>, and if you want to manipulate paths, see the <a href="library/./path.html"><code>os/path</code> module</a>.</p>
+<ul>
+<li><a href="library/os.html#get_cwd"><code>get_cwd</code></a></li>
+<li><a href="library/os.html#chdirpath"><code>chdir</code></a></li>
+<li><a href="library/os.html#mkdirpath"><code>mkdir</code></a></li>
+<li><a href="library/os.html#rmdirpath"><code>rmdir</code></a></li>
+<li><a href="library/os.html#rmpath"><code>rm</code></a></li>
+<li><a href="library/os.html#modi_timepath"><code>modi_time</code></a></li>
+<li><a href="library/os.html#filesizepath"><code>filesize</code></a></li>
+<li><a href="library/os.html#systemcmd"><code>system</code></a></li>
+<li><a href="library/exe_path"><code>exe_path</code></a></li>
+</ul>
+<h2 id="get_cwd"><a class="header" href="#get_cwd"><code>get_cwd()</code></a></h2>
+<p><code>get_cwd</code> returns the current working directory.</p>
+<pre><code class="language-js">cwd := get_cwd()
+</code></pre>
+<h2 id="chdirpath"><a class="header" href="#chdirpath"><code>chdir(path)</code></a></h2>
+<p><code>chdir</code> changes the current working directory.</p>
+<pre><code class="language-js">chdir(&quot;..&quot;)
+</code></pre>
+<h2 id="mkdirpath"><a class="header" href="#mkdirpath"><code>mkdir(path)</code></a></h2>
+<p><code>mkdir</code> creates a new directory at the path. The path should be valid.</p>
+<pre><code class="language-js">mkdir(&quot;./new_dir&quot;)
+</code></pre>
+<h2 id="rmdirpath"><a class="header" href="#rmdirpath"><code>rmdir(path)</code></a></h2>
+<p><code>rmdir</code> removes an empty directory at the path.</p>
+<pre><code class="language-js">rmdir(&quot;./new_dir&quot;)
+</code></pre>
+<h2 id="rmpath"><a class="header" href="#rmpath"><code>rm(path)</code></a></h2>
+<p><code>rm</code> removes a file at the path.</p>
+<pre><code class="language-js">rm(&quot;./test.txt&quot;)
+</code></pre>
+<h2 id="modi_timepath"><a class="header" href="#modi_timepath"><code>modi_time(path)</code></a></h2>
+<p><code>modi_time</code> returns the modified timestamp of the file.</p>
+<pre><code class="language-js">modi_time(&quot;./test.txt&quot;)
+</code></pre>
+<h2 id="filesizepath"><a class="header" href="#filesizepath"><code>filesize(path)</code></a></h2>
+<p><code>filesize</code> returns the file size in bytes.</p>
+<pre><code class="language-js">filesize(&quot;./test.txt&quot;)
+</code></pre>
+<h2 id="systemcmd"><a class="header" href="#systemcmd"><code>system(cmd)</code></a></h2>
+<p><code>system</code> executes the command in a subprocess and returns the exit code of the child process</p>
+<pre><code class="language-js">system(&quot;echo hello&quot;)
+</code></pre>
+<h2 id="exe_path"><a class="header" href="#exe_path"><code>exe_path()</code></a></h2>
+<p><code>exe_path</code> returns the path of the Feo interpreter executable.</p>
+<pre><code class="language-js">path := exe_path()
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="file"><a class="header" href="#file"><code>file</code></a></h1>
+<p><code>file</code> module offers filesystem APIs to Feo programs.</p>
+<p>Some functions in <code>file</code> are implemented in both synchronous and asynchronous variants.
+Sync variants of functions block, and return the value immediately for ease of use.
+For better performance, we can pass a callback to the function to invoke its asynchronous variant.
+In that case, the function will not block. Instead, the callback will be called some time later with the return value.</p>
+<ul>
+<li><a href="library/file.html#read_buf_size"><code>read_buf_size</code></a></li>
+<li><a href="library/file.html#sync_read_filepath"><code>sync_read_file</code></a></li>
+<li><a href="library/file.html#async_read_filepath-fn"><code>async_read_file</code></a></li>
+<li><a href="library/file.html#write_filepath-file-flag"><code>write_file</code></a></li>
+<li><a href="library/file.html#list_filespath"><code>list_files</code></a></li>
+</ul>
+<h2 id="read_buf_size"><a class="header" href="#read_buf_size"><code>read_buf_size</code></a></h2>
+<p><code>read_buf_size</code> is the size of the buffer used to read a file in streaming file-read operations in <code>fs</code> module.
+This may be changed to alter the behavior of <code>fs</code>, but it will affect the behavior of libfs globally in your program.</p>
+<pre><code class="language-js">read_buf_size := 4096
+</code></pre>
+<h2 id="sync_read_filepath"><a class="header" href="#sync_read_filepath"><code>sync_read_file(path)</code></a></h2>
+<p><code>sync_read_file</code> reads the entire contents of a file at <code>path</code> and returns the file contents as a string if successful or throw an error.</p>
+<pre><code class="language-js">content := unsafe sync_read_file(&quot;./test.txt&quot;)
+</code></pre>
+<h2 id="async_read_filepath-fn"><a class="header" href="#async_read_filepath-fn"><code>async_read_file(path, fn)</code></a></h2>
+<p><code>async_read_file</code> reads the entire contents of a file at <code>path</code> and returns the file contents as a string to <code>fn</code> if successful or <code>null</code> on an error.</p>
+<pre><code class="language-js">async_read_file(&quot;./test.txt&quot;, func(content) {
+    println(content)
+})
+</code></pre>
+<h2 id="write_filepath-file-flag"><a class="header" href="#write_filepath-file-flag"><code>write_file(path, file, flag)</code></a></h2>
+<p><code>write_file</code> writes data in <code>file</code> to a file at <code>path</code> and returns <code>true</code> on success and throws an error on error.
+<code>flag</code> can control the behavior of <code>write_file</code>. Possible options for <code>flag</code> are <code>:append</code> and <code>:truncate</code>.</p>
+<pre><code class="language-js">result := unsafe write_file(&quot;./test.txt&quot;, &quot;Hello, world!&quot;, :append)
+</code></pre>
+<h2 id="list_filespath"><a class="header" href="#list_filespath"><code>list_files(path)</code></a></h2>
+<p><code>list_files</code> returns a list of files and directories in a directory at <code>path</code>.
+If the directory does not exist or is not a directory, or if the read failed, it throws an error.</p>
+<pre><code class="language-js">files := unsafe list_files(&quot;./&quot;)
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="path"><a class="header" href="#path"><code>path</code></a></h1>
+<p><code>path</code> module implements utilities for working with UNIX style paths on file systems and in URIs.</p>
+<ul>
+<li><a href="library/path.html#abspath"><code>abs</code></a></li>
+<li><a href="library/path.html#abspath-1"><code>abs?</code></a></li>
+<li><a href="library/path.html#relpath-from"><code>rel</code></a></li>
+<li><a href="library/path.html#relpath"><code>rel?</code></a></li>
+<li><a href="library/path.html#joinpaths"><code>join</code></a></li>
+<li><a href="library/path.html#basepath"><code>base</code></a></li>
+<li><a href="library/path.html#dirpath"><code>dir</code></a></li>
+<li><a href="library/path.html#dirpath-1"><code>dir?</code></a></li>
+<li><a href="library/path.html#filepath"><code>file?</code></a></li>
+<li><a href="library/path.html#existspath"><code>exists?</code></a></li>
+<li><a href="library/path.html#extpath"><code>ext</code></a></li>
+<li><a href="library/path.html#list_dirpath"><code>list_dir</code></a></li>
+</ul>
+<h2 id="abspath"><a class="header" href="#abspath"><code>abs(path)</code></a></h2>
+<p><code>abs</code> returns the absolute path of <code>path</code>.</p>
+<pre><code class="language-js">abs(&quot;./abc.txt&quot;)
+</code></pre>
+<h2 id="abspath-1"><a class="header" href="#abspath-1"><code>abs?(path)</code></a></h2>
+<p><code>abs?</code> returns <code>true</code> if the path is absolute, and otherwise <code>false</code>.</p>
+<pre><code class="language-js">abs?(&quot;./abc.txt&quot;) // false
+</code></pre>
+<h2 id="relpath-from"><a class="header" href="#relpath-from"><code>rel(path, from)</code></a></h2>
+<p><code>rel</code> returns the relative path of <code>path</code> from the <code>from</code> directory.</p>
+<pre><code class="language-js">rel(&quot;./abc.txt&quot;, &quot;../../some_dir&quot;)
+</code></pre>
+<h2 id="relpath"><a class="header" href="#relpath"><code>rel?(path)</code></a></h2>
+<p><code>rel?</code> returns <code>true</code> if the path is relative, and otherwise <code>false</code>.</p>
+<pre><code class="language-js">rel?(&quot;./abc.txt&quot;) // true
+</code></pre>
+<h2 id="joinpaths"><a class="header" href="#joinpaths"><code>join(paths)</code></a></h2>
+<p><code>join</code> joins multiple paths together into a single valid path.</p>
+<pre><code class="language-js">join(&quot;./some_dir&quot;, &quot;./file.txt&quot;)
+</code></pre>
+<h2 id="basepath"><a class="header" href="#basepath"><code>base(path)</code></a></h2>
+<p><code>base</code> base returns the last element of a path, which is typically the file or directory referred to by the path.</p>
+<pre><code class="language-js">base(&quot;./abc.txt&quot;) // &quot;abc.txt&quot;
+</code></pre>
+<h2 id="dirpath"><a class="header" href="#dirpath"><code>dir(path)</code></a></h2>
+<p><code>dir</code> returns the portion of the a path that represents the directory containing it. In effect, this is all but the last part of a path.</p>
+<pre><code class="language-js">dir(&quot;./some_dir/another_dir/some_file.txt&quot;) // &quot;./some_dir/another_dir/&quot;
+</code></pre>
+<h2 id="dirpath-1"><a class="header" href="#dirpath-1"><code>dir?(path)</code></a></h2>
+<p><code>dir?</code> returns <code>true</code> if the path is a directory.</p>
+<pre><code class="language-js">dir?(&quot;./some_dir/&quot;) // true
+</code></pre>
+<h2 id="filepath"><a class="header" href="#filepath"><code>file?(path)</code></a></h2>
+<p><code>file?</code> returns <code>true</code> if the path is a file.</p>
+<pre><code class="language-js">file?(&quot;./abc.txt&quot;) // true
+</code></pre>
+<h2 id="existspath"><a class="header" href="#existspath"><code>exists?(path)</code></a></h2>
+<p><code>exists?</code> returns <code>true</code> if the path exists.</p>
+<pre><code class="language-js">exists(&quot;./some_file.txt&quot;) 
+</code></pre>
+<h2 id="extpath"><a class="header" href="#extpath"><code>ext(path)</code></a></h2>
+<p><code>ext</code> returns the file extension of the path.</p>
+<pre><code class="language-js">ext(&quot;./some_file.txt&quot;) // &quot;txt&quot;
+</code></pre>
+<h2 id="list_dirpath"><a class="header" href="#list_dirpath"><code>list_dir(path)</code></a></h2>
+<p><code>list_dir</code> returns all the entries in the directory at the path as a list.</p>
+<pre><code class="language-js">list_dir(&quot;.&quot;)
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="random"><a class="header" href="#random"><code>random</code></a></h1>
+<p><code>random</code> module implements pseudo-random number generators for various distributions.</p>
+<p>Almost all module functions depend on the basic function <a href="library/random.html#random"><code>random</code></a>, which generates a random float uniformly in the half-open range <code>0.0 &lt;= x &lt; 1.0</code>.</p>
+<p><em>Warning</em>: The pseudo-random generators of this module should not be used for security purposes.</p>
+<ul>
+<li><a href="library/random.html#random"><code>random</code></a></li>
+<li><a href="library/random.html#random_rangestart-stop-step"><code>random_range</code></a></li>
+<li><a href="library/random.html#choicexs"><code>choice</code></a></li>
+<li><a href="library/random.html#shufflexs"><code>shuffle</code></a></li>
+</ul>
+<h2 id="random-1"><a class="header" href="#random-1"><code>random()</code></a></h2>
+<p><code>random</code> returns the next random floating point number in the range <code>0.0 &lt;= x &lt; 1.0</code>.</p>
+<pre><code class="language-js">random() // 0.09731976238249829
+</code></pre>
+<h2 id="random_rangestart-end-step"><a class="header" href="#random_rangestart-end-step"><code>random_range(start, end, step)</code></a></h2>
+<p><code>random_range</code>returns a randomly selected element from <a href="library/./std.html#rangestart-end-step"><code>range(start, end, step)</code></a>.</p>
+<pre><code class="language-js">random_range(2, 10, 2) // 6
+</code></pre>
+<h2 id="choicexs"><a class="header" href="#choicexs"><code>choice(xs)</code></a></h2>
+<p><code>choice</code> returns a random element from the non-empty list <code>xs</code>.</p>
+<pre><code class="language-js">choice([&quot;Nobu&quot;, &quot;Sol&quot;, &quot;Thomas&quot;, &quot;Damian&quot;]) // &quot;Sol&quot;
+</code></pre>
+<h2 id="shufflexs"><a class="header" href="#shufflexs"><code>shuffle(xs)</code></a></h2>
+<p><code>shuffle</code> shuffles a sequence <code>xs</code> and returns a new shuffled list.</p>
+<pre><code class="language-js">shuffle([&quot;Nobu&quot;, &quot;Sol&quot;, &quot;Thomas&quot;, &quot;Damian&quot;]) // [&quot;Thomas&quot;, &quot;Damian&quot;, &quot;Sol&quot;, &quot;Nobu&quot;]
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="range"><a class="header" href="#range"><code>range</code></a></h1>
+<p><code>range</code> module implements functions for working with memory efficient iterators.</p>
+<ul>
+<li><a href="library/range.html#rangestart-stop-step"><code>range</code></a></li>
+<li><a href="library/range.html#eachr-f"><code>each</code></a></li>
+<li><a href="library/range.html#mapr-f"><code>map</code></a></li>
+<li><a href="library/range.html#reverser"><code>reverse</code></a></li>
+<li><a href="library/range.html#filterr-f"><code>filter</code></a></li>
+<li><a href="library/range.html#reducer-seed-f"><code>reduce</code></a></li>
+<li><a href="library/range.html#slicer-min-max"><code>slice</code></a></li>
+<li><a href="library/range.html#listr"><code>list</code></a></li>
+</ul>
+<h2 id="rangestart-stop-step"><a class="header" href="#rangestart-stop-step"><code>range(start, stop, step)</code></a></h2>
+<p><code>range</code> returns a range object of numbers in range <code>[start, end)</code>, incrementing by <code>step</code>.
+It is analogous to Python's <code>range</code> builtin function, and will default to <code>step = 0</code> and <code>start = 0</code> when those optional values are missing.</p>
+<pre><code class="language-js">range(1, 100000)
+/*
+    {
+        start: 1,
+        stop: 100000,
+        step: 1,
+    }
+*/
+</code></pre>
+<h2 id="eachr-f"><a class="header" href="#eachr-f"><code>each(r, f)</code></a></h2>
+<p><code>each</code> calls the given iterator function <code>f</code> for each element of the given range object <code>r</code>.
+The iterator function receives arguments <code>(element, index)</code>.</p>
+<pre><code class="language-js">range(1, 2000) |&gt; each(func(element, index) println(element))
+</code></pre>
+<h2 id="mapr-f"><a class="header" href="#mapr-f"><code>map(r, f)</code></a></h2>
+<p><code>map</code> produces a list of the given range object <code>r</code> where each element has been put through some mapper predicate <code>f</code>.
+If <code>f</code> is a function, it receives arguments <code>(element, index)</code>.</p>
+<pre><code class="language-js">range(0, 2000) |&gt; map(func(element, index) element * index)
+// [0, 1, 4, ..., 3996001]
+</code></pre>
+<h2 id="reverser"><a class="header" href="#reverser"><code>reverse(r)</code></a></h2>
+<p><code>reverse</code> reverses the order of all elements in a given range object <code>r</code>, producing a copy.</p>
+<pre><code class="language-js">reverse(range(1, 4000))
+/*
+    {
+        start: 4000,
+        stop: 1,
+        step: -1,
+    }
+*/
+</code></pre>
+<h2 id="filterr-f"><a class="header" href="#filterr-f"><code>filter(r, f)</code></a></h2>
+<p><code>filter</code> produces an iterable containing only the elements of the range object <code>r</code> that return <code>true</code> when passed to the filter predicate <code>f</code>.
+If <code>f</code> is a function, it receives arguments <code>(element, index)</code>.</p>
+<pre><code class="language-js">list := range(0, 100) |&gt; filter(func(element, index) element &gt;= 90)
+list // [90, 91, 92, 93, 94, 95, 96, 96, 97, 98, 99]
+</code></pre>
+<h2 id="reducer-seed-f"><a class="header" href="#reducer-seed-f"><code>reduce(r, seed, f)</code></a></h2>
+<p><code>reduce</code> accumulates elements of the range object <code>r</code> on a value, starting with <code>seed</code> and passing it to the reducer function <code>f</code>.
+The reducer receives arguments <code>(accumulator, element, index)</code>.</p>
+<pre><code class="language-js">// example &quot;sum&quot; function
+func sum(start, stop, step) {
+    step = default(step, 1)
+    range.range(start, stop, step) |&gt; range.reduce(0) &lt;| func(acc, elem) acc + elem
+}
+</code></pre>
+<h2 id="slicer-min-max"><a class="header" href="#slicer-min-max"><code>slice(r, min, max)</code></a></h2>
+<p><code>slice</code> takes a range object <code>r</code> and returns a &quot;slice&quot; (list) of the original from the range <code>[min, max)</code>.
+The slice is a copy, and mutating it will not mutate the original.</p>
+<p>Both <code>min</code> and <code>max</code> are optional and will default to <code>0</code> and <code>len(xs)</code> respectively.</p>
+<pre><code class="language-js">slice(range(0, 100), 5, 11) // [6, 7, 8, 9, 10]
+</code></pre>
+<h2 id="listr"><a class="header" href="#listr"><code>list(r)</code></a></h2>
+<p><code>list</code> takes a range object <code>r</code> and returns a list version of the range.</p>
+<pre><code class="language-js">range(0, 100) |&gt; list() // [0, 1, 2, ..., 98, 99]
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="std"><a class="header" href="#std"><code>std</code></a></h1>
 <p><code>std</code> module defines basic functions for working with Feo values and functions, iterators, and control flow.</p>
 <ul>
@@ -951,7 +1364,7 @@ first(name) // &quot;N&quot;
 <h2 id="lastxs"><a class="header" href="#lastxs"><code>last(xs)</code></a></h2>
 <p><code>last</code> returns the last item in an iterable. It's trivial, but useful to have in the stdlib for use in pipelines or iterators.</p>
 <pre><code class="language-js">name := &quot;Nobu&quot;
-first(name) // &quot;u&quot;
+last(name) // &quot;u&quot;
 </code></pre>
 <h2 id="takexs-n"><a class="header" href="#takexs-n"><code>take(xs, n)</code></a></h2>
 <p><code>take</code> accepts an iterable and returns a version of it containing the first N elements.</p>
@@ -1137,232 +1550,6 @@ If <code>sep</code> is not specified, split returns a list of every character in
 <p><code>trim</code> removes any (potentially repeated) ocucrrences of the string <code>part</code> from either end of the string <code>s</code>.
 If <code>part</code> is not specified, trim removes all whitespace from either end of the string <code>s</code>.</p>
 <pre><code class="language-js">trim(&quot;  Hello  &quot;) // &quot;Hello&quot;
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="math"><a class="header" href="#math"><code>math</code></a></h1>
-<p>For functions dealing with coordinate pairs and angles, the coordinate plane is assumed to be a Cartesian plane with +x to the east and +y to the north,
-where the angle is measured in radians from the +x axis, counterclockwise.</p>
-<ul>
-<li><a href="library/math.html#pi"><code>PI</code></a></li>
-<li><a href="library/math.html#e"><code>E</code></a></li>
-<li><a href="library/math.html#signn"><code>sign</code></a></li>
-<li><a href="library/math.html#absn"><code>abs</code></a></li>
-<li><a href="library/math.html#sqrtn"><code>sqrt</code></a></li>
-<li><a href="library/math.html#hypotx0-y0-x1-y1"><code>hypot</code></a></li>
-<li><a href="library/math.html#scalex-a-b-c-d"><code>scale</code></a></li>
-<li><a href="library/math.html#combn-k"><code>comb</code></a></li>
-<li><a href="library/math.html#sumxs"><code>sum</code></a></li>
-<li><a href="library/math.html#prodxs"><code>prod</code></a></li>
-<li><a href="library/math.html#minxs"><code>min</code></a></li>
-<li><a href="library/math.html#maxxs"><code>max</code></a></li>
-<li><a href="library/math.html#clampx-a-b"><code>clamp</code></a></li>
-<li><a href="library/math.html#meanxs"><code>mean</code></a></li>
-<li><a href="library/math.html#medianxs"><code>median</code></a></li>
-<li><a href="library/math.html#std_devxs"><code>std_dev</code></a></li>
-<li><a href="library/math.html#roundn-decimals"><code>round</code></a></li>
-</ul>
-<h2 id="pi"><a class="header" href="#pi"><code>PI</code></a></h2>
-<p>π, the circle constant.</p>
-<pre><code class="language-js">PI := 3.14159265358979323846264338327950288419716939937510
-</code></pre>
-<h2 id="e"><a class="header" href="#e"><code>E</code></a></h2>
-<p>e, the base of the natural logarith.</p>
-<pre><code class="language-js">e := 2.71828182845904523536028747135266249775724709369995
-</code></pre>
-<h2 id="signn"><a class="header" href="#signn"><code>sign(n)</code></a></h2>
-<p><code>sign</code> returns <code>-1</code> for all negative numbers, and <code>1</code> otherwise.</p>
-<pre><code class="language-js">sign(4)  // 1
-sign(-3) // -1
-</code></pre>
-<h2 id="absn"><a class="header" href="#absn"><code>abs(n)</code></a></h2>
-<p><code>abs</code> returns the absolute value of a real number.</p>
-<pre><code class="language-js">abs(-123) // 123
-abs(123)  // 123
-</code></pre>
-<h2 id="sqrtn"><a class="header" href="#sqrtn"><code>sqrt(n)</code></a></h2>
-<p><code>sqrt</code> returns the principal square root of a real number, or <code>null</code> if the number is negative.</p>
-<pre><code class="language-js">sqrt(64) // 8
-sqrt(-64) // null
-</code></pre>
-<h2 id="hypotx0-y0-x1-y1"><a class="header" href="#hypotx0-y0-x1-y1"><code>hypot(x0, y0, x1, y1)</code></a></h2>
-<p><code>hypot</code> returns the Euclidean distance between two points, equivalent to the hypotenuse of a right triangle with the given two points as vertices.
-If <code>x1</code> and <code>y1</code> default to <code>0</code>.</p>
-<pre><code class="language-js">hypot(3, 4) // 5
-</code></pre>
-<h2 id="scalex-a-b-c-d"><a class="header" href="#scalex-a-b-c-d"><code>scale(x, a, b, c, d)</code></a></h2>
-<p><code>scale</code> maps the value <code>x</code> in the range <code>[a, b]</code> to the range <code>[c, d]</code>. If <code>[c, d]</code> are not provided, they are assumed to be <code>[0, 1]</code>.
-<code>x</code> may be outside the range <code>[a, b]</code>, in which case the value is scaled to be an equal amount outside of the range <code>[c, d]</code>.</p>
-<h2 id="combn-k"><a class="header" href="#combn-k"><code>comb(n, k)</code></a></h2>
-<p><code>comb</code> returns the number of ways to choose <code>k</code> items from <code>n</code> items without repetition and without order. If <code>k &gt; n</code>, <code>comb</code> returns <code>0</code>.</p>
-<pre><code class="language-js">comb(4, 1) // 4
-</code></pre>
-<h2 id="sumxs"><a class="header" href="#sumxs"><code>sum(xs)</code></a></h2>
-<p><code>sum</code> takes a list of values and returns their sum.</p>
-<pre><code class="language-js">sum([1, 2, 3, 4]) // 10
-</code></pre>
-<h2 id="prodxs"><a class="header" href="#prodxs"><code>prod(xs)</code></a></h2>
-<p><code>prod</code> takes a list of values and returns their product.</p>
-<pre><code class="language-js">prod([1, 2, 3, 4]) // 24
-</code></pre>
-<h2 id="minxs"><a class="header" href="#minxs"><code>min(xs)</code></a></h2>
-<p><code>min</code> takes a list of values and returns the minimum value in the list.</p>
-<pre><code class="language-js">min([2, 4, 3, 5, 6, 1]) // 1
-</code></pre>
-<h2 id="maxxs"><a class="header" href="#maxxs"><code>max(xs)</code></a></h2>
-<p><code>max</code> takes a list of values and returns the maximum value in the list.</p>
-<pre><code class="language-js">max([2, 4, 3, 5, 6, 1]) // 6
-</code></pre>
-<h2 id="clampx-a-b"><a class="header" href="#clampx-a-b"><code>clamp(x, a, b)</code></a></h2>
-<p><code>clamp</code> returns a value bounded by some upper and lower bounds <code>a</code> and <code>b</code>.
-If the given <code>x</code> is between <code>a</code> and <code>b</code>, it is returned as-is, and if it is outside the bounds, the closer of the two bounds is returned.</p>
-<pre><code class="language-js">clamp(5, 3, 8) // 5
-clamp(2, 3, 8) // 3
-clamp(9, 3, 8) // 8
-</code></pre>
-<h2 id="meanxs"><a class="header" href="#meanxs"><code>mean(xs)</code></a></h2>
-<p><code>mean</code> returns the arithmetic mean, or average, of all given values. If the list is empty, mean returns <code>null</code>.</p>
-<pre><code class="language-js">mean([2, 3, 4]) // 3
-</code></pre>
-<h2 id="medianxs"><a class="header" href="#medianxs"><code>median(xs)</code></a></h2>
-<p><code>median</code> returns the median, or &quot;middle value&quot;, of all given values.
-If there is an even number of values given, median computes the mean of the middle two values in the list. If the list is empty, median returns <code>null</code>.</p>
-<pre><code class="language-js">median([3, 4, 1, 7, 5]) // 4
-</code></pre>
-<h2 id="std_devxs"><a class="header" href="#std_devxs"><code>std_dev(xs)</code></a></h2>
-<p><code>std_dev</code> returns the population standard deviation computed from the given list of values. If the list is empty, <code>std_dev</code> returns <code>null</code>.</p>
-<h2 id="roundn-decimals"><a class="header" href="#roundn-decimals"><code>round(n, decimals)</code></a></h2>
-<p><code>round</code> takes a number <code>n</code> and returns a floating-point number that represents <code>n</code> round to the nearest <code>decimals</code>-th decimal place.
-For negative values of <code>decimals</code>, no rounding occurs and <code>n</code> is returned exactly.</p>
-<pre><code class="language-js">round(PI, 2) // 3.14
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="fmt"><a class="header" href="#fmt"><code>fmt</code></a></h1>
-<p><code>fmt</code> is the string formatting library for Feo.</p>
-<ul>
-<li><a href="library/fmt.html#formatraw-values"><code>format</code></a></li>
-<li><a href="library/fmt.html#printraw-values"><code>print</code></a></li>
-<li><a href="library/fmt.html#printlnraw-values"><code>println</code></a></li>
-</ul>
-<h2 id="formatraw-values"><a class="header" href="#formatraw-values"><code>format(raw, values+)</code></a></h2>
-<p><code>format</code> returns the format string <code>raw</code>, where each substring of the form &quot;{}&quot; has been replaced by the corresponding value given in the arguments.</p>
-<pre><code class="language-js">name := &quot;Nobu&quot;
-format(&quot;Hello, {}!&quot;, name) // &quot;Hello, Nobu!&quot;
-</code></pre>
-<h2 id="printraw-values"><a class="header" href="#printraw-values"><code>print(raw, values+)</code></a></h2>
-<p><code>print</code> prints the result of <code>format(raw, values+)</code> to the standard output stream.</p>
-<pre><code class="language-js">// Don't be confused with built-in function `print`!
-fmt.print(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!
-</code></pre>
-<h2 id="printlnraw-values"><a class="header" href="#printlnraw-values"><code>println(raw, values+)</code></a></h2>
-<p><code>println</code> prints the result of <code>format(raw, values+)</code> to the standard output stream with a newline.</p>
-<pre><code class="language-js">// Don't be confused with built-in function `println`!
-fmt.println(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!\n
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="fs"><a class="header" href="#fs"><code>fs</code></a></h1>
-<p><code>fs</code> module offers filesystem APIs to Feo programs.</p>
-<p>Some functions in <code>fs</code> are implemented in both synchronous and asynchronous variants.
-Sync variants of functions block, and return the value immediately for ease of use.
-For better performance, we can pass a callback to the function to invoke its asynchronous variant.
-In that case, the function will not block. Instead, the callback will be called some time later with the return value.</p>
-<ul>
-<li><a href="library/fs.html#read_buf_size"><code>read_buf_size</code></a></li>
-<li><a href="library/fs.html#sync_read_filepath"><code>sync_read_file</code></a></li>
-<li><a href="library/fs.html#async_read_filepath-fn"><code>async_read_file</code></a></li>
-<li><a href="library/fs.html#write_filepath-file-flag"><code>write_file</code></a></li>
-<li><a href="library/fs.html#list_filespath"><code>list_files</code></a></li>
-</ul>
-<h2 id="read_buf_size"><a class="header" href="#read_buf_size"><code>read_buf_size</code></a></h2>
-<p><code>read_buf_size</code> is the size of the buffer used to read a file in streaming file-read operations in <code>fs</code> module.
-This may be changed to alter the behavior of <code>fs</code>, but it will affect the behavior of libfs globally in your program.</p>
-<pre><code class="language-js">read_buf_size := 4096
-</code></pre>
-<h2 id="sync_read_filepath"><a class="header" href="#sync_read_filepath"><code>sync_read_file(path)</code></a></h2>
-<p><code>sync_read_file</code> reads the entire contents of a file at <code>path</code> and returns the file contents as a string if successful or throw an error.</p>
-<pre><code class="language-js">content := unsafe sync_read_file(&quot;./test.txt&quot;)
-</code></pre>
-<h2 id="async_read_filepath-fn"><a class="header" href="#async_read_filepath-fn"><code>async_read_file(path, fn)</code></a></h2>
-<p><code>async_read_file</code> reads the entire contents of a file at <code>path</code> and returns the file contents as a string to <code>fn</code> if successful or <code>null</code> on an error.</p>
-<pre><code class="language-js">async_read_file(&quot;./test.txt&quot;, func(content) {
-    println(content)
-})
-</code></pre>
-<h2 id="write_filepath-file-flag"><a class="header" href="#write_filepath-file-flag"><code>write_file(path, file, flag)</code></a></h2>
-<p><code>write_file</code> writes data in <code>file</code> to a file at <code>path</code> and returns <code>true</code> on success and throws an error on error.
-<code>flag</code> can control the behavior of <code>write_file</code>. Possible options for <code>flag</code> are <code>:append</code> and <code>:truncate</code>.</p>
-<pre><code class="language-js">result := unsafe write_file(&quot;./test.txt&quot;, &quot;Hello, world!&quot;, :append)
-</code></pre>
-<h2 id="list_filespath"><a class="header" href="#list_filespath"><code>list_files(path)</code></a></h2>
-<p><code>list_files</code> returns a list of files and directories in a directory at <code>path</code>.
-If the directory does not exist or is not a directory, or if the read failed, it throws an error.</p>
-<pre><code class="language-js">files := unsafe list_files(&quot;./&quot;)
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="json"><a class="header" href="#json"><code>json</code></a></h1>
-<p><code>json</code> module implements a JSON parser and serializer for Feo values.</p>
-<ul>
-<li><a href="library/json.html#escape_charc"><code>escape_char</code></a></li>
-<li><a href="library/json.html#escapes"><code>escape</code></a></li>
-<li><a href="library/json.html#serializec"><code>serialize</code></a></li>
-<li><a href="library/json.html#parses"><code>parse</code></a></li>
-</ul>
-<h2 id="escape_charc"><a class="header" href="#escape_charc"><code>escape_char(c)</code></a></h2>
-<p>string escape '&quot;'</p>
-<pre><code class="language-js">escape_char(&quot;   &quot;) // &quot;\\t&quot;
-</code></pre>
-<h2 id="escapes"><a class="header" href="#escapes"><code>escape(s)</code></a></h2>
-<p>escapes whole string</p>
-<pre><code class="language-js">escape(&quot;Hello\nWorld&quot;) // &quot;Hello\\nWorld&quot;
-</code></pre>
-<h2 id="serializec"><a class="header" href="#serializec"><code>serialize(c)</code></a></h2>
-<p><code>serialize</code> takes a Feo value and returns its JSON representation.</p>
-<pre><code class="language-js">obj := {
-    name: &quot;nobu&quot;,
-    email: &quot;nobu.bichanna@gmail.com&quot;,
-    cool?: true,
-    siblings: 1
-}
-serialize(obj)
-/*
-    {
-        &quot;name&quot;: &quot;nobu&quot;,
-        &quot;email&quot;: &quot;nobu.bichanna@gmail.com&quot;,
-        &quot;is_cool&quot;: true,
-        &quot;siblings&quot;: 1
-    }
-*/
-</code></pre>
-<h2 id="parses"><a class="header" href="#parses"><code>parse(s)</code></a></h2>
-<p><code>parse</code> takes a potentially valid JSON string, and returns its Feo representation if valid JSON, or throws an error if the parse fails.</p>
-<pre><code class="language-js">parse(&quot;{\&quot;name\&quot;: \&quot;nobu\&quot;, \&quot;is_cool\&quot;: true}&quot;)
-/*
-    {
-        name: &quot;nobu&quot;,
-        is_cool: true
-    }
-*/
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="random"><a class="header" href="#random"><code>random</code></a></h1>
-<p><code>random</code> module implements pseudo-random number generators for various distributions.</p>
-<p>Almost all module functions depend on the basic function <a href="library/random.html#random"><code>random</code></a>, which generates a random float uniformly in the half-open range <code>0.0 &lt;= x &lt; 1.0</code>.</p>
-<p><em>Warning</em>: The pseudo-random generators of this module should not be used for security purposes.</p>
-<ul>
-<li><a href="library/random.html#random"><code>random</code></a></li>
-<li><a href="library/random.html#random_rangestart-stop-step"><code>random_range</code></a></li>
-<li><a href="library/random.html#choicexs"><code>choice</code></a></li>
-<li><a href="library/random.html#shufflexs"><code>shuffle</code></a></li>
-</ul>
-<h2 id="random-1"><a class="header" href="#random-1"><code>random()</code></a></h2>
-<p><code>random</code> returns the next random floating point number in the range <code>0.0 &lt;= x &lt; 1.0</code>.</p>
-<pre><code class="language-js">random() // 0.09731976238249829
-</code></pre>
-<h2 id="random_rangestart-end-step"><a class="header" href="#random_rangestart-end-step"><code>random_range(start, end, step)</code></a></h2>
-<p><code>random_range</code>returns a randomly selected element from <a href="library/./std.html#rangestart-end-step"><code>range(start, end, step)</code></a>.</p>
-<pre><code class="language-js">random_range(2, 10, 2) // 6
-</code></pre>
-<h2 id="choicexs"><a class="header" href="#choicexs"><code>choice(xs)</code></a></h2>
-<p><code>choice</code> returns a random element from the non-empty list <code>xs</code>.</p>
-<pre><code class="language-js">choice([&quot;Nobu&quot;, &quot;Sol&quot;, &quot;Thomas&quot;, &quot;Damian&quot;]) // &quot;Sol&quot;
-</code></pre>
-<h2 id="shufflexs"><a class="header" href="#shufflexs"><code>shuffle(xs)</code></a></h2>
-<p><code>shuffle</code> shuffles a sequence <code>xs</code> and returns a new shuffled list.</p>
-<pre><code class="language-js">shuffle([&quot;Nobu&quot;, &quot;Sol&quot;, &quot;Thomas&quot;, &quot;Damian&quot;]) // [&quot;Thomas&quot;, &quot;Damian&quot;, &quot;Sol&quot;, &quot;Nobu&quot;]
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="testing-1"><a class="header" href="#testing-1"><code>Testing</code></a></h1>
 <p><code>testing</code> is a testing library for Feo, and it provides a set of tools for constructing tests.</p>
