@@ -152,7 +152,7 @@
 <ul>
 <li><a href="#escape_charc"><code>escape_char</code></a></li>
 <li><a href="#escapes"><code>escape</code></a></li>
-<li><a href="#serializec"><code>serialize</code></a></li>
+<li><a href="#serializec-pretty"><code>serialize</code></a></li>
 <li><a href="#parses"><code>parse</code></a></li>
 </ul>
 <h2 id="escape_charc"><a class="header" href="#escape_charc"><code>escape_char(c)</code></a></h2>
@@ -163,15 +163,15 @@
 <p>escapes whole string</p>
 <pre><code class="language-js">escape(&quot;Hello\nWorld&quot;) // &quot;Hello\\nWorld&quot;
 </code></pre>
-<h2 id="serializec"><a class="header" href="#serializec"><code>serialize(c)</code></a></h2>
-<p><code>serialize</code> takes a Feo value and returns its JSON representation.</p>
+<h2 id="serializec-pretty"><a class="header" href="#serializec-pretty"><code>serialize(c, pretty)</code></a></h2>
+<p><code>serialize</code> takes a Feo value and returns its JSON representation. If <code>pretty</code> is <code>true</code>, <code>serialize</code> prettifies the JSON representation. <code>pretty</code> defaults to <code>false</code>.</p>
 <pre><code class="language-js">obj := {
     name: &quot;nobu&quot;,
     email: &quot;nobu.bichanna@gmail.com&quot;,
     cool?: true,
     siblings: 1
 }
-serialize(obj)
+serialize(obj, true)
 /*
     {
         &quot;name&quot;: &quot;nobu&quot;,
