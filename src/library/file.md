@@ -1,7 +1,7 @@
-# `fs`
-`fs` module offers filesystem APIs to Feo programs.
+# `file`
+`file` module offers filesystem APIs to Feo programs.
 
-Some functions in `fs` are implemented in both synchronous and asynchronous variants.
+Some functions in `file` are implemented in both synchronous and asynchronous variants.
 Sync variants of functions block, and return the value immediately for ease of use.
 For better performance, we can pass a callback to the function to invoke its asynchronous variant.
 In that case, the function will not block. Instead, the callback will be called some time later with the return value.

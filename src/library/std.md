@@ -216,7 +216,7 @@ first(name) // "N"
 `last` returns the last item in an iterable. It's trivial, but useful to have in the stdlib for use in pipelines or iterators.
 ```js
 name := "Nobu"
-first(name) // "u"
+last(name) // "u"
 ```
 
 ## `take(xs, n)`
