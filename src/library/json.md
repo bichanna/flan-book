@@ -3,7 +3,7 @@
 
  - [`escape_char`](#escape_charc)
  - [`escape`](#escapes)
- - [`serialize`](#serializec)
+ - [`serialize`](#serializec-pretty)
  - [`parse`](#parses)
 
 ## `escape_char(c)`
@@ -18,8 +18,8 @@ escapes whole string
 escape("Hello\nWorld") // "Hello\\nWorld"
 ```
 
-## `serialize(c)`
-`serialize` takes a Feo value and returns its JSON representation.
+## `serialize(c, pretty)`
+`serialize` takes a Feo value and returns its JSON representation. If `pretty` is `true`, `serialize` prettifies the JSON representation. `pretty` defaults to `false`.
 ```js
 obj := {
     name: "nobu",
@@ -27,7 +27,7 @@ obj := {
     cool?: true,
     siblings: 1
 }
-serialize(obj)
+serialize(obj, true)
 /*
     {
         "name": "nobu",
