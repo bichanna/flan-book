@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>The Feo Book</title>
+        <title>The Impala Book</title>
         <meta name="robots" content="noindex" />
 
 
@@ -113,13 +113,13 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">The Feo Book</h1>
+                    <h1 class="menu-title">The Impala Book</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        <a href="https://github.com/bichanna/feo" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/bichanna/impala" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
 
@@ -149,11 +149,11 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="language-tour"><a class="header" href="#language-tour">Language Tour</a></h1>
-<p>In this book, we explore the fundamentals of the Feo language, namely its syntax, core data structures, and flow control features. If you have some prior programming experience, this will hopefully be enough to get you started with Feo.</p>
+<p>In this book, we explore the fundamentals of the Impala language, namely its syntax, core data structures, and flow control features. If you have some prior programming experience, this will hopefully be enough to get you started with Impala.</p>
 <h2 id="overly-simplifed-overview"><a class="header" href="#overly-simplifed-overview">Overly Simplifed Overview</a></h2>
-<p>In Feo, everything is an expression. That means everything evaluates to some value, like <code>2 * 3</code>, which is <code>6</code>.</p>
+<p>In Impala, everything is an expression. That means everything evaluates to some value, like <code>2 * 3</code>, which is <code>6</code>.</p>
 <h3 id="types"><a class="header" href="#types">Types</a></h3>
-<p>Feo has 7 primitive types and 3 complex ones:</p>
+<p>Impala has 7 primitive types and 3 complex ones:</p>
 <pre><code class="language-js">null         // Null
 _            // &quot;Empty&quot; value, equal to everything
 1, 2, 4      // Integers
@@ -184,7 +184,7 @@ func (x, y) x + y          // Functions
 age = 16 // age is now 16
 </code></pre>
 <h3 id="control-flows"><a class="header" href="#control-flows">Control Flows</a></h3>
-<p><code>match</code> expression is the only control flow in Feo.</p>
+<p><code>match</code> expression is the only control flow in Impala.</p>
 <pre><code class="language-js">name := &quot;Nobu&quot;
 match name {
     &quot;Nobu&quot; -&gt; println(&quot;Cool name!&quot;),
@@ -215,8 +215,8 @@ add := func(x, y) x + y
 10 |&gt; add(15) |&gt; add(12) // 37
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="comments"><a class="header" href="#comments">Comments</a></h1>
-<p>Feo allows you to write comments in your code, just like any other languages.</p>
-<p>In Feo, comments must start with two slashes and continue until the end of the line. Here's an example of a comment:</p>
+<p>Impala allows you to write comments in your code, just like any other languages.</p>
+<p>In Impala, comments must start with two slashes and continue until the end of the line. Here's an example of a comment:</p>
 <pre><code class="language-js">// Hello, world!
 </code></pre>
 <p>Comments can be also placed at the end of lines containing code:</p>
@@ -240,7 +240,7 @@ add := func(x, y) x + y
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="strings-and-atoms"><a class="header" href="#strings-and-atoms">Strings And Atoms</a></h1>
 <h2 id="strings"><a class="header" href="#strings">Strings</a></h2>
-<p>In Feo, strings can be written as text surrounded by double quotes.</p>
+<p>In Impala, strings can be written as text surrounded by double quotes.</p>
 <pre><code class="language-js">&quot;This is a string&quot;
 </code></pre>
 <p>Also, they can span multiple lines.</p>
@@ -248,7 +248,7 @@ add := func(x, y) x + y
 string!&quot;
 </code></pre>
 <p>Under the hood, strings are just Rust <code>String</code>s, which are encoded with <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a>, and are able to contain any valid unicode.</p>
-<pre><code class="language-js">&quot;🖕🏻こんにちはFeo 👺&quot;
+<pre><code class="language-js">&quot;こんちわ impala👺&quot;
 </code></pre>
 <h3 id="concatenation"><a class="header" href="#concatenation">Concatenation</a></h3>
 <p>The addition operator can be used to join strings together, but not atoms:</p>
@@ -256,7 +256,7 @@ string!&quot;
 name + &quot;haru&quot; // &quot;Nobuharu&quot;
 </code></pre>
 <h3 id="escape-sequences"><a class="header" href="#escape-sequences">Escape Sequences</a></h3>
-<p>Feo supports common string escape sequences. Here's all of them:</p>
+<p>Impala supports common string escape sequences. Here's all of them:</p>
 <div class="table-wrapper"><table><thead><tr><th>Sequences</th><th>Result</th></tr></thead><tbody>
 <tr><td>\n</td><td>Newline</td></tr>
 <tr><td>\r</td><td>Carriage Return</td></tr>
@@ -279,7 +279,7 @@ name + &quot;haru&quot; // &quot;Nobuharu&quot;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="booleans"><a class="header" href="#booleans">Booleans</a></h1>
 <p>A Boolean can be either <code>true</code> or <code>false</code>. Atom values <code>:true</code> and <code>:false</code> are also evaluated as Booleans.</p>
-<p>Feo defines a handful of operators that work with Booleans.</p>
+<p>Impala defines a handful of operators that work with Booleans.</p>
 <p><code>&amp;&amp;</code> evaluates the right hand side if the left hand side is <code>true</code>.</p>
 <p><code>||</code> evaluates the right hand side if the left hand side is <code>false</code>.</p>
 <p>You can also use <code>and</code> and <code>or</code> keywords instead of <code>&amp;&amp;</code> and <code>||</code> respectively.</p>
@@ -295,20 +295,20 @@ true || false  // =&gt; true
 true || true   // =&gt; true
 true or false  // =&gt; true
 </code></pre>
-<p>Feo supports negation of Booleans using either one of the <code>!</code>, <code>not</code>, or <code>-</code> unary operators.</p>
+<p>Impala supports negation of Booleans using either one of the <code>!</code>, <code>not</code>, or <code>-</code> unary operators.</p>
 <pre><code class="language-js">!true     // =&gt; false
 not false // =&gt; true
 -false    // =&gt; true
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="integers-and-floats"><a class="header" href="#integers-and-floats">Integers And Floats</a></h1>
-<p>Feo's main number types are Integers and Floats.</p>
+<p>Impala's main number types are Integers and Floats.</p>
 <h2 id="integers"><a class="header" href="#integers">Integers</a></h2>
 <p>Integers are &quot;whole&quot; numbers. Hexadecimal integers start with <code>0x</code>.</p>
 <pre><code class="language-js">15
 -83
 0xBADC0FFEE // 50159747054
 </code></pre>
-<p>Feo has several operators that work with Integers.</p>
+<p>Impala has several operators that work with Integers.</p>
 <pre><code class="language-js">1 + 1 // =&gt; 2
 4 - 2 // =&gt; 2
 6 / 3 // =&gt; 2
@@ -349,7 +349,7 @@ null &lt;= 7.3  // =&gt; false
 _ == &quot;hello&quot; // =&gt; true
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="lists"><a class="header" href="#lists">Lists</a></h2>
-<p>Lists are ordered collections of values. They're one of the most common data structures in Feo.</p>
+<p>Lists are ordered collections of values. They're one of the most common data structures in Impala.</p>
 <p>Lists are <em>heterogeneous</em>, meaning the elements of a list can be of different types.</p>
 <pre><code class="language-js">[:err, &quot;something wrong happened&quot;]
 [[&quot;abc&quot;, &quot;hello&quot;], 23, 3.14]
@@ -397,12 +397,12 @@ m // 2
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="functions-1"><a class="header" href="#functions-1">Functions</a></h1>
 <h2 id="named-functions"><a class="header" href="#named-functions">Named Functions</a></h2>
-<p>Named functions in Feo are defined using the <code>func</code> keyword.</p>
+<p>Named functions in Impala are defined using the <code>func</code> keyword.</p>
 <pre><code class="language-js">func greet(name) {
     println(&quot;Hello, &quot; + name + &quot;!&quot;)
 }
 </code></pre>
-<p>Functions in Feo are first class values and can be assigned to variables, passed to functions, or anything else you might do with any other data type.</p>
+<p>Functions in Impala are first class values and can be assigned to variables, passed to functions, or anything else you might do with any other data type.</p>
 <pre><code class="language-js">// This function takes a function as an argument
 func twice(f, x) {
     f(f(x))
@@ -444,7 +444,7 @@ args := [1, 5]
 range(...args) // [1, 2, 3, 4]
 </code></pre>
 <h2 id="pipe-operator-1"><a class="header" href="#pipe-operator-1">Pipe Operator</a></h2>
-<p>Feo provides syntax for passing the result of one function to the arguments of another function, the pipe operator (<code>|&gt;</code>).
+<p>Impala provides syntax for passing the result of one function to the arguments of another function, the pipe operator (<code>|&gt;</code>).
 This is similar in functionality to the same operator in Elixir or F#.</p>
 <p>The pipe operator allows you to chain function calls without using a plethora of parenthesis.</p>
 <pre><code class="language-js">names := []
@@ -489,7 +489,7 @@ some_func(&quot;Nobu&quot;) // prints out &quot;Hello, Nobu&quot;
 <pre><code class="language-js">public func public_func(xs+) {}
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="match-expression"><a class="header" href="#match-expression">Match Expression</a></h1>
-<p>The <code>match</code> expression is the most common kind of flow control in Feo code.
+<p>The <code>match</code> expression is the most common kind of flow control in Impala code.
 It allows us to say &quot;if the data has this shape then do that&quot;, which we call <em>pattern matching</em>.</p>
 <p>Here, we match on an Int and return a specific string for the values 0, 1, and 2.
 The final pattern n matches any other value that did not match any of the previous patterns.</p>
@@ -500,14 +500,14 @@ The final pattern n matches any other value that did not match any of the previo
   _ -&gt; &quot;some other number&quot;, // This matches anything
 }
 </code></pre>
-<p>Pattern matching on a Boolean value is the Feo alternative to the <code>if else</code> statement found in other languages.</p>
+<p>Pattern matching on a Boolean value is the Impala alternative to the <code>if else</code> statement found in other languages.</p>
 <pre><code class="language-js">match some_bool {
   true -&gt; &quot;It's true.&quot;,
   false -&gt; &quot;It's not true.&quot;,
 }
 </code></pre>
-<p>Feo's case is an expression, meaning it returns a value and can be used anywhere we would use a value.
-For example, we can name the value of a case expression with a variable binding.</p>
+<p>Impala's <code>match</code> is an expression, meaning it returns a value and can be used anywhere we would use a value.
+For example, we can name the value of a match expression with a variable binding.</p>
 <pre><code class="language-js">description := match true {
     true -&gt; &quot;blah blah&quot;,
     false -&gt; &quot;halb halb&quot;,
@@ -536,10 +536,10 @@ command := match damian_stinks {
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="modules"><a class="header" href="#modules">Modules</a></h1>
-<p>In Feo, modules are simply files with the “.feo” extension containing Feo code that can be imported inside another Feo program.
+<p>In Impala, modules are simply files with the “.impl” extension containing Impala code that can be imported inside another Impala program.
 Functions annotated with <code>public</code> keyword are public functions, meaning they could be exported outside of their own module to be used by other modules.</p>
 <p>You can import other modules using the built-in <code>import</code> function with relative paths.</p>
-<pre><code class="language-js">// src/a_module.feo
+<pre><code class="language-js">// src/a_module.impala
 
 // public function func_in_a
 public func func_in_a() {
@@ -548,21 +548,21 @@ public func func_in_a() {
 </code></pre>
 <p>Here, we have a function <code>func_in_a</code> in module <code>src/a_module</code>.</p>
 <p>From module <code>src/entry</code>, you can import the module <code>src/a_module</code> like this.</p>
-<pre><code class="language-js">// src/entry.feo
+<pre><code class="language-js">// src/entry.impl
 
 a_mod := import(&quot;src/a_module&quot;)
 
 a_mod.func_in_a() // &quot;Hello from a_module&quot;
 </code></pre>
 <p>You can similarly import the module <code>src/a_module</code> from another module <code>src/directory/b_module</code>, relative to the <code>src/entry</code> module.</p>
-<pre><code class="language-js">// src/directory/b_module.feo
+<pre><code class="language-js">// src/directory/b_module.impl
 
 a_mod := import(&quot;src/a_module&quot;)
 
 a_mod.func_in_a() // &quot;Hello from a_module&quot;
 </code></pre>
 <p>Because <code>import</code> function returns an object containing public variables and functions, you can import specific functions like so:</p>
-<pre><code class="language-js">// src/entry.feo
+<pre><code class="language-js">// src/entry.impl
 
 {func_in_a: func_from_a} := import(&quot;src/a_module&quot;)
 
@@ -572,7 +572,7 @@ func_from_a() // &quot;Hello from a_module&quot;
 <p>Until now errors have never been mentioned, but if you have tried out the examples you have probably seen some.
 There are two distinguishable kinds of errors: <em>syntax errors</em> and <em>exceptions</em>.</p>
 <h2 id="syntax-errors"><a class="header" href="#syntax-errors">Syntax Errors</a></h2>
-<p>Syntax errors, also known as parsing errors, are perhaps the most common kind of complaint you get while you are still learning Feo.</p>
+<p>Syntax errors, also known as parsing errors, are perhaps the most common kind of complaint you get while you are still learning Impala.</p>
 <pre><code class="language-js">some_file:1:14 error: expected ']'
 names[&quot;hello&quot;
 </code></pre>
@@ -654,12 +654,12 @@ The following table lists all the assert functions.</p>
 <tr><td><code>assert_not_contain(a, b)</code></td><td><code>std.contains?(a, b) == false</code></td></tr>
 <tr><td><code>assert_error(a, t, msg)</code></td><td><code>unsafe a == error(t, msg)</code></td></tr>
 </tbody></table>
-</div><div style="break-before: page; page-break-before: always;"></div><h1 id="the-feo-standard-library"><a class="header" href="#the-feo-standard-library">The Feo Standard Library</a></h1>
-<p>Feo’s standard library is quite extensive, offering a wide range of facilities as indicated by the long table of contents listed below.
-The library contains built-in modules (written in Rust) that provide access to system functionality such as file I/O that would otherwise be inaccessible to Feo programmers,
-as well as modules written in Feo that provide standardized solutions for many problems that occur in everyday programming.</p>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="the-impala-standard-library"><a class="header" href="#the-impala-standard-library">The Impala Standard Library</a></h1>
+<p>Impala’s standard library is quite extensive, offering a wide range of facilities as indicated by the long table of contents listed below.
+The library contains built-in modules (written in Rust) that provide access to system functionality such as file I/O that would otherwise be inaccessible to Impala programmers,
+as well as modules written in Impala that provide standardized solutions for many problems that occur in everyday programming.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="built-in-functions"><a class="header" href="#built-in-functions">Built-in Functions</a></h1>
-<p>The Feo interpreter has a number of functions and types built into it that are always available.
+<p>The Impala interpreter has a number of functions and types built into it that are always available.
 All of them are listed here.</p>
 <ul>
 <li><a href="library/builtins.html#absx"><code>abs</code></a></li>
@@ -781,7 +781,7 @@ match error?(result) {
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fmt"><a class="header" href="#fmt"><code>fmt</code></a></h1>
-<p><code>fmt</code> is the string formatting library for Feo.</p>
+<p><code>fmt</code> is the string formatting library for Impala.</p>
 <ul>
 <li><a href="library/fmt.html#formatraw-values"><code>format</code></a></li>
 <li><a href="library/fmt.html#printraw-values"><code>print</code></a></li>
@@ -803,7 +803,7 @@ fmt.print(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!
 fmt.println(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!\n
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="json"><a class="header" href="#json"><code>json</code></a></h1>
-<p><code>json</code> module implements a JSON parser and serializer for Feo values.</p>
+<p><code>json</code> module implements a JSON parser and serializer for Impala values.</p>
 <ul>
 <li><a href="library/json.html#escape_charc"><code>escape_char</code></a></li>
 <li><a href="library/json.html#escapes"><code>escape</code></a></li>
@@ -819,7 +819,7 @@ fmt.println(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!\n
 <pre><code class="language-js">escape(&quot;Hello\nWorld&quot;) // &quot;Hello\\nWorld&quot;
 </code></pre>
 <h2 id="serializec-pretty"><a class="header" href="#serializec-pretty"><code>serialize(c, pretty)</code></a></h2>
-<p><code>serialize</code> takes a Feo value and returns its JSON representation. If <code>pretty</code> is <code>true</code>, <code>serialize</code> prettifies the JSON representation. <code>pretty</code> defaults to <code>false</code>.</p>
+<p><code>serialize</code> takes a Impala value and returns its JSON representation. If <code>pretty</code> is <code>true</code>, <code>serialize</code> prettifies the JSON representation. <code>pretty</code> defaults to <code>false</code>.</p>
 <pre><code class="language-js">obj := {
     name: &quot;nobu&quot;,
     email: &quot;nobu.bichanna@gmail.com&quot;,
@@ -837,7 +837,7 @@ serialize(obj, true)
 */
 </code></pre>
 <h2 id="parses"><a class="header" href="#parses"><code>parse(s)</code></a></h2>
-<p><code>parse</code> takes a potentially valid JSON string, and returns its Feo representation if valid JSON, or throws an error if the parse fails.</p>
+<p><code>parse</code> takes a potentially valid JSON string, and returns its Impala representation if valid JSON, or throws an error if the parse fails.</p>
 <pre><code class="language-js">parse(&quot;{\&quot;name\&quot;: \&quot;nobu\&quot;, \&quot;is_cool\&quot;: true}&quot;)
 /*
     {
@@ -989,11 +989,11 @@ If you just want to read or write a file see <a href="library/./file.html"><code
 <pre><code class="language-js">system(&quot;echo hello&quot;)
 </code></pre>
 <h2 id="exe_path"><a class="header" href="#exe_path"><code>exe_path()</code></a></h2>
-<p><code>exe_path</code> returns the path of the Feo interpreter executable.</p>
+<p><code>exe_path</code> returns the path of the Impala interpreter executable.</p>
 <pre><code class="language-js">path := exe_path()
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="file"><a class="header" href="#file"><code>file</code></a></h1>
-<p><code>file</code> module offers filesystem APIs to Feo programs.</p>
+<p><code>file</code> module offers filesystem APIs to Impala programs.</p>
 <p>Some functions in <code>file</code> are implemented in both synchronous and asynchronous variants.
 Sync variants of functions block, and return the value immediately for ease of use.
 For better performance, we can pass a callback to the function to invoke its asynchronous variant.
@@ -1192,7 +1192,7 @@ The slice is a copy, and mutating it will not mutate the original.</p>
 <pre><code class="language-js">range(0, 100) |&gt; list() // [0, 1, 2, ..., 98, 99]
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="std"><a class="header" href="#std"><code>std</code></a></h1>
-<p><code>std</code> module defines basic functions for working with Feo values and functions, iterators, and control flow.</p>
+<p><code>std</code> module defines basic functions for working with Impala values and functions, iterators, and control flow.</p>
 <ul>
 <li><a href="library/std.html#identityx"><code>identity</code></a></li>
 <li><a href="library/std.html#isx"><code>is</code></a></li>
@@ -1271,7 +1271,7 @@ The slice is a copy, and mutating it will not mutate the original.</p>
 slice(name, 0, 3) // &quot;Sol&quot;
 </code></pre>
 <h2 id="clonex"><a class="header" href="#clonex"><code>clone(x)</code></a></h2>
-<p><code>clone</code> takes any Feo value and produces a shallow copy of it that will not mutate if the original mutates.</p>
+<p><code>clone</code> takes any Impala value and produces a shallow copy of it that will not mutate if the original mutates.</p>
 <pre><code class="language-js">list := [1, 2, 3]
 new_list := clone(list)
 
@@ -1443,7 +1443,7 @@ list = sort(list)
 list // [1, 2, 3, 4, 5]
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="strings-1"><a class="header" href="#strings-1"><code>strings</code></a></h1>
-<p><code>strings</code> module provides a set of utility functions for working with strings and data encoded in strings in Feo programs.</p>
+<p><code>strings</code> module provides a set of utility functions for working with strings and data encoded in strings in Impala programs.</p>
 <ul>
 <li><a href="library/string.html#upperc"><code>upper?</code></a></li>
 <li><a href="library/string.html#lowerc"><code>lower?</code></a></li>
@@ -1552,7 +1552,7 @@ If <code>part</code> is not specified, trim removes all whitespace from either e
 <pre><code class="language-js">trim(&quot;  Hello  &quot;) // &quot;Hello&quot;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="testing-1"><a class="header" href="#testing-1"><code>Testing</code></a></h1>
-<p><code>testing</code> is a testing library for Feo, and it provides a set of tools for constructing tests.</p>
+<p><code>testing</code> is a testing library for Impala, and it provides a set of tools for constructing tests.</p>
 <ul>
 <li><a href="library/testing.html#runtest_obj"><code>run</code></a></li>
 <li><a href="library/testing.html#assert_equala-b"><code>assert_equal</code></a></li>
@@ -1670,10 +1670,10 @@ new(do_something)(ch)
 println(receive(ch)) // &quot;Hello&quot;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="experimental-features"><a class="header" href="#experimental-features">Experimental Features</a></h1>
-<p>In the following chapters, we'll introduce unimplemented features of Feo.</p>
-<p>Since Feo is still a work in progress, some features are not yet implemented, for it's not sure if the idea is reasonable.</p>
+<p>In the following chapters, we'll introduce unimplemented features of Impala.</p>
+<p>Since Impala is still a work in progress, some features are not yet implemented, for it's not sure if the idea is reasonable.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="try-expression"><a class="header" href="#try-expression"><code>try</code> Expression</a></h1>
-<p>In Feo, this is how you would typically handle runtime exceptions:</p>
+<p>In Impala, this is how you would typically handle runtime exceptions:</p>
 <pre><code class="language-js">result := unsafe some_func(&quot;abc&quot;)
 match error?(result) {
     true -&gt; {
