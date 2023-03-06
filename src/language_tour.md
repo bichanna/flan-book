@@ -1,13 +1,13 @@
 # Language Tour
-In this book, we explore the fundamentals of the Feo language, namely its syntax, core data structures, and flow control features. If you have some prior programming experience, this will hopefully be enough to get you started with Feo.
+In this book, we explore the fundamentals of the Impala language, namely its syntax, core data structures, and flow control features. If you have some prior programming experience, this will hopefully be enough to get you started with Impala.
 
 ## Overly Simplifed Overview
 
-In Feo, everything is an expression. That means everything evaluates to some value, like `2 * 3`, which is `6`.
+In Impala, everything is an expression. That means everything evaluates to some value, like `2 * 3`, which is `6`.
 
 ### Types
 
-Feo has 7 primitive types and 3 complex ones:
+Impala has 7 primitive types and 3 complex ones:
 ```js
 null         // Null
 _            // "Empty" value, equal to everything
@@ -43,7 +43,7 @@ age = 16 // age is now 16
 ```
 
 ### Control Flows
-`match` expression is the only control flow in Feo.
+`match` expression is the only control flow in Impala.
 ```js
 name := "Nobu"
 match name {

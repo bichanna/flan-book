@@ -1,5 +1,5 @@
 # `file`
-`file` module offers filesystem APIs to Feo programs.
+`file` module offers filesystem APIs to Impala programs.
 
 Some functions in `file` are implemented in both synchronous and asynchronous variants.
 Sync variants of functions block, and return the value immediately for ease of use.

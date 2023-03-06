@@ -1,5 +1,5 @@
 # `Testing`
-`testing` is a testing library for Feo, and it provides a set of tools for constructing tests.
+`testing` is a testing library for Impala, and it provides a set of tools for constructing tests.
 
  - [`run`](#runtest_obj)
  - [`assert_equal`](#assert_equala-b)

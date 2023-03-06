@@ -61,7 +61,7 @@ system("echo hello")
 ```
 
 ## `exe_path()`
-`exe_path` returns the path of the Feo interpreter executable.
+`exe_path` returns the path of the Impala interpreter executable.
 ```js
 path := exe_path()
 ```

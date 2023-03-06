@@ -1,5 +1,5 @@
 # Integers And Floats
-Feo's main number types are Integers and Floats.
+Impala's main number types are Integers and Floats.
 
 ## Integers
 Integers are "whole" numbers. Hexadecimal integers start with `0x`.
@@ -9,7 +9,7 @@ Integers are "whole" numbers. Hexadecimal integers start with `0x`.
 0xBADC0FFEE // 50159747054
 ```
 
-Feo has several operators that work with Integers.
+Impala has several operators that work with Integers.
 ```js
 1 + 1 // => 2
 4 - 2 // => 2

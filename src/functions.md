@@ -1,14 +1,14 @@
 # Functions
 
 ## Named Functions
-Named functions in Feo are defined using the `func` keyword.
+Named functions in Impala are defined using the `func` keyword.
 ```js
 func greet(name) {
     println("Hello, " + name + "!")
 }
 ```
 
-Functions in Feo are first class values and can be assigned to variables, passed to functions, or anything else you might do with any other data type.
+Functions in Impala are first class values and can be assigned to variables, passed to functions, or anything else you might do with any other data type.
 ```js
 // This function takes a function as an argument
 func twice(f, x) {
@@ -59,7 +59,7 @@ range(...args) // [1, 2, 3, 4]
 ```
 
 ## Pipe Operator
-Feo provides syntax for passing the result of one function to the arguments of another function, the pipe operator (`|>`).
+Impala provides syntax for passing the result of one function to the arguments of another function, the pipe operator (`|>`).
 This is similar in functionality to the same operator in Elixir or F#.
 
 The pipe operator allows you to chain function calls without using a plethora of parenthesis.

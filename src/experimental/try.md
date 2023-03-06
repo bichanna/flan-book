@@ -1,5 +1,5 @@
 # `try` Expression
-In Feo, this is how you would typically handle runtime exceptions:
+In Impala, this is how you would typically handle runtime exceptions:
 ```js
 result := unsafe some_func("abc")
 match error?(result) {

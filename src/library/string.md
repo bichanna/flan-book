@@ -1,5 +1,5 @@
 # `strings`
-`strings` module provides a set of utility functions for working with strings and data encoded in strings in Feo programs.
+`strings` module provides a set of utility functions for working with strings and data encoded in strings in Impala programs.
 
  - [`upper?`](#upperc)
  - [`lower?`](#lowerc)

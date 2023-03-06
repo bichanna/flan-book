@@ -1,7 +1,7 @@
 # Comments
-Feo allows you to write comments in your code, just like any other languages.
+Impala allows you to write comments in your code, just like any other languages.
 
-In Feo, comments must start with two slashes and continue until the end of the line. Here's an example of a comment:
+In Impala, comments must start with two slashes and continue until the end of the line. Here's an example of a comment:
 ```js
 // Hello, world!
 ```

@@ -1,5 +1,5 @@
 # `std`
-`std` module defines basic functions for working with Feo values and functions, iterators, and control flow.
+`std` module defines basic functions for working with Impala values and functions, iterators, and control flow.
 
  - [`identity`](#identityx)
  - [`is`](#isx)
@@ -90,7 +90,7 @@ slice(name, 0, 3) // "Sol"
 ```
 
 ## `clone(x)`
-`clone` takes any Feo value and produces a shallow copy of it that will not mutate if the original mutates.
+`clone` takes any Impala value and produces a shallow copy of it that will not mutate if the original mutates.
 ```js
 list := [1, 2, 3]
 new_list := clone(list)

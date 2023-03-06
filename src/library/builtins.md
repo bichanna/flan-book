@@ -1,5 +1,5 @@
 # Built-in Functions
-The Feo interpreter has a number of functions and types built into it that are always available.
+The Impala interpreter has a number of functions and types built into it that are always available.
 All of them are listed here.
 
  - [`abs`](#absx)

@@ -1,5 +1,5 @@
 # `fmt`
-`fmt` is the string formatting library for Feo.
+`fmt` is the string formatting library for Impala.
 
  - [`format`](#formatraw-values)
  - [`print`](#printraw-values)

@@ -1,2 +1,2 @@
-# Feo Book
-The Book for Feo Language
+# Impala Book
+The Book for Impala Language
