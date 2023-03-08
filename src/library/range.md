@@ -28,14 +28,16 @@ range(1, 100000)
 `each` calls the given iterator function `f` for each element of the given range object `r`.
 The iterator function receives arguments `(element, index)`.
 ```js
-range(1, 2000) |> each(func(element, index) println(element))
+range(1, 2000) |> each() <- (element, index)
+    println(element)
 ```
 
 ## `map(r, f)`
 `map` produces a list of the given range object `r` where each element has been put through some mapper predicate `f`.
 If `f` is a function, it receives arguments `(element, index)`.
 ```js
-range(0, 2000) |> map(func(element, index) element * index)
+range(0, 2000) |> map() <- (element, index)
+    element * index
 // [0, 1, 4, ..., 3996001]
 ```
 
@@ -56,7 +58,7 @@ reverse(range(1, 4000))
 `filter` produces an iterable containing only the elements of the range object `r` that return `true` when passed to the filter predicate `f`.
 If `f` is a function, it receives arguments `(element, index)`.
 ```js
-list := range(0, 100) |> filter(func(element, index) element >= 90)
+list := range(0, 100) |> filter() <- (element, index) element >= 90
 list // [90, 91, 92, 93, 94, 95, 96, 96, 97, 98, 99]
 ```
 
@@ -67,7 +69,7 @@ The reducer receives arguments `(accumulator, element, index)`.
 // example "sum" function
 func sum(start, stop, step) {
     step = default(step, 1)
-    range.range(start, stop, step) |> range.reduce(0) <| func(acc, elem) acc + elem
+    range.range(start, stop, step) |> range.reduce(0) <- (acc, elem) acc + elem
 }
 ```
 

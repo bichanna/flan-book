@@ -127,6 +127,11 @@ func run() {
     add(1, 2) // 3
 }
 ```
+Another way to define an anonymous function:
+```js
+add := -> (x, y) x + y
+```
+`()` maybe omitted if there are no arguments. And this is often used for lazy evaluated values.
 
 ## Public Functions
 Functions annotated with `public` keyword are public functions, meaning they could be exported outside of their own module to be used by other modules.

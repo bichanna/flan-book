@@ -28,9 +28,8 @@ content := unsafe sync_read_file("./test.txt")
 ## `async_read_file(path, fn)`
 `async_read_file` reads the entire contents of a file at `path` and returns the file contents as a string to `fn` if successful or `null` on an error.
 ```js
-async_read_file("./test.txt", func(content) {
+async_read_file("./test.txt") <- (content)
     println(content)
-})
 ```
 
 ## `write_file(path, file, flag)`

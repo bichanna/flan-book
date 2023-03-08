@@ -116,23 +116,23 @@ reverse([1, 2, 3]) // [3, 2, 1]
 `map` produces a copy of the given iterable where each element has been put through some mapper predicate `f`.
 If `f` is a function, it receives arguments (`element`, `index`).
 ```js
-[1, 2, 3] |> map(func(element, index) element * 5) // [5, 10, 15]
+[1, 2, 3] |> map() <- (element, index) element * 5 // [5, 10, 15]
 ```
 
 ## `each(xs, f)`
 `each` calls the given iterator function `f` for each element of the given iterable `xs`.
 The iterator function receives arguments (`element`, `index`).
 ```js
-[1, 2, 3] |> each(func(element, index) print(element))
+[1, 2, 3] |> each() <- (element, index) print(element)
 // prints "123" to the console
 ```
 
 ## `if(cond, then, else)`
 When `cond` is `true`, predicate `then` gets called. When `cond` is `false`, predicate `else` gets called.
 ```js
-if("abc" == "abc", func() {
+if("abc" == "abc", -> {
     println("gets executed")
-}) <| func() {
+}) <- () {
     println("don't get executed")
 }
 ```
@@ -142,7 +142,7 @@ if("abc" == "abc", func() {
 `filter` produces an iterable containing only the elements of `xs` that return `true` when passed to the filter predicate `f`.
 If `f` is a function, it receives arguments (`element`, `index`).
 ```js
-list := [10, 4, 23, 13, 45] |> filter(func(element, index) element >= 15)
+list := [10, 4, 23, 13, 45] |> filter() <- (element, index) element >= 15
 list // [23, 45]
 ```
 
@@ -151,7 +151,7 @@ list // [23, 45]
 The reducer receives arguments (`accumulator`, `element`, `index`).
 ```js
 // an example "sum" function implemented with reduce
-numbers |> reduce(0) <| func(accumulator, elem) accumulator + elem
+numbers |> reduce(0) <- (accumulator, elem) accumulator + elem
 ```
 
 ## `flatten(xs)`
@@ -277,7 +277,7 @@ It can be used to infinitely loop if `max < 0`. Callback is called with two argu
 - `count`: the current loop count starting from `0`
 - `breaker`: a function to be called to exit early from the loop, which takes an optional return value to be returned by the `loop()` call
 ```js
-loop(100) <| func(count, breaker) { // prints "Hello, world!" to the console 100 times
+loop(100) <- (count, breaker) { // prints "Hello, world!" to the console 100 times
     println("Hello, world!")
 }
 ```
@@ -289,7 +289,7 @@ It can be used to infinitely loop if `max < 0`. Callback is called with three ar
 - next: a function to be called when the current iteration is done
 - done: a function to be called to exit early from the loop
 ```js
-aloop(100) <| func(count, next, done) {
+aloop(100) <- (count, next, done) {
     // do something...
     next()
 }
