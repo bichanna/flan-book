@@ -231,19 +231,20 @@ std.range(0, 11) |&gt; std.each() &lt;| func(elem, index) {
 <h2 id="decorators"><a class="header" href="#decorators">Decorators</a></h2>
 <p>Decorators are wrapper functions that modify the functionality of other functions.</p>
 <p>This is an example of an example.</p>
-<pre><code class="language-js">func example_decorator(f) {
-    func (args+) {
-        print(&quot;Hello, &quot;)
-        f(...args)
+<pre><code class="language-js">{upper: upper} := import(&quot;strings&quot;)
+
+func shout(f) {
+    func (name) {
+        f(upper(name) + &quot;!&quot;)
     }
 }
 
-#[example_decorator]
-func some_func(name) {
+#[shout]
+func print_name(name) {
     println(name)
 }
 
-some_func(&quot;Nobu&quot;) // prints out &quot;Hello, Nobu&quot;
+print_name(&quot;Nobu&quot;) // prints out &quot;NOBU!&quot;
 </code></pre>
 <h2 id="anonymous-functions"><a class="header" href="#anonymous-functions">Anonymous Functions</a></h2>
 <p>Anonymous functions can be defined with a similar syntax:</p>
