@@ -103,19 +103,20 @@ Decorators are wrapper functions that modify the functionality of other function
 
 This is an example of an example.
 ```js
-func example_decorator(f) {
-    func (args+) {
-        print("Hello, ")
-        f(...args)
+{upper: upper} := import("strings")
+
+func shout(f) {
+    func (name) {
+        f(upper(name) + "!")
     }
 }
 
-#[example_decorator]
-func some_func(name) {
+#[shout]
+func print_name(name) {
     println(name)
 }
 
-some_func("Nobu") // prints out "Hello, Nobu"
+print_name("Nobu") // prints out "NOBU!"
 ```
 
 ## Anonymous Functions
