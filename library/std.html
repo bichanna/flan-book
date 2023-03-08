@@ -246,33 +246,33 @@ It is analogous to Python's <code>range</code> builtin, and will default to <cod
 <h2 id="mapxs-f"><a class="header" href="#mapxs-f"><code>map(xs, f)</code></a></h2>
 <p><code>map</code> produces a copy of the given iterable where each element has been put through some mapper predicate <code>f</code>.
 If <code>f</code> is a function, it receives arguments (<code>element</code>, <code>index</code>).</p>
-<pre><code class="language-js">[1, 2, 3] |&gt; map(func(element, index) element * 5) // [5, 10, 15]
+<pre><code class="language-js">[1, 2, 3] |&gt; map() &lt;- (element, index) element * 5 // [5, 10, 15]
 </code></pre>
 <h2 id="eachxs-f"><a class="header" href="#eachxs-f"><code>each(xs, f)</code></a></h2>
 <p><code>each</code> calls the given iterator function <code>f</code> for each element of the given iterable <code>xs</code>.
 The iterator function receives arguments (<code>element</code>, <code>index</code>).</p>
-<pre><code class="language-js">[1, 2, 3] |&gt; each(func(element, index) print(element))
+<pre><code class="language-js">[1, 2, 3] |&gt; each() &lt;- (element, index) print(element)
 // prints &quot;123&quot; to the console
 </code></pre>
 <h2 id="ifcond-then-else"><a class="header" href="#ifcond-then-else"><code>if(cond, then, else)</code></a></h2>
 <p>When <code>cond</code> is <code>true</code>, predicate <code>then</code> gets called. When <code>cond</code> is <code>false</code>, predicate <code>else</code> gets called.</p>
-<pre><code class="language-js">if(&quot;abc&quot; == &quot;abc&quot;, func() {
+<pre><code class="language-js">if(&quot;abc&quot; == &quot;abc&quot;, -&gt; {
     println(&quot;gets executed&quot;)
-}) &lt;| func() {
+}) &lt;- () {
     println(&quot;don't get executed&quot;)
 }
 </code></pre>
 <h2 id="filterxs-f"><a class="header" href="#filterxs-f"><code>filter(xs, f)</code></a></h2>
 <p><code>filter</code> produces an iterable containing only the elements of <code>xs</code> that return <code>true</code> when passed to the filter predicate <code>f</code>.
 If <code>f</code> is a function, it receives arguments (<code>element</code>, <code>index</code>).</p>
-<pre><code class="language-js">list := [10, 4, 23, 13, 45] |&gt; filter(func(element, index) element &gt;= 15)
+<pre><code class="language-js">list := [10, 4, 23, 13, 45] |&gt; filter() &lt;- (element, index) element &gt;= 15
 list // [23, 45]
 </code></pre>
 <h2 id="reducexs-seed-f"><a class="header" href="#reducexs-seed-f"><code>reduce(xs, seed, f)</code></a></h2>
 <p><code>reduce</code> accumulates elements of the iterable <code>xs</code> on a value, starting with <code>seed</code> and passing it to the reducer function <code>f</code>.
 The reducer receives arguments (<code>accumulator</code>, <code>element</code>, <code>index</code>).</p>
 <pre><code class="language-js">// an example &quot;sum&quot; function implemented with reduce
-numbers |&gt; reduce(0) &lt;| func(accumulator, elem) accumulator + elem
+numbers |&gt; reduce(0) &lt;- (accumulator, elem) accumulator + elem
 </code></pre>
 <h2 id="flattenxs"><a class="header" href="#flattenxs"><code>flatten(xs)</code></a></h2>
 <p><code>flatten</code> takes a list of lists and flattens it to a list of elements. The flattening is only one level deep.</p>
@@ -367,7 +367,7 @@ It can be used to infinitely loop if <code>max &lt; 0</code>. Callback is called
 <li><code>count</code>: the current loop count starting from <code>0</code></li>
 <li><code>breaker</code>: a function to be called to exit early from the loop, which takes an optional return value to be returned by the <code>loop()</code> call</li>
 </ul>
-<pre><code class="language-js">loop(100) &lt;| func(count, breaker) { // prints &quot;Hello, world!&quot; to the console 100 times
+<pre><code class="language-js">loop(100) &lt;- (count, breaker) { // prints &quot;Hello, world!&quot; to the console 100 times
     println(&quot;Hello, world!&quot;)
 }
 </code></pre>
@@ -379,7 +379,7 @@ It can be used to infinitely loop if <code>max &lt; 0</code>. Callback is called
 <li>next: a function to be called when the current iteration is done</li>
 <li>done: a function to be called to exit early from the loop</li>
 </ul>
-<pre><code class="language-js">aloop(100) &lt;| func(count, next, done) {
+<pre><code class="language-js">aloop(100) &lt;- (count, next, done) {
     // do something...
     next()
 }

@@ -501,6 +501,10 @@ some_func(&quot;Nobu&quot;) // prints out &quot;Hello, Nobu&quot;
     add(1, 2) // 3
 }
 </code></pre>
+<p>Another way to define an anonymous function:</p>
+<pre><code class="language-js">add := -&gt; (x, y) x + y
+</code></pre>
+<p><code>()</code> maybe omitted if there are no arguments. And this is often used for lazy evaluated values.</p>
 <h2 id="public-functions"><a class="header" href="#public-functions">Public Functions</a></h2>
 <p>Functions annotated with <code>public</code> keyword are public functions, meaning they could be exported outside of their own module to be used by other modules.</p>
 <pre><code class="language-js">public func public_func(xs+) {}
@@ -1033,9 +1037,8 @@ This may be changed to alter the behavior of <code>fs</code>, but it will affect
 </code></pre>
 <h2 id="async_read_filepath-fn"><a class="header" href="#async_read_filepath-fn"><code>async_read_file(path, fn)</code></a></h2>
 <p><code>async_read_file</code> reads the entire contents of a file at <code>path</code> and returns the file contents as a string to <code>fn</code> if successful or <code>null</code> on an error.</p>
-<pre><code class="language-js">async_read_file(&quot;./test.txt&quot;, func(content) {
+<pre><code class="language-js">async_read_file(&quot;./test.txt&quot;) &lt;- (content)
     println(content)
-})
 </code></pre>
 <h2 id="write_filepath-file-flag"><a class="header" href="#write_filepath-file-flag"><code>write_file(path, file, flag)</code></a></h2>
 <p><code>write_file</code> writes data in <code>file</code> to a file at <code>path</code> and returns <code>true</code> on success and throws an error on error.
@@ -1164,12 +1167,14 @@ It is analogous to Python's <code>range</code> builtin function, and will defaul
 <h2 id="eachr-f"><a class="header" href="#eachr-f"><code>each(r, f)</code></a></h2>
 <p><code>each</code> calls the given iterator function <code>f</code> for each element of the given range object <code>r</code>.
 The iterator function receives arguments <code>(element, index)</code>.</p>
-<pre><code class="language-js">range(1, 2000) |&gt; each(func(element, index) println(element))
+<pre><code class="language-js">range(1, 2000) |&gt; each() &lt;- (element, index)
+    println(element)
 </code></pre>
 <h2 id="mapr-f"><a class="header" href="#mapr-f"><code>map(r, f)</code></a></h2>
 <p><code>map</code> produces a list of the given range object <code>r</code> where each element has been put through some mapper predicate <code>f</code>.
 If <code>f</code> is a function, it receives arguments <code>(element, index)</code>.</p>
-<pre><code class="language-js">range(0, 2000) |&gt; map(func(element, index) element * index)
+<pre><code class="language-js">range(0, 2000) |&gt; map() &lt;- (element, index)
+    element * index
 // [0, 1, 4, ..., 3996001]
 </code></pre>
 <h2 id="reverser"><a class="header" href="#reverser"><code>reverse(r)</code></a></h2>
@@ -1186,7 +1191,7 @@ If <code>f</code> is a function, it receives arguments <code>(element, index)</c
 <h2 id="filterr-f"><a class="header" href="#filterr-f"><code>filter(r, f)</code></a></h2>
 <p><code>filter</code> produces an iterable containing only the elements of the range object <code>r</code> that return <code>true</code> when passed to the filter predicate <code>f</code>.
 If <code>f</code> is a function, it receives arguments <code>(element, index)</code>.</p>
-<pre><code class="language-js">list := range(0, 100) |&gt; filter(func(element, index) element &gt;= 90)
+<pre><code class="language-js">list := range(0, 100) |&gt; filter() &lt;- (element, index) element &gt;= 90
 list // [90, 91, 92, 93, 94, 95, 96, 96, 97, 98, 99]
 </code></pre>
 <h2 id="reducer-seed-f"><a class="header" href="#reducer-seed-f"><code>reduce(r, seed, f)</code></a></h2>
@@ -1195,7 +1200,7 @@ The reducer receives arguments <code>(accumulator, element, index)</code>.</p>
 <pre><code class="language-js">// example &quot;sum&quot; function
 func sum(start, stop, step) {
     step = default(step, 1)
-    range.range(start, stop, step) |&gt; range.reduce(0) &lt;| func(acc, elem) acc + elem
+    range.range(start, stop, step) |&gt; range.reduce(0) &lt;- (acc, elem) acc + elem
 }
 </code></pre>
 <h2 id="slicer-min-max"><a class="header" href="#slicer-min-max"><code>slice(r, min, max)</code></a></h2>
@@ -1307,33 +1312,33 @@ It is analogous to Python's <code>range</code> builtin, and will default to <cod
 <h2 id="mapxs-f"><a class="header" href="#mapxs-f"><code>map(xs, f)</code></a></h2>
 <p><code>map</code> produces a copy of the given iterable where each element has been put through some mapper predicate <code>f</code>.
 If <code>f</code> is a function, it receives arguments (<code>element</code>, <code>index</code>).</p>
-<pre><code class="language-js">[1, 2, 3] |&gt; map(func(element, index) element * 5) // [5, 10, 15]
+<pre><code class="language-js">[1, 2, 3] |&gt; map() &lt;- (element, index) element * 5 // [5, 10, 15]
 </code></pre>
 <h2 id="eachxs-f"><a class="header" href="#eachxs-f"><code>each(xs, f)</code></a></h2>
 <p><code>each</code> calls the given iterator function <code>f</code> for each element of the given iterable <code>xs</code>.
 The iterator function receives arguments (<code>element</code>, <code>index</code>).</p>
-<pre><code class="language-js">[1, 2, 3] |&gt; each(func(element, index) print(element))
+<pre><code class="language-js">[1, 2, 3] |&gt; each() &lt;- (element, index) print(element)
 // prints &quot;123&quot; to the console
 </code></pre>
 <h2 id="ifcond-then-else"><a class="header" href="#ifcond-then-else"><code>if(cond, then, else)</code></a></h2>
 <p>When <code>cond</code> is <code>true</code>, predicate <code>then</code> gets called. When <code>cond</code> is <code>false</code>, predicate <code>else</code> gets called.</p>
-<pre><code class="language-js">if(&quot;abc&quot; == &quot;abc&quot;, func() {
+<pre><code class="language-js">if(&quot;abc&quot; == &quot;abc&quot;, -&gt; {
     println(&quot;gets executed&quot;)
-}) &lt;| func() {
+}) &lt;- () {
     println(&quot;don't get executed&quot;)
 }
 </code></pre>
 <h2 id="filterxs-f"><a class="header" href="#filterxs-f"><code>filter(xs, f)</code></a></h2>
 <p><code>filter</code> produces an iterable containing only the elements of <code>xs</code> that return <code>true</code> when passed to the filter predicate <code>f</code>.
 If <code>f</code> is a function, it receives arguments (<code>element</code>, <code>index</code>).</p>
-<pre><code class="language-js">list := [10, 4, 23, 13, 45] |&gt; filter(func(element, index) element &gt;= 15)
+<pre><code class="language-js">list := [10, 4, 23, 13, 45] |&gt; filter() &lt;- (element, index) element &gt;= 15
 list // [23, 45]
 </code></pre>
 <h2 id="reducexs-seed-f"><a class="header" href="#reducexs-seed-f"><code>reduce(xs, seed, f)</code></a></h2>
 <p><code>reduce</code> accumulates elements of the iterable <code>xs</code> on a value, starting with <code>seed</code> and passing it to the reducer function <code>f</code>.
 The reducer receives arguments (<code>accumulator</code>, <code>element</code>, <code>index</code>).</p>
 <pre><code class="language-js">// an example &quot;sum&quot; function implemented with reduce
-numbers |&gt; reduce(0) &lt;| func(accumulator, elem) accumulator + elem
+numbers |&gt; reduce(0) &lt;- (accumulator, elem) accumulator + elem
 </code></pre>
 <h2 id="flattenxs"><a class="header" href="#flattenxs"><code>flatten(xs)</code></a></h2>
 <p><code>flatten</code> takes a list of lists and flattens it to a list of elements. The flattening is only one level deep.</p>
@@ -1428,7 +1433,7 @@ It can be used to infinitely loop if <code>max &lt; 0</code>. Callback is called
 <li><code>count</code>: the current loop count starting from <code>0</code></li>
 <li><code>breaker</code>: a function to be called to exit early from the loop, which takes an optional return value to be returned by the <code>loop()</code> call</li>
 </ul>
-<pre><code class="language-js">loop(100) &lt;| func(count, breaker) { // prints &quot;Hello, world!&quot; to the console 100 times
+<pre><code class="language-js">loop(100) &lt;- (count, breaker) { // prints &quot;Hello, world!&quot; to the console 100 times
     println(&quot;Hello, world!&quot;)
 }
 </code></pre>
@@ -1440,7 +1445,7 @@ It can be used to infinitely loop if <code>max &lt; 0</code>. Callback is called
 <li>next: a function to be called when the current iteration is done</li>
 <li>done: a function to be called to exit early from the loop</li>
 </ul>
-<pre><code class="language-js">aloop(100) &lt;| func(count, next, done) {
+<pre><code class="language-js">aloop(100) &lt;- (count, next, done) {
     // do something...
     next()
 }

@@ -253,6 +253,10 @@ some_func(&quot;Nobu&quot;) // prints out &quot;Hello, Nobu&quot;
     add(1, 2) // 3
 }
 </code></pre>
+<p>Another way to define an anonymous function:</p>
+<pre><code class="language-js">add := -&gt; (x, y) x + y
+</code></pre>
+<p><code>()</code> maybe omitted if there are no arguments. And this is often used for lazy evaluated values.</p>
 <h2 id="public-functions"><a class="header" href="#public-functions">Public Functions</a></h2>
 <p>Functions annotated with <code>public</code> keyword are public functions, meaning they could be exported outside of their own module to be used by other modules.</p>
 <pre><code class="language-js">public func public_func(xs+) {}

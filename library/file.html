@@ -171,9 +171,8 @@ This may be changed to alter the behavior of <code>fs</code>, but it will affect
 </code></pre>
 <h2 id="async_read_filepath-fn"><a class="header" href="#async_read_filepath-fn"><code>async_read_file(path, fn)</code></a></h2>
 <p><code>async_read_file</code> reads the entire contents of a file at <code>path</code> and returns the file contents as a string to <code>fn</code> if successful or <code>null</code> on an error.</p>
-<pre><code class="language-js">async_read_file(&quot;./test.txt&quot;, func(content) {
+<pre><code class="language-js">async_read_file(&quot;./test.txt&quot;) &lt;- (content)
     println(content)
-})
 </code></pre>
 <h2 id="write_filepath-file-flag"><a class="header" href="#write_filepath-file-flag"><code>write_file(path, file, flag)</code></a></h2>
 <p><code>write_file</code> writes data in <code>file</code> to a file at <code>path</code> and returns <code>true</code> on success and throws an error on error.
