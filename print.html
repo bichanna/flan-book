@@ -1469,7 +1469,9 @@ list // [1, 2, 3, 4, 5]
 <p><code>strings</code> module provides a set of utility functions for working with strings and data encoded in strings in Impala programs.</p>
 <ul>
 <li><a href="library/string.html#upperc"><code>upper?</code></a></li>
+<li><a href="library/string.html#uppers"><code>upper</code></a></li>
 <li><a href="library/string.html#lowerc"><code>lower?</code></a></li>
+<li><a href="library/string.html#lowers"><code>lower</code></a></li>
 <li><a href="library/string.html#digitc"><code>digit?</code></a></li>
 <li><a href="library/string.html#spacec"><code>space?</code></a></li>
 <li><a href="library/string.html#letterc"><code>letter?</code></a></li>
@@ -1493,10 +1495,18 @@ list // [1, 2, 3, 4, 5]
 <pre><code class="language-js">upper?(&quot;a&quot;) // false
 upper?(&quot;A&quot;) // true
 </code></pre>
+<h2 id="uppers"><a class="header" href="#uppers"><code>upper(s)</code></a></h2>
+<p><code>upper</code> returns the uppercase string from the given string <code>s</code>.</p>
+<pre><code class="language-js">upper(&quot;nobu&quot;) // &quot;NOBU&quot;
+</code></pre>
 <h2 id="lowerc"><a class="header" href="#lowerc"><code>lower?(c)</code></a></h2>
 <p><code>lower?</code> reports whether a given char is a lowercase ASCII letter.</p>
 <pre><code class="language-js">lower?(&quot;a&quot;) // true
 lower?(&quot;A&quot;) // false
+</code></pre>
+<h2 id="lowers"><a class="header" href="#lowers"><code>lower(s)</code></a></h2>
+<p><code>lower</code> returns the lowercase string from the given string <code>s</code>.</p>
+<pre><code class="language-js">lower(&quot;NOBU&quot;) // &quot;nobu&quot;
 </code></pre>
 <h2 id="digitc"><a class="header" href="#digitc"><code>digit?(c)</code></a></h2>
 <p><code>digit?</code> reports whether a given char is an ASCII digit.</p>
