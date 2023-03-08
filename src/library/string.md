@@ -2,7 +2,9 @@
 `strings` module provides a set of utility functions for working with strings and data encoded in strings in Impala programs.
 
  - [`upper?`](#upperc)
+ - [`upper`](#uppers)
  - [`lower?`](#lowerc)
+ - [`lower`](#lowers)
  - [`digit?`](#digitc)
  - [`space?`](#spacec)
  - [`letter?`](#letterc)
@@ -28,11 +30,23 @@ upper?("a") // false
 upper?("A") // true
 ```
 
+## `upper(s)`
+`upper` returns the uppercase string from the given string `s`.
+```js
+upper("nobu") // "NOBU"
+```
+
 ## `lower?(c)`
 `lower?` reports whether a given char is a lowercase ASCII letter.
 ```js
 lower?("a") // true
 lower?("A") // false
+```
+
+## `lower(s)`
+`lower` returns the lowercase string from the given string `s`.
+```js
+lower("NOBU") // "nobu"
 ```
 
 ## `digit?(c)`
