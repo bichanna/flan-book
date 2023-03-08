@@ -174,13 +174,13 @@ It is analogous to Python's <code>range</code> builtin function, and will defaul
 <h2 id="eachr-f"><a class="header" href="#eachr-f"><code>each(r, f)</code></a></h2>
 <p><code>each</code> calls the given iterator function <code>f</code> for each element of the given range object <code>r</code>.
 The iterator function receives arguments <code>(element, index)</code>.</p>
-<pre><code class="language-js">range(1, 2000) |&gt; each() &lt;- (element, index)
+<pre><code class="language-js">range(1, 2000) |&gt; each() &lt;~ (element, index)
     println(element)
 </code></pre>
 <h2 id="mapr-f"><a class="header" href="#mapr-f"><code>map(r, f)</code></a></h2>
 <p><code>map</code> produces a list of the given range object <code>r</code> where each element has been put through some mapper predicate <code>f</code>.
 If <code>f</code> is a function, it receives arguments <code>(element, index)</code>.</p>
-<pre><code class="language-js">range(0, 2000) |&gt; map() &lt;- (element, index)
+<pre><code class="language-js">range(0, 2000) |&gt; map() &lt;~ (element, index)
     element * index
 // [0, 1, 4, ..., 3996001]
 </code></pre>
@@ -198,7 +198,7 @@ If <code>f</code> is a function, it receives arguments <code>(element, index)</c
 <h2 id="filterr-f"><a class="header" href="#filterr-f"><code>filter(r, f)</code></a></h2>
 <p><code>filter</code> produces an iterable containing only the elements of the range object <code>r</code> that return <code>true</code> when passed to the filter predicate <code>f</code>.
 If <code>f</code> is a function, it receives arguments <code>(element, index)</code>.</p>
-<pre><code class="language-js">list := range(0, 100) |&gt; filter() &lt;- (element, index) element &gt;= 90
+<pre><code class="language-js">list := range(0, 100) |&gt; filter() &lt;~ (element, index) element &gt;= 90
 list // [90, 91, 92, 93, 94, 95, 96, 96, 97, 98, 99]
 </code></pre>
 <h2 id="reducer-seed-f"><a class="header" href="#reducer-seed-f"><code>reduce(r, seed, f)</code></a></h2>
@@ -207,7 +207,7 @@ The reducer receives arguments <code>(accumulator, element, index)</code>.</p>
 <pre><code class="language-js">// example &quot;sum&quot; function
 func sum(start, stop, step) {
     step = default(step, 1)
-    range.range(start, stop, step) |&gt; range.reduce(0) &lt;- (acc, elem) acc + elem
+    range.range(start, stop, step) |&gt; range.reduce(0) &lt;~ (acc, elem) acc + elem
 }
 </code></pre>
 <h2 id="slicer-min-max"><a class="header" href="#slicer-min-max"><code>slice(r, min, max)</code></a></h2>
