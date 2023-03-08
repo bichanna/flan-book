@@ -82,7 +82,7 @@ Each line of this expression applies the function to the result of the previous 
 A callback function is a function passed into another function as an argument, which is then invoked inside the outer function.
 ```js
 std := import("std")
-std.range(0, 11) |> std.each() <- (elem, index) {
+std.range(0, 11) |> std.each() <~ (elem, index) {
     // do something
 }
 
@@ -93,7 +93,7 @@ std.range(0, 11) |> std.each() <| func(elem, index) {
 ```
 If there are no arguments, the `()` may be omitted.
 ```js
-std.if(true == true) <- {
+std.if(true == true) <~ {
     // do something
 }
 ```
