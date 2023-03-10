@@ -27,7 +27,6 @@
     - [`std`](./library/std.md)
     - [`strings`](./library/string.md)
     - [`testing`](./library/testing.md)
-    - [`thread`](./library/thread.md)
 - [Experimental Features](./experimental/experimental.md)
     - [Try Expression](./experimental/try.md)
     - [References](./experimental/references.md)
