@@ -13,6 +13,7 @@
 - [Match Expression](./match.md)
 - [Modules](./modules.md)
 - [Exceptions](./unsafe.md)
+- [Try Expression](./try.md)
 - [Macros](./macros.md)
 - [Testing](./test.md)
 - [Standard Library](./std_library.md)
