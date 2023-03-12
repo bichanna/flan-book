@@ -111,7 +111,7 @@ func shout(f) {
     }
 }
 
-#[shout]
+@[shout]
 func print_name(name) {
     println(name)
 }
