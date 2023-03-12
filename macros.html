@@ -156,14 +156,7 @@ radius := 12
 area := #PI * radius * radius
 // expands to `area := 3.1415 * radius * radius`
 </code></pre>
-<p>You can also define macros that work in a similar way as a function call.</p>
-<pre><code class="language-js">def PI 3.1415
-def CIRCLE_AREA(r) #PI * ^r * ^r
-
-#CIRCLE_AREA(10)
-// exapends to `3.1415 * 10 * 10`
-</code></pre>
-<p>You can also reassign macros with <code>redef</code> keyword.</p>
+<p>You can also redefine macros with <code>redef</code> keyword.</p>
 <pre><code class="language-js">def PI 3.1415
 redef PI 3.141592653589793238 // redefine PI
 
