@@ -150,7 +150,7 @@ err.error_message // "some error!"
 ```
 
 ## `error?(x)`
-`error?` checks if `x` is an error object or not.
+`error?` checks if `x` is an error object and contains error type and message.
 ```js
 result := unsafe (10 / 0)
 match error?(result) {

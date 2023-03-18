@@ -26,19 +26,20 @@ match error?(result) {
     false -> println!("Math is broken :("),
 }
 ```
-If an expression evaluates without any errors, the `unsafe` expression returns the value:
+If an expression evaluates without any errors, the `unsafe` expression returns the value in `value` property:
 ```js
 func return_one() 1
 
 result := unsafe return_one()
-result // 1
+result // { error_type: null, error_message: null, value: 1 }
 ```
 
-An exception is just an object that has two properties: `error_type` and `error_message`. For example:
+An exception is just an object that has three properties: `error_type`, `error_message`, and `value`. For example:
 ```js
 {
     error_type: :zero_division,
-    error_message: "division by zero"
+    error_message: "division by zero",
+    value: null
 }
 ```
 
