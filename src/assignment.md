@@ -20,7 +20,7 @@ n $= 1
 m := 2
 {
     n = 3
-    m := 4 // variables defined with := operator are mutable
+    m := 4 // local variables defined with := operator are mutable
 }
 n // 3
 m // 2
