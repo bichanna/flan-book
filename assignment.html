@@ -161,11 +161,11 @@ a = 20
 </code></pre>
 <p>The reassignment operator <code>=</code> binds values on the right side to names on the left, but only when those variables already exist.
 If the variable doesn't exist in the current scope, the operator ascends up parent scopes until it reaches the global scope to find the last scope where that name was bound.</p>
-<pre><code class="language-js">n := 1
+<pre><code class="language-js">n $= 1
 m := 2
 {
     n = 3
-    m := 4 // variables defined with := operator are mutable
+    m := 4 // local variables defined with := operator are mutable
 }
 n // 3
 m // 2
