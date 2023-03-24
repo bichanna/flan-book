@@ -377,12 +377,16 @@ ages.0 // 16
 <pre><code class="language-js">nobu.cool? // true
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="assignment-1"><a class="header" href="#assignment-1">Assignment</a></h1>
-<p>The assignment operator <code>:=</code> binds values on the right side to names on the left, potentially by destructuring an object or list. For example:</p>
+<p>The immutable assignment operator <code>:=</code> binds values on the right side to names on the left, potentially by destructuring an object or list. For example:</p>
 <pre><code class="language-js">a : = 1 // a is 1
 
 [b, c] := [4, &quot;string&quot;] // b is 4, and c is &quot;string&quot;
 
 {first_name: name} := {first_name: &quot;Nobuharu&quot;, last_name: &quot;Shimazu&quot;} // name is &quot;Nobuharu&quot;
+</code></pre>
+<p>When you want to define a global mutable variable, you can use <code>$=</code> operator.</p>
+<pre><code class="language-js">a $= 100
+a = 20
 </code></pre>
 <p>The reassignment operator <code>=</code> binds values on the right side to names on the left, but only when those variables already exist.
 If the variable doesn't exist in the current scope, the operator ascends up parent scopes until it reaches the global scope to find the last scope where that name was bound.</p>
@@ -390,7 +394,7 @@ If the variable doesn't exist in the current scope, the operator ascends up pare
 m := 2
 {
     n = 3
-    m := 4
+    m := 4 // variables defined with := operator are mutable
 }
 n // 3
 m // 2
