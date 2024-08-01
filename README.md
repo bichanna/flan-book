@@ -1,2 +1,2 @@
-# Impala Book
-The Book for Impala Language
+# Flan Book
+The Book for Flan Language
