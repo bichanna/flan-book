@@ -48,8 +48,8 @@ age = 16 // age is now 16
 name := "Nobu"
 match name {
     "Nobu" -> println("Cool name!"),
-    "Sol" -> println("Nice name."),
-    "Damian" -> println("Eh, nice, I guess?"),
+    "Anna" -> println("Nice name."),
+    "Shivam" -> println("Eh, nice, I guess?"),
     _ -> println("Hello, " + name),
 }
 ```

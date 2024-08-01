@@ -85,8 +85,8 @@ The slice is a copy, and mutating it will not mutate the original.
 
 Both `min` and `max` are optional and will default to `0` and `len(xs)` respectively.
 ```js
-name := "Sol David"
-slice(name, 0, 3) // "Sol"
+name := "Anna David"
+slice(name, 0, 3) // "Anna"
 ```
 
 ## `clone(x)`
@@ -166,15 +166,15 @@ flatten(list) // [1, 2, 3, 4, 5, 6, 7]
 If mutation is not desired, use `std.join`.
 ```js
 names := ["Nobu", "Damian"]
-append(names, ["Sol", "Thomas"])
-names // ["Nobu", "Damian", "Sol", "Thomas"]
+append(names, ["Anna", "Thomas"])
+names // ["Nobu", "Damian", "Anna", "Thomas"]
 ```
 
 ## `join(xs, ys)`
 `join` joins two iterable values (strings or lists) together, while mutating neither values. If efficiency is desired, used `std.append`.
 ```js
 names := ["Nobu", "Damian"]
-join(names, ["Sol", "Thomas"]) // ["Nobu", "Damian", "Sol", "Thomas"]
+join(names, ["Anna", "Thomas"]) // ["Nobu", "Damian", "Anna", "Thomas"]
 names // ["Nobu", "Damian"], not mutated
 ```
 
@@ -237,7 +237,7 @@ take_last(email, 9) // "gmail.com"
 `find` returns the index of the first item in the iterable `xs` for which the predicate returns `true`. If no match is found, find returns `-1`.
 ```js
 nobu? := is("Nobu")
-names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+names := ["Anna", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
 find(names, nobu?) // 1
 ```
 
@@ -246,28 +246,28 @@ find(names, nobu?) // 1
 If no match is found, `rfind` returns `-1`.
 ```js
 nobu? := is("Nobu")
-names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+names := ["Anna", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
 rfind(names, nobu?) // 5
 ```
 
 ## `index_of(xs, x)`
 `index_of` returns the index of the first item equal to `x` in the iterable `xs`. If no match is found, `index_of` returns `-1`.
 ```js
-names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+names := ["Anna", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
 index_of(names, "Nobu") // 1
 ```
 
 ## `rindex_of(xs, x)`
 // `rindex_of` returns the index of the last item equal to `x` in the iterable `xs`, searching backwards from the end. If no match is found, `rindex_of` returns `-1`.
 ```js
-names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+names := ["Anna", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
 index_of(names, "Nobu") // 5
 ```
 
 ## `contains?(xs, x)`
 `contains?` reports whether an iterable contains an item equal to `x`.
 ```js
-names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+names := ["Anna", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
 contains?(names, "Nobu") // true
 ```
 

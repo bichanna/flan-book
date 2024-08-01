@@ -25,11 +25,11 @@ random_range(2, 10, 2) // 6
 ## `choice(xs)`
 `choice` returns a random element from the non-empty list `xs`.
 ```js
-choice(["Nobu", "Sol", "Thomas", "Damian"]) // "Sol"
+choice(["Nobu", "Anna", "Thomas", "Damian"]) // "Anna"
 ```
 
 ## `shuffle(xs)`
 `shuffle` shuffles a sequence `xs` and returns a new shuffled list.
 ```js
-shuffle(["Nobu", "Sol", "Thomas", "Damian"]) // ["Thomas", "Damian", "Sol", "Nobu"]
+shuffle(["Nobu", "Anna", "Thomas", "Damian"]) // ["Thomas", "Damian", "Anna", "Nobu"]
 ```

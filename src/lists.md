@@ -11,9 +11,9 @@ Under the hood, lists are just Rust `Vector`s.
 A built-in function [`append`](./library/builtins.md#appendxs-x) is provided to append a value to a list.
 ```js
 names := ["Nobu", "Damian", "Thomas"]
-names = append(names, "Sol")
+names = append(names, "Anna")
 
-names // ["Nobu", "Damian", "Thomas", "Sol"]
+names // ["Nobu", "Damian", "Thomas", "Anna"]
 ```
 
 You can index an element in a list by using `.`.

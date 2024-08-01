@@ -65,14 +65,14 @@ This is similar in functionality to the same operator in Elixir or F#.
 The pipe operator allows you to chain function calls without using a plethora of parenthesis.
 ```js
 names := []
-append(append(append(append(names, "Nobu"), "Sol"), "Damian"), "Thomas")
-names // ["Nobu", "Sol", "Damian", "Thomas"]
+append(append(append(append(names, "Nobu"), "Anna"), "Damian"), "Thomas")
+names // ["Nobu", "Anna", "Damian", "Thomas"]
 ```
 This can be expressed more naturally using the pipe operator, eliminating the need to track parenthesis closure.
 ```js
 names
 |> append("Nobu")
-|> append("Sol")
+|> append("Anna")
 |> append("Damian")
 |> append("Thomas")
 ```
