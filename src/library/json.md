@@ -1,5 +1,5 @@
 # `json`
-`json` module implements a JSON parser and serializer for Impala values.
+`json` module implements a JSON parser and serializer for Flan values.
 
  - [`escape_char`](#escape_charc)
  - [`escape`](#escapes)
@@ -19,7 +19,7 @@ escape("Hello\nWorld") // "Hello\\nWorld"
 ```
 
 ## `serialize(c, pretty)`
-`serialize` takes a Impala value and returns its JSON representation. If `pretty` is `true`, `serialize` prettifies the JSON representation. `pretty` defaults to `false`.
+`serialize` takes a Flan value and returns its JSON representation. If `pretty` is `true`, `serialize` prettifies the JSON representation. `pretty` defaults to `false`.
 ```js
 obj := {
     name: "nobu",
@@ -39,7 +39,7 @@ serialize(obj, true)
 ```
 
 ## `parse(s)`
-`parse` takes a potentially valid JSON string, and returns its Impala representation if valid JSON, or throws an error if the parse fails.
+`parse` takes a potentially valid JSON string, and returns its Flan representation if valid JSON, or throws an error if the parse fails.
 ```js
 parse("{\"name\": \"nobu\", \"is_cool\": true}")
 /*

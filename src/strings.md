@@ -1,7 +1,7 @@
 # Strings And Atoms
 
 ## Strings
-In Impala, strings can be written as text surrounded by double quotes.
+In Flan, strings can be written as text surrounded by double quotes.
 ```js
 "This is a string"
 ```
@@ -14,7 +14,7 @@ string!"
 
 Under the hood, strings are just Rust `String`s, which are encoded with [UTF-8](https://en.wikipedia.org/wiki/UTF-8), and are able to contain any valid unicode.
 ```js
-"こんちわ impala👺"
+"こんちわ flan👺"
 ```
 
 ### Concatenation
@@ -25,7 +25,7 @@ name + "haru" // "Nobuharu"
 ```
 
 ### Escape Sequences
-Impala supports common string escape sequences. Here's all of them:
+Flan supports common string escape sequences. Here's all of them:
 
 | Sequences | Result |
 | ----------- | ----------- |

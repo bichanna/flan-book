@@ -1,5 +1,5 @@
 # Match Expression
-The `match` expression is the most common kind of flow control in Impala code.
+The `match` expression is the most common kind of flow control in Flan code.
 It allows us to say "if the data has this shape then do that", which we call *pattern matching*.
 
 Here, we match on an Int and return a specific string for the values 0, 1, and 2.
@@ -13,7 +13,7 @@ match some_number {
 }
 ```
 
-Pattern matching on a Boolean value is the Impala alternative to the `if else` statement found in other languages.
+Pattern matching on a Boolean value is the Flan alternative to the `if else` statement found in other languages.
 ```js
 match some_bool {
   true -> "It's true.",
@@ -21,7 +21,7 @@ match some_bool {
 }
 ```
 
-Impala's `match` is an expression, meaning it returns a value and can be used anywhere we would use a value.
+Flan's `match` is an expression, meaning it returns a value and can be used anywhere we would use a value.
 For example, we can name the value of a match expression with a variable binding.
 ```js
 description := match true {

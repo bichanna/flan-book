@@ -1,5 +1,5 @@
 # `strings`
-`strings` module provides a set of utility functions for working with strings and data encoded in strings in Impala programs.
+`strings` module provides a set of utility functions for working with strings and data encoded in strings in Flan programs.
 
  - [`upper?`](#upperc)
  - [`upper`](#uppers)

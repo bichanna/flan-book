@@ -3,7 +3,7 @@ authors = ["bichanna"]
 language = "en"
 multilingual = false
 src = "src"
-title = "The Impala Book"
+title = "The Flan Book"
 
 [output.html]
-git-repository-url = "https://github.com/bichanna/impala"
+git-repository-url = "https://github.com/bichanna/flan"

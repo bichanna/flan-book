@@ -1,5 +1,5 @@
 ## Lists
-Lists are ordered collections of values. They're one of the most common data structures in Impala.
+Lists are ordered collections of values. They're one of the most common data structures in Flan.
 
 Lists are *heterogeneous*, meaning the elements of a list can be of different types.
 ```js

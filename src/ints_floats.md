@@ -1,5 +1,5 @@
 # Integers And Floats
-Impala's main number types are Integers and Floats.
+Flan's main number types are Integers and Floats.
 
 ## Integers
 Integers are "whole" numbers. Hexadecimal integers start with `0x`.
@@ -9,7 +9,7 @@ Integers are "whole" numbers. Hexadecimal integers start with `0x`.
 0xBADC0FFEE // 50159747054
 ```
 
-Impala has several operators that work with Integers.
+Flan has several operators that work with Integers.
 ```js
 1 + 1 // => 2
 4 - 2 // => 2

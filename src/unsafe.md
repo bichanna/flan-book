@@ -4,7 +4,7 @@ Until now errors have never been mentioned, but if you have tried out the exampl
 There are two distinguishable kinds of errors: *syntax errors* and *exceptions*.
 
 ## Syntax Errors
-Syntax errors, also known as parsing errors, are perhaps the most common kind of complaint you get while you are still learning Impala.
+Syntax errors, also known as parsing errors, are perhaps the most common kind of complaint you get while you are still learning Flan.
 ```js
 some_file:1:14 error: expected ']'
 names["hello"

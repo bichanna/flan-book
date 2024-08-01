@@ -1,5 +1,5 @@
 # `fmt`
-`fmt` is the string formatting library for Impala.
+`fmt` is the string formatting library for Flan.
 
  - [`format`](#formatraw-values)
  - [`print`](#printraw-values)

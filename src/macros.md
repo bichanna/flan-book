@@ -1,5 +1,5 @@
 # Macros
-Impala's macros are just text-replacement templates, similar to C language's. So, a macro is a piece of code that is given a name.
+Flan's macros are just text-replacement templates, similar to C language's. So, a macro is a piece of code that is given a name.
 
 A variable-like macro can be defined with `def` keyword:
 ```js

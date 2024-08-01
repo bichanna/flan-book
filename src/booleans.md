@@ -1,7 +1,7 @@
 # Booleans
 A Boolean can be either `true` or `false`. Atom values `:true` and `:false` are also evaluated as Booleans.
 
-Impala defines a handful of operators that work with Booleans.
+Flan defines a handful of operators that work with Booleans.
 
 `&&` evaluates the right hand side if the left hand side is `true`.
 
@@ -23,7 +23,7 @@ true || true   // => true
 true or false  // => true
 ```
 
-Impala supports negation of Booleans using either one of the `!`, `not`, or `-` unary operators.
+Flan supports negation of Booleans using either one of the `!`, `not`, or `-` unary operators.
 ```js
 !true     // => false
 not false // => true
