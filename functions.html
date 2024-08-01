@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Functions - The Impala Book</title>
+        <title>Functions - The Flan Book</title>
 
 
         <!-- Custom HTML head -->
@@ -141,13 +141,13 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">The Impala Book</h1>
+                    <h1 class="menu-title">The Flan Book</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        <a href="https://github.com/bichanna/impala" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/bichanna/flan" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
 
@@ -178,12 +178,12 @@
                     <main>
                         <h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
 <h2 id="named-functions"><a class="header" href="#named-functions">Named Functions</a></h2>
-<p>Named functions in Impala are defined using the <code>func</code> keyword.</p>
+<p>Named functions in Flan are defined using the <code>func</code> keyword.</p>
 <pre><code class="language-js">func greet(name) {
     println("Hello, " + name + "!")
 }
 </code></pre>
-<p>Functions in Impala are first class values and can be assigned to variables, passed to functions, or anything else you might do with any other data type.</p>
+<p>Functions in Flan are first class values and can be assigned to variables, passed to functions, or anything else you might do with any other data type.</p>
 <pre><code class="language-js">// This function takes a function as an argument
 func twice(f, x) {
     f(f(x))
@@ -225,7 +225,7 @@ args := [1, 5]
 range(...args) // [1, 2, 3, 4]
 </code></pre>
 <h2 id="pipe-operator"><a class="header" href="#pipe-operator">Pipe Operator</a></h2>
-<p>Impala provides syntax for passing the result of one function to the arguments of another function, the pipe operator (<code>|&gt;</code>).
+<p>Flan provides syntax for passing the result of one function to the arguments of another function, the pipe operator (<code>|&gt;</code>).
 This is similar in functionality to the same operator in Elixir or F#.</p>
 <p>The pipe operator allows you to chain function calls without using a plethora of parenthesis.</p>
 <pre><code class="language-js">names := []

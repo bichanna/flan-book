@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>json - The Impala Book</title>
+        <title>json - The Flan Book</title>
 
 
         <!-- Custom HTML head -->
@@ -141,13 +141,13 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">The Impala Book</h1>
+                    <h1 class="menu-title">The Flan Book</h1>
 
                     <div class="right-buttons">
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        <a href="https://github.com/bichanna/impala" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/bichanna/flan" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
 
@@ -177,7 +177,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="json"><a class="header" href="#json"><code>json</code></a></h1>
-<p><code>json</code> module implements a JSON parser and serializer for Impala values.</p>
+<p><code>json</code> module implements a JSON parser and serializer for Flan values.</p>
 <ul>
 <li><a href="#escape_charc"><code>escape_char</code></a></li>
 <li><a href="#escapes"><code>escape</code></a></li>
@@ -193,7 +193,7 @@
 <pre><code class="language-js">escape("Hello\nWorld") // "Hello\\nWorld"
 </code></pre>
 <h2 id="serializec-pretty"><a class="header" href="#serializec-pretty"><code>serialize(c, pretty)</code></a></h2>
-<p><code>serialize</code> takes a Impala value and returns its JSON representation. If <code>pretty</code> is <code>true</code>, <code>serialize</code> prettifies the JSON representation. <code>pretty</code> defaults to <code>false</code>.</p>
+<p><code>serialize</code> takes a Flan value and returns its JSON representation. If <code>pretty</code> is <code>true</code>, <code>serialize</code> prettifies the JSON representation. <code>pretty</code> defaults to <code>false</code>.</p>
 <pre><code class="language-js">obj := {
     name: "nobu",
     email: "nobu.bichanna@gmail.com",
@@ -211,7 +211,7 @@ serialize(obj, true)
 */
 </code></pre>
 <h2 id="parses"><a class="header" href="#parses"><code>parse(s)</code></a></h2>
-<p><code>parse</code> takes a potentially valid JSON string, and returns its Impala representation if valid JSON, or throws an error if the parse fails.</p>
+<p><code>parse</code> takes a potentially valid JSON string, and returns its Flan representation if valid JSON, or throws an error if the parse fails.</p>
 <pre><code class="language-js">parse("{\"name\": \"nobu\", \"is_cool\": true}")
 /*
     {

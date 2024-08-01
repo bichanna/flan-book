@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>The Impala Book</title>
+        <title>The Flan Book</title>
         <meta name="robots" content="noindex">
 
 
@@ -142,13 +142,13 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">The Impala Book</h1>
+                    <h1 class="menu-title">The Flan Book</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        <a href="https://github.com/bichanna/impala" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/bichanna/flan" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
 
@@ -178,11 +178,11 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="language-tour"><a class="header" href="#language-tour">Language Tour</a></h1>
-<p>In this book, we explore the fundamentals of the Impala language, namely its syntax, core data structures, and flow control features. If you have some prior programming experience, this will hopefully be enough to get you started with Impala.</p>
+<p>In this book, we explore the fundamentals of the Flan language, namely its syntax, core data structures, and flow control features. If you have some prior programming experience, this will hopefully be enough to get you started with Flan.</p>
 <h2 id="overly-simplifed-overview"><a class="header" href="#overly-simplifed-overview">Overly Simplifed Overview</a></h2>
-<p>In Impala, everything is an expression. That means everything evaluates to some value, like <code>2 * 3</code>, which is <code>6</code>.</p>
+<p>In Flan, everything is an expression. That means everything evaluates to some value, like <code>2 * 3</code>, which is <code>6</code>.</p>
 <h3 id="types"><a class="header" href="#types">Types</a></h3>
-<p>Impala has 7 primitive types and 3 complex ones:</p>
+<p>Flan has 7 primitive types and 3 complex ones:</p>
 <pre><code class="language-js">null         // Null
 _            // "Empty" value, equal to everything
 1, 2, 4      // Integers
@@ -213,7 +213,7 @@ func (x, y) x + y          // Functions
 age = 16 // age is now 16
 </code></pre>
 <h3 id="control-flows"><a class="header" href="#control-flows">Control Flows</a></h3>
-<p><code>match</code> expression is the only control flow in Impala.</p>
+<p><code>match</code> expression is the only control flow in Flan.</p>
 <pre><code class="language-js">name := "Nobu"
 match name {
     "Nobu" -&gt; println("Cool name!"),
@@ -244,8 +244,8 @@ add := func(x, y) x + y
 10 |&gt; add(15) |&gt; add(12) // 37
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="comments"><a class="header" href="#comments">Comments</a></h1>
-<p>Impala allows you to write comments in your code, just like any other languages.</p>
-<p>In Impala, comments must start with two slashes and continue until the end of the line. Here's an example of a comment:</p>
+<p>Flan allows you to write comments in your code, just like any other languages.</p>
+<p>In Flan, comments must start with two slashes and continue until the end of the line. Here's an example of a comment:</p>
 <pre><code class="language-js">// Hello, world!
 </code></pre>
 <p>Comments can be also placed at the end of lines containing code:</p>
@@ -269,7 +269,7 @@ add := func(x, y) x + y
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="strings-and-atoms"><a class="header" href="#strings-and-atoms">Strings And Atoms</a></h1>
 <h2 id="strings"><a class="header" href="#strings">Strings</a></h2>
-<p>In Impala, strings can be written as text surrounded by double quotes.</p>
+<p>In Flan, strings can be written as text surrounded by double quotes.</p>
 <pre><code class="language-js">"This is a string"
 </code></pre>
 <p>Also, they can span multiple lines.</p>
@@ -277,7 +277,7 @@ add := func(x, y) x + y
 string!"
 </code></pre>
 <p>Under the hood, strings are just Rust <code>String</code>s, which are encoded with <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a>, and are able to contain any valid unicode.</p>
-<pre><code class="language-js">"こんちわ impala👺"
+<pre><code class="language-js">"こんちわ flan👺"
 </code></pre>
 <h3 id="concatenation"><a class="header" href="#concatenation">Concatenation</a></h3>
 <p>The addition operator can be used to join strings together, but not atoms:</p>
@@ -285,7 +285,7 @@ string!"
 name + "haru" // "Nobuharu"
 </code></pre>
 <h3 id="escape-sequences"><a class="header" href="#escape-sequences">Escape Sequences</a></h3>
-<p>Impala supports common string escape sequences. Here's all of them:</p>
+<p>Flan supports common string escape sequences. Here's all of them:</p>
 <div class="table-wrapper"><table><thead><tr><th>Sequences</th><th>Result</th></tr></thead><tbody>
 <tr><td>\n</td><td>Newline</td></tr>
 <tr><td>\r</td><td>Carriage Return</td></tr>
@@ -308,7 +308,7 @@ name + "haru" // "Nobuharu"
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="booleans"><a class="header" href="#booleans">Booleans</a></h1>
 <p>A Boolean can be either <code>true</code> or <code>false</code>. Atom values <code>:true</code> and <code>:false</code> are also evaluated as Booleans.</p>
-<p>Impala defines a handful of operators that work with Booleans.</p>
+<p>Flan defines a handful of operators that work with Booleans.</p>
 <p><code>&amp;&amp;</code> evaluates the right hand side if the left hand side is <code>true</code>.</p>
 <p><code>||</code> evaluates the right hand side if the left hand side is <code>false</code>.</p>
 <p>You can also use <code>and</code> and <code>or</code> keywords instead of <code>&amp;&amp;</code> and <code>||</code> respectively.</p>
@@ -324,20 +324,20 @@ true || false  // =&gt; true
 true || true   // =&gt; true
 true or false  // =&gt; true
 </code></pre>
-<p>Impala supports negation of Booleans using either one of the <code>!</code>, <code>not</code>, or <code>-</code> unary operators.</p>
+<p>Flan supports negation of Booleans using either one of the <code>!</code>, <code>not</code>, or <code>-</code> unary operators.</p>
 <pre><code class="language-js">!true     // =&gt; false
 not false // =&gt; true
 -false    // =&gt; true
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="integers-and-floats"><a class="header" href="#integers-and-floats">Integers And Floats</a></h1>
-<p>Impala's main number types are Integers and Floats.</p>
+<p>Flan's main number types are Integers and Floats.</p>
 <h2 id="integers"><a class="header" href="#integers">Integers</a></h2>
 <p>Integers are "whole" numbers. Hexadecimal integers start with <code>0x</code>.</p>
 <pre><code class="language-js">15
 -83
 0xBADC0FFEE // 50159747054
 </code></pre>
-<p>Impala has several operators that work with Integers.</p>
+<p>Flan has several operators that work with Integers.</p>
 <pre><code class="language-js">1 + 1 // =&gt; 2
 4 - 2 // =&gt; 2
 6 / 3 // =&gt; 2
@@ -378,7 +378,7 @@ null &lt;= 7.3  // =&gt; false
 _ == "hello" // =&gt; true
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="lists"><a class="header" href="#lists">Lists</a></h2>
-<p>Lists are ordered collections of values. They're one of the most common data structures in Impala.</p>
+<p>Lists are ordered collections of values. They're one of the most common data structures in Flan.</p>
 <p>Lists are <em>heterogeneous</em>, meaning the elements of a list can be of different types.</p>
 <pre><code class="language-js">[:err, "something wrong happened"]
 [["abc", "hello"], 23, 3.14]
@@ -430,12 +430,12 @@ m // 2
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="functions-1"><a class="header" href="#functions-1">Functions</a></h1>
 <h2 id="named-functions"><a class="header" href="#named-functions">Named Functions</a></h2>
-<p>Named functions in Impala are defined using the <code>func</code> keyword.</p>
+<p>Named functions in Flan are defined using the <code>func</code> keyword.</p>
 <pre><code class="language-js">func greet(name) {
     println("Hello, " + name + "!")
 }
 </code></pre>
-<p>Functions in Impala are first class values and can be assigned to variables, passed to functions, or anything else you might do with any other data type.</p>
+<p>Functions in Flan are first class values and can be assigned to variables, passed to functions, or anything else you might do with any other data type.</p>
 <pre><code class="language-js">// This function takes a function as an argument
 func twice(f, x) {
     f(f(x))
@@ -477,7 +477,7 @@ args := [1, 5]
 range(...args) // [1, 2, 3, 4]
 </code></pre>
 <h2 id="pipe-operator-1"><a class="header" href="#pipe-operator-1">Pipe Operator</a></h2>
-<p>Impala provides syntax for passing the result of one function to the arguments of another function, the pipe operator (<code>|&gt;</code>).
+<p>Flan provides syntax for passing the result of one function to the arguments of another function, the pipe operator (<code>|&gt;</code>).
 This is similar in functionality to the same operator in Elixir or F#.</p>
 <p>The pipe operator allows you to chain function calls without using a plethora of parenthesis.</p>
 <pre><code class="language-js">names := []
@@ -544,7 +544,7 @@ print_name("Nobu") // prints out "NOBU!"
 <pre><code class="language-js">public func public_func(xs+) {}
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="match-expression"><a class="header" href="#match-expression">Match Expression</a></h1>
-<p>The <code>match</code> expression is the most common kind of flow control in Impala code.
+<p>The <code>match</code> expression is the most common kind of flow control in Flan code.
 It allows us to say "if the data has this shape then do that", which we call <em>pattern matching</em>.</p>
 <p>Here, we match on an Int and return a specific string for the values 0, 1, and 2.
 The final pattern n matches any other value that did not match any of the previous patterns.</p>
@@ -555,13 +555,13 @@ The final pattern n matches any other value that did not match any of the previo
   _ -&gt; "some other number", // This matches anything
 }
 </code></pre>
-<p>Pattern matching on a Boolean value is the Impala alternative to the <code>if else</code> statement found in other languages.</p>
+<p>Pattern matching on a Boolean value is the Flan alternative to the <code>if else</code> statement found in other languages.</p>
 <pre><code class="language-js">match some_bool {
   true -&gt; "It's true.",
   false -&gt; "It's not true.",
 }
 </code></pre>
-<p>Impala's <code>match</code> is an expression, meaning it returns a value and can be used anywhere we would use a value.
+<p>Flan's <code>match</code> is an expression, meaning it returns a value and can be used anywhere we would use a value.
 For example, we can name the value of a match expression with a variable binding.</p>
 <pre><code class="language-js">description := match true {
     true -&gt; "blah blah",
@@ -591,10 +591,10 @@ command := match damian_stinks {
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="modules"><a class="header" href="#modules">Modules</a></h1>
-<p>In Impala, modules are simply files with the “.impl” extension containing Impala code that can be imported inside another Impala program.
+<p>In Flan, modules are simply files with the “.impl” extension containing Flan code that can be imported inside another Flan program.
 Functions annotated with <code>public</code> keyword are public functions, meaning they could be exported outside of their own module to be used by other modules.</p>
 <p>You can import other modules using the built-in <code>import</code> function with relative paths.</p>
-<pre><code class="language-js">// src/a_module.impala
+<pre><code class="language-js">// src/a_module.flan
 
 // public function func_in_a
 public func func_in_a() {
@@ -627,7 +627,7 @@ func_from_a() // "Hello from a_module"
 <p>Until now errors have never been mentioned, but if you have tried out the examples you have probably seen some.
 There are two distinguishable kinds of errors: <em>syntax errors</em> and <em>exceptions</em>.</p>
 <h2 id="syntax-errors"><a class="header" href="#syntax-errors">Syntax Errors</a></h2>
-<p>Syntax errors, also known as parsing errors, are perhaps the most common kind of complaint you get while you are still learning Impala.</p>
+<p>Syntax errors, also known as parsing errors, are perhaps the most common kind of complaint you get while you are still learning Flan.</p>
 <pre><code class="language-js">some_file:1:14 error: expected ']'
 names["hello"
 </code></pre>
@@ -662,7 +662,7 @@ result // { error_type: null, error_message: null, value: 1 }
 <pre><code class="language-js">error(:user_defined, "user-defined error!")
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="try-expression"><a class="header" href="#try-expression">Try Expression</a></h1>
-<p>In Impala, this is how you would typically handle runtime exceptions:</p>
+<p>In Flan, this is how you would typically handle runtime exceptions:</p>
 <pre><code class="language-js">result := unsafe some_func("abc")
 match error?(result) {
     true -&gt; {
@@ -683,7 +683,7 @@ try result {
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="macros"><a class="header" href="#macros">Macros</a></h1>
-<p>Impala's macros are just text-replacement templates, similar to C language's. So, a macro is a piece of code that is given a name.</p>
+<p>Flan's macros are just text-replacement templates, similar to C language's. So, a macro is a piece of code that is given a name.</p>
 <p>A variable-like macro can be defined with <code>def</code> keyword:</p>
 <pre><code class="language-js">def PI 3.1415
 
@@ -699,12 +699,12 @@ radius := 12
 area := #PI * radius * radius
 // expands to `area := 3.141592653589793238 * radius * radius`
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="the-impala-standard-library"><a class="header" href="#the-impala-standard-library">The Impala Standard Library</a></h1>
-<p>Impala’s standard library is quite extensive, offering a wide range of facilities as indicated by the long table of contents listed below.
-The library contains built-in modules (written in Rust) that provide access to system functionality such as file I/O that would otherwise be inaccessible to Impala programmers,
-as well as modules written in Impala that provide standardized solutions for many problems that occur in everyday programming.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-flan-standard-library"><a class="header" href="#the-flan-standard-library">The Flan Standard Library</a></h1>
+<p>Flan’s standard library is quite extensive, offering a wide range of facilities as indicated by the long table of contents listed below.
+The library contains built-in modules (written in Rust) that provide access to system functionality such as file I/O that would otherwise be inaccessible to Flan programmers,
+as well as modules written in Flan that provide standardized solutions for many problems that occur in everyday programming.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="built-in-functions"><a class="header" href="#built-in-functions">Built-in Functions</a></h1>
-<p>The Impala interpreter has a number of functions and types built into it that are always available.
+<p>The Flan interpreter has a number of functions and types built into it that are always available.
 All of them are listed here.</p>
 <ul>
 <li><a href="library/builtins.html#absx"><code>abs</code></a></li>
@@ -826,7 +826,7 @@ match error?(result) {
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fmt"><a class="header" href="#fmt"><code>fmt</code></a></h1>
-<p><code>fmt</code> is the string formatting library for Impala.</p>
+<p><code>fmt</code> is the string formatting library for Flan.</p>
 <ul>
 <li><a href="library/fmt.html#formatraw-values"><code>format</code></a></li>
 <li><a href="library/fmt.html#printraw-values"><code>print</code></a></li>
@@ -848,7 +848,7 @@ fmt.print("Hello, {}!", "Nobu") // Hello, Nobu!
 fmt.println("Hello, {}!", "Nobu") // Hello, Nobu!\n
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="json"><a class="header" href="#json"><code>json</code></a></h1>
-<p><code>json</code> module implements a JSON parser and serializer for Impala values.</p>
+<p><code>json</code> module implements a JSON parser and serializer for Flan values.</p>
 <ul>
 <li><a href="library/json.html#escape_charc"><code>escape_char</code></a></li>
 <li><a href="library/json.html#escapes"><code>escape</code></a></li>
@@ -864,7 +864,7 @@ fmt.println("Hello, {}!", "Nobu") // Hello, Nobu!\n
 <pre><code class="language-js">escape("Hello\nWorld") // "Hello\\nWorld"
 </code></pre>
 <h2 id="serializec-pretty"><a class="header" href="#serializec-pretty"><code>serialize(c, pretty)</code></a></h2>
-<p><code>serialize</code> takes a Impala value and returns its JSON representation. If <code>pretty</code> is <code>true</code>, <code>serialize</code> prettifies the JSON representation. <code>pretty</code> defaults to <code>false</code>.</p>
+<p><code>serialize</code> takes a Flan value and returns its JSON representation. If <code>pretty</code> is <code>true</code>, <code>serialize</code> prettifies the JSON representation. <code>pretty</code> defaults to <code>false</code>.</p>
 <pre><code class="language-js">obj := {
     name: "nobu",
     email: "nobu.bichanna@gmail.com",
@@ -882,7 +882,7 @@ serialize(obj, true)
 */
 </code></pre>
 <h2 id="parses"><a class="header" href="#parses"><code>parse(s)</code></a></h2>
-<p><code>parse</code> takes a potentially valid JSON string, and returns its Impala representation if valid JSON, or throws an error if the parse fails.</p>
+<p><code>parse</code> takes a potentially valid JSON string, and returns its Flan representation if valid JSON, or throws an error if the parse fails.</p>
 <pre><code class="language-js">parse("{\"name\": \"nobu\", \"is_cool\": true}")
 /*
     {
@@ -1061,7 +1061,7 @@ The slice is a copy, and mutating it will not mutate the original.</p>
 <pre><code class="language-js">range(0, 100) |&gt; list() // [0, 1, 2, ..., 98, 99]
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="std"><a class="header" href="#std"><code>std</code></a></h1>
-<p><code>std</code> module defines basic functions for working with Impala values and functions, iterators, and control flow.</p>
+<p><code>std</code> module defines basic functions for working with Flan values and functions, iterators, and control flow.</p>
 <ul>
 <li><a href="library/std.html#identityx"><code>identity</code></a></li>
 <li><a href="library/std.html#isx"><code>is</code></a></li>
@@ -1140,7 +1140,7 @@ The slice is a copy, and mutating it will not mutate the original.</p>
 slice(name, 0, 3) // "Sol"
 </code></pre>
 <h2 id="clonex"><a class="header" href="#clonex"><code>clone(x)</code></a></h2>
-<p><code>clone</code> takes any Impala value and produces a shallow copy of it that will not mutate if the original mutates.</p>
+<p><code>clone</code> takes any Flan value and produces a shallow copy of it that will not mutate if the original mutates.</p>
 <pre><code class="language-js">list := [1, 2, 3]
 new_list := clone(list)
 
@@ -1312,7 +1312,7 @@ list = sort(list)
 list // [1, 2, 3, 4, 5]
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="strings-1"><a class="header" href="#strings-1"><code>strings</code></a></h1>
-<p><code>strings</code> module provides a set of utility functions for working with strings and data encoded in strings in Impala programs.</p>
+<p><code>strings</code> module provides a set of utility functions for working with strings and data encoded in strings in Flan programs.</p>
 <ul>
 <li><a href="library/string.html#upperc"><code>upper?</code></a></li>
 <li><a href="library/string.html#uppers"><code>upper</code></a></li>
@@ -1431,8 +1431,8 @@ If <code>part</code> is not specified, trim removes all whitespace from either e
 <pre><code class="language-js">trim("  Hello  ") // "Hello"
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="experimental-features"><a class="header" href="#experimental-features">Experimental Features</a></h1>
-<p>In the following chapters, we'll introduce unimplemented features of Impala.</p>
-<p>Since Impala is still a work in progress, some features are not yet implemented, for it's not sure if the idea is reasonable.</p>
+<p>In the following chapters, we'll introduce unimplemented features of Flan.</p>
+<p>Since Flan is still a work in progress, some features are not yet implemented, for it's not sure if the idea is reasonable.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="references"><a class="header" href="#references">References</a></h1>
 <p>A reference is a name that refers to the specific location in memory of a value.
 References take the form of variables and attributes.</p>
