@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -31,7 +31,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -61,42 +61,71 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html" class="active"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="try.html"><strong aria-hidden="true">14.</strong> Try Expression</a></li><li class="chapter-item expanded "><a href="macros.html"><strong aria-hidden="true">15.</strong> Macros</a></li><li class="chapter-item expanded "><a href="std_library.html"><strong aria-hidden="true">16.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/builtins.html"><strong aria-hidden="true">16.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="library/fmt.html"><strong aria-hidden="true">16.2.</strong> fmt</a></li><li class="chapter-item expanded "><a href="library/json.html"><strong aria-hidden="true">16.3.</strong> json</a></li><li class="chapter-item expanded "><a href="library/math.html"><strong aria-hidden="true">16.4.</strong> math</a></li><li class="chapter-item expanded "><a href="library/range.html"><strong aria-hidden="true">16.5.</strong> range</a></li><li class="chapter-item expanded "><a href="library/std.html"><strong aria-hidden="true">16.6.</strong> std</a></li><li class="chapter-item expanded "><a href="library/string.html"><strong aria-hidden="true">16.7.</strong> strings</a></li></ol></li><li class="chapter-item expanded "><a href="experimental/experimental.html"><strong aria-hidden="true">17.</strong> Experimental Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="experimental/references.html"><strong aria-hidden="true">17.1.</strong> References</a></li></ol></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -150,19 +179,19 @@
                         <h1 id="strings-and-atoms"><a class="header" href="#strings-and-atoms">Strings And Atoms</a></h1>
 <h2 id="strings"><a class="header" href="#strings">Strings</a></h2>
 <p>In Impala, strings can be written as text surrounded by double quotes.</p>
-<pre><code class="language-js">&quot;This is a string&quot;
+<pre><code class="language-js">"This is a string"
 </code></pre>
 <p>Also, they can span multiple lines.</p>
-<pre><code class="language-js">&quot;Multi-line
-string!&quot;
+<pre><code class="language-js">"Multi-line
+string!"
 </code></pre>
 <p>Under the hood, strings are just Rust <code>String</code>s, which are encoded with <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a>, and are able to contain any valid unicode.</p>
-<pre><code class="language-js">&quot;こんちわ impala👺&quot;
+<pre><code class="language-js">"こんちわ impala👺"
 </code></pre>
 <h3 id="concatenation"><a class="header" href="#concatenation">Concatenation</a></h3>
 <p>The addition operator can be used to join strings together, but not atoms:</p>
-<pre><code class="language-js">name = &quot;Nobu&quot;
-name + &quot;haru&quot; // &quot;Nobuharu&quot;
+<pre><code class="language-js">name = "Nobu"
+name + "haru" // "Nobuharu"
 </code></pre>
 <h3 id="escape-sequences"><a class="header" href="#escape-sequences">Escape Sequences</a></h3>
 <p>Impala supports common string escape sequences. Here's all of them:</p>
@@ -170,17 +199,17 @@ name + &quot;haru&quot; // &quot;Nobuharu&quot;
 <tr><td>\n</td><td>Newline</td></tr>
 <tr><td>\r</td><td>Carriage Return</td></tr>
 <tr><td>\t</td><td>Tab</td></tr>
-<tr><td>\&quot;</td><td>Double Quote</td></tr>
+<tr><td>\"</td><td>Double Quote</td></tr>
 <tr><td>\\</td><td>Backslash</td></tr>
 <tr><td>\0</td><td>Null Terminator</td></tr>
 </tbody></table>
 </div>
-<p>For example, to include double quote (<code>&quot;</code>) character in a string literal, it must be escaped by placing a backslash (<code>\</code>) character before it.</p>
-<pre><code class="language-js">&quot;Here's a double quote: \&quot;&quot;
+<p>For example, to include double quote (<code>"</code>) character in a string literal, it must be escaped by placing a backslash (<code>\</code>) character before it.</p>
+<pre><code class="language-js">"Here's a double quote: \""
 </code></pre>
 <p>Another example:</p>
 <pre><code class="language-js">// A Windows filepath C:\Users\Nobu
-&quot;C:\\Users\\Nobu&quot;
+"C:\\Users\\Nobu"
 </code></pre>
 <h2 id="atoms"><a class="header" href="#atoms">Atoms</a></h2>
 <p>For immutable strings, use atoms:</p>
@@ -195,7 +224,7 @@ name + &quot;haru&quot; // &quot;Nobuharu&quot;
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="booleans.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="booleans.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -209,7 +238,7 @@ name + &quot;haru&quot; // &quot;Nobuharu&quot;
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="booleans.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="booleans.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

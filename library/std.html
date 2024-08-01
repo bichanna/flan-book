@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="../favicon.svg">
         <link rel="shortcut icon" href="../favicon.png">
@@ -31,7 +31,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -61,42 +61,71 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded "><a href="../language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="../comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="../booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="../ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="../empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="../lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="../objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="../assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="../functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="../modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="../try.html"><strong aria-hidden="true">14.</strong> Try Expression</a></li><li class="chapter-item expanded "><a href="../macros.html"><strong aria-hidden="true">15.</strong> Macros</a></li><li class="chapter-item expanded "><a href="../std_library.html"><strong aria-hidden="true">16.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/builtins.html"><strong aria-hidden="true">16.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="../library/fmt.html"><strong aria-hidden="true">16.2.</strong> fmt</a></li><li class="chapter-item expanded "><a href="../library/json.html"><strong aria-hidden="true">16.3.</strong> json</a></li><li class="chapter-item expanded "><a href="../library/math.html"><strong aria-hidden="true">16.4.</strong> math</a></li><li class="chapter-item expanded "><a href="../library/range.html"><strong aria-hidden="true">16.5.</strong> range</a></li><li class="chapter-item expanded "><a href="../library/std.html" class="active"><strong aria-hidden="true">16.6.</strong> std</a></li><li class="chapter-item expanded "><a href="../library/string.html"><strong aria-hidden="true">16.7.</strong> strings</a></li></ol></li><li class="chapter-item expanded "><a href="../experimental/experimental.html"><strong aria-hidden="true">17.</strong> Experimental Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../experimental/references.html"><strong aria-hidden="true">17.1.</strong> References</a></li></ol></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -187,13 +216,13 @@
 </ul>
 <h2 id="identityx"><a class="header" href="#identityx"><code>identity(x)</code></a></h2>
 <p><code>identity</code> returns its first argument.</p>
-<pre><code class="language-js">&quot;Hello&quot; == identity(&quot;Hello&quot;) // true
+<pre><code class="language-js">"Hello" == identity("Hello") // true
 </code></pre>
 <h2 id="isx"><a class="header" href="#isx"><code>is(x)</code></a></h2>
 <p><code>is</code> returns a predicate that reports whether its argument is equal to <code>x</code>.</p>
 <pre><code class="language-js">f := is(2)
 f(2)   // true
-f(&quot;a&quot;) // false
+f("a") // false
 </code></pre>
 <h2 id="defaultx-base"><a class="header" href="#defaultx-base"><code>default(x, base)</code></a></h2>
 <p><code>default</code> returns <code>x</code> if <code>x</code> is not <code>null</code>, or <code>base</code> otherwise. It is useful when taking optional arguments in functions with default values.</p>
@@ -205,14 +234,14 @@ f(&quot;a&quot;) // false
 </code></pre>
 <h2 id="to_hexn"><a class="header" href="#to_hexn"><code>to_hex(n)</code></a></h2>
 <p><code>to_hex</code> takes a number and returns its hexadecimal representation in a string. It fails for negative values.</p>
-<pre><code class="language-js">to_hex(50159747054) // &quot;BADC0FFEE&quot;
+<pre><code class="language-js">to_hex(50159747054) // "BADC0FFEE"
 </code></pre>
 <h2 id="from_hexs"><a class="header" href="#from_hexs"><code>from_hex(s)</code></a></h2>
 <p><code>from_hex</code> takes a hexadecimal representation of a number and parses it to an integer. It returns <code>null</code> if the input is not a valid hexadecimal number.</p>
-<pre><code class="language-js">from_hex(&quot;BADC0FFEE&quot;) // 50159747054
+<pre><code class="language-js">from_hex("BADC0FFEE") // 50159747054
 </code></pre>
 <h2 id="clampmin-max-n-m"><a class="header" href="#clampmin-max-n-m"><code>clamp(min, max, n, m)</code></a></h2>
-<p><code>clamp</code> takes values <code>n</code>, <code>m</code> and &quot;clamps&quot; or constrains it to the range [<code>min</code>, <code>max</code>], inclusive. If <code>n &gt; m</code>, <code>n</code> takes priority and clams <code>m</code> down to the lower
+<p><code>clamp</code> takes values <code>n</code>, <code>m</code> and "clamps" or constrains it to the range [<code>min</code>, <code>max</code>], inclusive. If <code>n &gt; m</code>, <code>n</code> takes priority and clams <code>m</code> down to the lower
 value. In the returned value, the following are guaranteed:</p>
 <ul>
 <li><code>min &lt;= n &lt;= max</code></li>
@@ -220,11 +249,11 @@ value. In the returned value, the following are guaranteed:</p>
 <li><code>n &lt;= m</code></li>
 </ul>
 <h2 id="slicexs-min-max"><a class="header" href="#slicexs-min-max"><code>slice(xs, min, max)</code></a></h2>
-<p><code>slice</code> takes an iterable <code>xs</code> (string or list) and returns a &quot;slice&quot; of the original from the range [<code>min</code>, <code>max</code>).
+<p><code>slice</code> takes an iterable <code>xs</code> (string or list) and returns a "slice" of the original from the range [<code>min</code>, <code>max</code>).
 The slice is a copy, and mutating it will not mutate the original.</p>
 <p>Both <code>min</code> and <code>max</code> are optional and will default to <code>0</code> and <code>len(xs)</code> respectively.</p>
-<pre><code class="language-js">name := &quot;Sol David&quot;
-slice(name, 0, 3) // &quot;Sol&quot;
+<pre><code class="language-js">name := "Sol David"
+slice(name, 0, 3) // "Sol"
 </code></pre>
 <h2 id="clonex"><a class="header" href="#clonex"><code>clone(x)</code></a></h2>
 <p><code>clone</code> takes any Impala value and produces a shallow copy of it that will not mutate if the original mutates.</p>
@@ -252,14 +281,14 @@ If <code>f</code> is a function, it receives arguments (<code>element</code>, <c
 <p><code>each</code> calls the given iterator function <code>f</code> for each element of the given iterable <code>xs</code>.
 The iterator function receives arguments (<code>element</code>, <code>index</code>).</p>
 <pre><code class="language-js">[1, 2, 3] |&gt; each() &lt;~ (element, index) print(element)
-// prints &quot;123&quot; to the console
+// prints "123" to the console
 </code></pre>
 <h2 id="ifcond-then-else"><a class="header" href="#ifcond-then-else"><code>if(cond, then, else)</code></a></h2>
 <p>When <code>cond</code> is <code>true</code>, predicate <code>then</code> gets called. When <code>cond</code> is <code>false</code>, predicate <code>else</code> gets called.</p>
-<pre><code class="language-js">if(&quot;abc&quot; == &quot;abc&quot;, -&gt; {
-    println(&quot;gets executed&quot;)
+<pre><code class="language-js">if("abc" == "abc", -&gt; {
+    println("gets executed")
 }) &lt;~ () {
-    println(&quot;don't get executed&quot;)
+    println("don't get executed")
 }
 </code></pre>
 <h2 id="filterxs-f"><a class="header" href="#filterxs-f"><code>filter(xs, f)</code></a></h2>
@@ -271,7 +300,7 @@ list // [23, 45]
 <h2 id="reducexs-seed-f"><a class="header" href="#reducexs-seed-f"><code>reduce(xs, seed, f)</code></a></h2>
 <p><code>reduce</code> accumulates elements of the iterable <code>xs</code> on a value, starting with <code>seed</code> and passing it to the reducer function <code>f</code>.
 The reducer receives arguments (<code>accumulator</code>, <code>element</code>, <code>index</code>).</p>
-<pre><code class="language-js">// an example &quot;sum&quot; function implemented with reduce
+<pre><code class="language-js">// an example "sum" function implemented with reduce
 numbers |&gt; reduce(0) &lt;~ (accumulator, elem) accumulator + elem
 </code></pre>
 <h2 id="flattenxs"><a class="header" href="#flattenxs"><code>flatten(xs)</code></a></h2>
@@ -282,18 +311,18 @@ flatten(list) // [1, 2, 3, 4, 5, 6, 7]
 <h2 id="appendxs-ys"><a class="header" href="#appendxs-ys"><code>append(xs, ys)</code></a></h2>
 <p><code>append</code> joins two iterable values (strings or lists) together, mutating the first argument <code>xs</code>.
 If mutation is not desired, use <code>std.join</code>.</p>
-<pre><code class="language-js">names := [&quot;Nobu&quot;, &quot;Damian&quot;]
-append(names, [&quot;Sol&quot;, &quot;Thomas&quot;])
-names // [&quot;Nobu&quot;, &quot;Damian&quot;, &quot;Sol&quot;, &quot;Thomas&quot;]
+<pre><code class="language-js">names := ["Nobu", "Damian"]
+append(names, ["Sol", "Thomas"])
+names // ["Nobu", "Damian", "Sol", "Thomas"]
 </code></pre>
 <h2 id="joinxs-ys"><a class="header" href="#joinxs-ys"><code>join(xs, ys)</code></a></h2>
 <p><code>join</code> joins two iterable values (strings or lists) together, while mutating neither values. If efficiency is desired, used <code>std.append</code>.</p>
-<pre><code class="language-js">names := [&quot;Nobu&quot;, &quot;Damian&quot;]
-join(names, [&quot;Sol&quot;, &quot;Thomas&quot;]) // [&quot;Nobu&quot;, &quot;Damian&quot;, &quot;Sol&quot;, &quot;Thomas&quot;]
-names // [&quot;Nobu&quot;, &quot;Damian&quot;], not mutated
+<pre><code class="language-js">names := ["Nobu", "Damian"]
+join(names, ["Sol", "Thomas"]) // ["Nobu", "Damian", "Sol", "Thomas"]
+names // ["Nobu", "Damian"], not mutated
 </code></pre>
 <h2 id="zipxs-ys-zipper"><a class="header" href="#zipxs-ys-zipper"><code>zip(xs, ys, zipper)</code></a></h2>
-<p><code>zip</code> &quot;zips&quot; together each pair of items from two iterables. If the zipper function is not given, each pair of items are put into a 2-element list.
+<p><code>zip</code> "zips" together each pair of items from two iterables. If the zipper function is not given, each pair of items are put into a 2-element list.
 Otherwise, <code>zipper</code> is called on each pair of items and the result is placed into the resulting list.</p>
 <pre><code class="language-js">zip([1, 2, 3], [4, 5, 6]) // =&gt; [[1, 2], [3, 4], [5, 6]]
 
@@ -314,51 +343,51 @@ unique(list) // [1, 2, 3]
 </code></pre>
 <h2 id="firstxs"><a class="header" href="#firstxs"><code>first(xs)</code></a></h2>
 <p><code>first</code> returns the first item in an iterable. It's trivial, but useful to have in the stdlib for use in pipelines or iterators.</p>
-<pre><code class="language-js">name := &quot;Nobu&quot;
-first(name) // &quot;N&quot;
+<pre><code class="language-js">name := "Nobu"
+first(name) // "N"
 </code></pre>
 <h2 id="lastxs"><a class="header" href="#lastxs"><code>last(xs)</code></a></h2>
 <p><code>last</code> returns the last item in an iterable. It's trivial, but useful to have in the stdlib for use in pipelines or iterators.</p>
-<pre><code class="language-js">name := &quot;Nobu&quot;
-last(name) // &quot;u&quot;
+<pre><code class="language-js">name := "Nobu"
+last(name) // "u"
 </code></pre>
 <h2 id="takexs-n"><a class="header" href="#takexs-n"><code>take(xs, n)</code></a></h2>
 <p><code>take</code> accepts an iterable and returns a version of it containing the first N elements.</p>
-<pre><code class="language-js">email := &quot;nobu.bichanna@gmail.com&quot;
-take(email, 4) // &quot;nobu&quot;
+<pre><code class="language-js">email := "nobu.bichanna@gmail.com"
+take(email, 4) // "nobu"
 </code></pre>
 <h2 id="take_lastxs-n"><a class="header" href="#take_lastxs-n"><code>take_last(xs, n)</code></a></h2>
 <p><code>take_last</code> accepts an iterable and returns a version of it containing the last N elements.</p>
-<pre><code class="language-js">email := &quot;nobu.bichanna@gmail.com&quot;
-take_last(email, 9) // &quot;gmail.com&quot;
+<pre><code class="language-js">email := "nobu.bichanna@gmail.com"
+take_last(email, 9) // "gmail.com"
 </code></pre>
 <h2 id="findxs-pred"><a class="header" href="#findxs-pred"><code>find(xs, pred)</code></a></h2>
 <p><code>find</code> returns the index of the first item in the iterable <code>xs</code> for which the predicate returns <code>true</code>. If no match is found, find returns <code>-1</code>.</p>
-<pre><code class="language-js">nobu? := is(&quot;Nobu&quot;)
-names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
+<pre><code class="language-js">nobu? := is("Nobu")
+names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
 find(names, nobu?) // 1
 </code></pre>
 <h2 id="rfindxs-pred"><a class="header" href="#rfindxs-pred"><code>rfind(xs, pred)</code></a></h2>
 <p><code>rfind</code> returns the index of the last item in the iterable <code>xs</code> for which the predicate returns <code>true</code>, searching backwards from the end.
 If no match is found, <code>rfind</code> returns <code>-1</code>.</p>
-<pre><code class="language-js">nobu? := is(&quot;Nobu&quot;)
-names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
+<pre><code class="language-js">nobu? := is("Nobu")
+names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
 rfind(names, nobu?) // 5
 </code></pre>
 <h2 id="index_ofxs-x"><a class="header" href="#index_ofxs-x"><code>index_of(xs, x)</code></a></h2>
 <p><code>index_of</code> returns the index of the first item equal to <code>x</code> in the iterable <code>xs</code>. If no match is found, <code>index_of</code> returns <code>-1</code>.</p>
-<pre><code class="language-js">names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
-index_of(names, &quot;Nobu&quot;) // 1
+<pre><code class="language-js">names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+index_of(names, "Nobu") // 1
 </code></pre>
 <h2 id="rindex_ofxs-x"><a class="header" href="#rindex_ofxs-x"><code>rindex_of(xs, x)</code></a></h2>
 <p>// <code>rindex_of</code> returns the index of the last item equal to <code>x</code> in the iterable <code>xs</code>, searching backwards from the end. If no match is found, <code>rindex_of</code> returns <code>-1</code>.</p>
-<pre><code class="language-js">names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
-index_of(names, &quot;Nobu&quot;) // 5
+<pre><code class="language-js">names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+index_of(names, "Nobu") // 5
 </code></pre>
 <h2 id="containsxs-x"><a class="header" href="#containsxs-x"><code>contains?(xs, x)</code></a></h2>
 <p><code>contains?</code> reports whether an iterable contains an item equal to <code>x</code>.</p>
-<pre><code class="language-js">names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
-contains?(names, &quot;Nobu&quot;) // true
+<pre><code class="language-js">names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+contains?(names, "Nobu") // true
 </code></pre>
 <h2 id="loopmax-f"><a class="header" href="#loopmax-f"><code>loop(max, f)</code></a></h2>
 <p><code>loop</code> takes a loop count <code>max</code> and a callback, and invokes the callback <code>max</code> times.
@@ -367,8 +396,8 @@ It can be used to infinitely loop if <code>max &lt; 0</code>. Callback is called
 <li><code>count</code>: the current loop count starting from <code>0</code></li>
 <li><code>breaker</code>: a function to be called to exit early from the loop, which takes an optional return value to be returned by the <code>loop()</code> call</li>
 </ul>
-<pre><code class="language-js">loop(100) &lt;~ (count, breaker) { // prints &quot;Hello, world!&quot; to the console 100 times
-    println(&quot;Hello, world!&quot;)
+<pre><code class="language-js">loop(100) &lt;~ (count, breaker) { // prints "Hello, world!" to the console 100 times
+    println("Hello, world!")
 }
 </code></pre>
 <h2 id="aloopmax-f-done"><a class="header" href="#aloopmax-f-done"><code>aloop(max, f, done)</code></a></h2>
@@ -407,7 +436,7 @@ list // [1, 2, 3, 4, 5]
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../library/string.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../library/string.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -421,7 +450,7 @@ list // [1, 2, 3, 4, 5]
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../library/string.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../library/string.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

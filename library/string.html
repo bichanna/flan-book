@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="../favicon.svg">
         <link rel="shortcut icon" href="../favicon.png">
@@ -31,7 +31,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -61,42 +61,71 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded "><a href="../language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="../comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="../booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="../ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="../empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="../lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="../objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="../assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="../functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="../modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="../try.html"><strong aria-hidden="true">14.</strong> Try Expression</a></li><li class="chapter-item expanded "><a href="../macros.html"><strong aria-hidden="true">15.</strong> Macros</a></li><li class="chapter-item expanded "><a href="../std_library.html"><strong aria-hidden="true">16.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/builtins.html"><strong aria-hidden="true">16.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="../library/fmt.html"><strong aria-hidden="true">16.2.</strong> fmt</a></li><li class="chapter-item expanded "><a href="../library/json.html"><strong aria-hidden="true">16.3.</strong> json</a></li><li class="chapter-item expanded "><a href="../library/math.html"><strong aria-hidden="true">16.4.</strong> math</a></li><li class="chapter-item expanded "><a href="../library/range.html"><strong aria-hidden="true">16.5.</strong> range</a></li><li class="chapter-item expanded "><a href="../library/std.html"><strong aria-hidden="true">16.6.</strong> std</a></li><li class="chapter-item expanded "><a href="../library/string.html" class="active"><strong aria-hidden="true">16.7.</strong> strings</a></li></ol></li><li class="chapter-item expanded "><a href="../experimental/experimental.html"><strong aria-hidden="true">17.</strong> Experimental Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../experimental/references.html"><strong aria-hidden="true">17.1.</strong> References</a></li></ol></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -174,97 +203,97 @@
 </ul>
 <h2 id="upperc"><a class="header" href="#upperc"><code>upper?(c)</code></a></h2>
 <p><code>upper?</code> reports whether a given char is an uppercase ASCII letter.</p>
-<pre><code class="language-js">upper?(&quot;a&quot;) // false
-upper?(&quot;A&quot;) // true
+<pre><code class="language-js">upper?("a") // false
+upper?("A") // true
 </code></pre>
 <h2 id="uppers"><a class="header" href="#uppers"><code>upper(s)</code></a></h2>
 <p><code>upper</code> returns the uppercase string from the given string <code>s</code>.</p>
-<pre><code class="language-js">upper(&quot;nobu&quot;) // &quot;NOBU&quot;
+<pre><code class="language-js">upper("nobu") // "NOBU"
 </code></pre>
 <h2 id="lowerc"><a class="header" href="#lowerc"><code>lower?(c)</code></a></h2>
 <p><code>lower?</code> reports whether a given char is a lowercase ASCII letter.</p>
-<pre><code class="language-js">lower?(&quot;a&quot;) // true
-lower?(&quot;A&quot;) // false
+<pre><code class="language-js">lower?("a") // true
+lower?("A") // false
 </code></pre>
 <h2 id="lowers"><a class="header" href="#lowers"><code>lower(s)</code></a></h2>
 <p><code>lower</code> returns the lowercase string from the given string <code>s</code>.</p>
-<pre><code class="language-js">lower(&quot;NOBU&quot;) // &quot;nobu&quot;
+<pre><code class="language-js">lower("NOBU") // "nobu"
 </code></pre>
 <h2 id="digitc"><a class="header" href="#digitc"><code>digit?(c)</code></a></h2>
 <p><code>digit?</code> reports whether a given char is an ASCII digit.</p>
-<pre><code class="language-js">digit?(&quot;1&quot;) // true
-digit?(&quot;a&quot;) // false
+<pre><code class="language-js">digit?("1") // true
+digit?("a") // false
 </code></pre>
 <h2 id="spacec"><a class="header" href="#spacec"><code>space?(c)</code></a></h2>
 <p><code>space?</code> reports whether a given char is an ASCII whitespace.</p>
-<pre><code class="language-js">space?(&quot;\n&quot;) // true
-space?(&quot;a&quot;) // false
+<pre><code class="language-js">space?("\n") // true
+space?("a") // false
 </code></pre>
 <h2 id="letterc"><a class="header" href="#letterc"><code>letter?(c)</code></a></h2>
 <p><code>letter?</code> reports whether a given char is an ASCII letter.</p>
-<pre><code class="language-js">letter?(&quot;a&quot;) // true
-letter?(&quot;A&quot;) // true
+<pre><code class="language-js">letter?("a") // true
+letter?("A") // true
 </code></pre>
 <h2 id="wordc"><a class="header" href="#wordc"><code>word?(c)</code></a></h2>
 <p><code>word?</code> reports whether a given char is a letter or a digit.</p>
-<pre><code class="language-js">word?(&quot;1&quot;) // true
-word?(&quot;a&quot;) // true
+<pre><code class="language-js">word?("1") // true
+word?("a") // true
 </code></pre>
 <h2 id="joinstrings-joiner"><a class="header" href="#joinstrings-joiner"><code>join(strings, joiner)</code></a></h2>
 <p><code>join</code> concatenates together a list of strings into a single string, where each original string in the list is separated by <code>joiner</code>.
 Joiner is the empty string by default.</p>
-<pre><code class="language-js">join([&quot;Nobu&quot;, &quot;Shimazu&quot;], &quot; &quot;) // &quot;Nobu Shimazu&quot;
+<pre><code class="language-js">join(["Nobu", "Shimazu"], " ") // "Nobu Shimazu"
 </code></pre>
 <h2 id="starts_withs-prefix"><a class="header" href="#starts_withs-prefix"><code>starts_with?(s, prefix)</code></a></h2>
 <p><code>starts_with?</code> reports whether a string starts with the substring <code>prefix</code>.</p>
-<pre><code class="language-js">starts_with?(&quot;abcdefg&quot;, &quot;abc&quot;) // true
+<pre><code class="language-js">starts_with?("abcdefg", "abc") // true
 </code></pre>
 <h2 id="ends_withs-suffix"><a class="header" href="#ends_withs-suffix"><code>ends_with?(s, suffix)</code></a></h2>
 <p><code>ends_with?</code> reports whether a string ends with the substring <code>suffix</code>.</p>
-<pre><code class="language-js">ends_with?(&quot;abcdefg&quot;, &quot;efg&quot;) // true
+<pre><code class="language-js">ends_with?("abcdefg", "efg") // true
 </code></pre>
 <h2 id="index_ofs-substr"><a class="header" href="#index_ofs-substr"><code>index_of(s, substr)</code></a></h2>
 <p><code>index_of</code> returns the first index at which the given substring <code>substr</code> appears in the string <code>s</code>. If the substring does not exist, it returns <code>-1</code>.</p>
-<pre><code class="language-js">index_of(&quot;nobu.bichanna@gmail.com&quot;, &quot;bichanna&quot;) // 5
+<pre><code class="language-js">index_of("nobu.bichanna@gmail.com", "bichanna") // 5
 </code></pre>
 <h2 id="rindex_ofs-substr"><a class="header" href="#rindex_ofs-substr"><code>rindex_of(s, substr)</code></a></h2>
 <p><code>rindex_of</code> returns the last index at which the given substring <code>substr</code> appears in the string <code>s</code>. If the substring does not exist, it returns <code>-1</code>.</p>
-<pre><code class="language-js">rindex_of(&quot;nobu.bichanna@gmail.com&quot;, &quot;a&quot;) // 16 
+<pre><code class="language-js">rindex_of("nobu.bichanna@gmail.com", "a") // 16 
 </code></pre>
 <h2 id="containss-substr"><a class="header" href="#containss-substr"><code>contains?(s, substr)</code></a></h2>
 <p><code>contains?</code> reports whether the string <code>s</code> contains the substring <code>substr</code>.</p>
-<pre><code class="language-js">contains?(&quot;nobu.bichanna@gmail.com&quot;, &quot;com&quot;) // true
-contains?(&quot;nobu.bichanna@gmail.com&quot;, &quot;asd&quot;) // false
+<pre><code class="language-js">contains?("nobu.bichanna@gmail.com", "com") // true
+contains?("nobu.bichanna@gmail.com", "asd") // false
 </code></pre>
 <h2 id="replaces-old-new"><a class="header" href="#replaces-old-new"><code>replace(s, old, new)</code></a></h2>
 <p><code>replace</code> returns a string where all occurrences of the substring <code>old</code> has been replaced by <code>new</code> in the string <code>s</code>. It does nothing for empty strings.</p>
-<pre><code class="language-js">replace(&quot;catcatcat&quot;, &quot;t&quot;, &quot;ts&quot;) // &quot;catscatscats&quot;
+<pre><code class="language-js">replace("catcatcat", "t", "ts") // "catscatscats"
 </code></pre>
 <h2 id="splits-sep"><a class="header" href="#splits-sep"><code>split(s, sep)</code></a></h2>
 <p><code>split</code> splits the string <code>s</code> by every occurrence of the substring <code>sep</code> in it, and returns the result as a list of strings.
 If <code>sep</code> is not specified, split returns a list of every character in the string in order.</p>
-<pre><code class="language-js">split(&quot;blah blah blah&quot;, &quot; &quot;) // [&quot;blah&quot;, &quot;blah&quot;, &quot;blah&quot;]
+<pre><code class="language-js">split("blah blah blah", " ") // ["blah", "blah", "blah"]
 </code></pre>
 <h2 id="pad_starts-n-pad"><a class="header" href="#pad_starts-n-pad"><code>pad_start(s, n, pad)</code></a></h2>
 <p><code>pad_start</code> prepends the string <code>s</code> with one or more repetitions of pad until the total string is at least <code>n</code> characters long. If <code>len(s) &gt; n</code>, it returns <code>s</code>.</p>
-<pre><code class="language-js">pad_start(&quot;hello&quot;, 2, &quot;-&quot;) // &quot;--hello&quot;
+<pre><code class="language-js">pad_start("hello", 2, "-") // "--hello"
 </code></pre>
 <h2 id="pad_ends-n-pad"><a class="header" href="#pad_ends-n-pad"><code>pad_end(s, n, pad)</code></a></h2>
 <p><code>trim_end</code> removes any (potentially repeated) occurrences of the string <code>suffix</code> from the end of string <code>s</code>.</p>
-<pre><code class="language-js">pad_end(&quot;hello&quot;, 2, &quot;-&quot;) // &quot;hello--&quot;
+<pre><code class="language-js">pad_end("hello", 2, "-") // "hello--"
 </code></pre>
 <h2 id="trim_starts-prefix"><a class="header" href="#trim_starts-prefix"><code>trim_start(s, prefix)</code></a></h2>
 <p><code>trim_start</code> removes any (potentially repeated) occurrences of the string <code>prefix</code> from the beginning of string <code>s</code>.</p>
-<pre><code class="language-js">trim_start(&quot;Nobuharu&quot;, &quot;Nobu&quot;) // &quot;haru&quot;
+<pre><code class="language-js">trim_start("Nobuharu", "Nobu") // "haru"
 </code></pre>
 <h2 id="trim_ends-suffix"><a class="header" href="#trim_ends-suffix"><code>trim_end(s, suffix)</code></a></h2>
 <p><code>trim_end</code> removes any (potentially repeated) occurrences of the string <code>suffix</code> from the end of string <code>s</code>.</p>
-<pre><code class="language-js">trim_end(&quot;Nobuharu&quot;, &quot;ru&quot;) // &quot;Nobuha&quot;
+<pre><code class="language-js">trim_end("Nobuharu", "ru") // "Nobuha"
 </code></pre>
 <h2 id="trims-part"><a class="header" href="#trims-part"><code>trim(s, part)</code></a></h2>
 <p><code>trim</code> removes any (potentially repeated) ocucrrences of the string <code>part</code> from either end of the string <code>s</code>.
 If <code>part</code> is not specified, trim removes all whitespace from either end of the string <code>s</code>.</p>
-<pre><code class="language-js">trim(&quot;  Hello  &quot;) // &quot;Hello&quot;
+<pre><code class="language-js">trim("  Hello  ") // "Hello"
 </code></pre>
 
                     </main>
@@ -275,7 +304,7 @@ If <code>part</code> is not specified, trim removes all whitespace from either e
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../experimental/experimental.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../experimental/experimental.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -289,7 +318,7 @@ If <code>part</code> is not specified, trim removes all whitespace from either e
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../experimental/experimental.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../experimental/experimental.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

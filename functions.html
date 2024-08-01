@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -31,7 +31,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -61,42 +61,71 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html" class="active"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="try.html"><strong aria-hidden="true">14.</strong> Try Expression</a></li><li class="chapter-item expanded "><a href="macros.html"><strong aria-hidden="true">15.</strong> Macros</a></li><li class="chapter-item expanded "><a href="std_library.html"><strong aria-hidden="true">16.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/builtins.html"><strong aria-hidden="true">16.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="library/fmt.html"><strong aria-hidden="true">16.2.</strong> fmt</a></li><li class="chapter-item expanded "><a href="library/json.html"><strong aria-hidden="true">16.3.</strong> json</a></li><li class="chapter-item expanded "><a href="library/math.html"><strong aria-hidden="true">16.4.</strong> math</a></li><li class="chapter-item expanded "><a href="library/range.html"><strong aria-hidden="true">16.5.</strong> range</a></li><li class="chapter-item expanded "><a href="library/std.html"><strong aria-hidden="true">16.6.</strong> std</a></li><li class="chapter-item expanded "><a href="library/string.html"><strong aria-hidden="true">16.7.</strong> strings</a></li></ol></li><li class="chapter-item expanded "><a href="experimental/experimental.html"><strong aria-hidden="true">17.</strong> Experimental Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="experimental/references.html"><strong aria-hidden="true">17.1.</strong> References</a></li></ol></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -151,7 +180,7 @@
 <h2 id="named-functions"><a class="header" href="#named-functions">Named Functions</a></h2>
 <p>Named functions in Impala are defined using the <code>func</code> keyword.</p>
 <pre><code class="language-js">func greet(name) {
-    println(&quot;Hello, &quot; + name + &quot;!&quot;)
+    println("Hello, " + name + "!")
 }
 </code></pre>
 <p>Functions in Impala are first class values and can be assigned to variables, passed to functions, or anything else you might do with any other data type.</p>
@@ -170,15 +199,15 @@ func add_two(x) twice(add_one, x)
 some_func(:hello) // a = :hello and b = null
 </code></pre>
 <p>There is <a href="./library/std.html#defaultx-base"><code>default</code></a> function in <a href="./library/std.html"><code>std</code> module</a>.</p>
-<pre><code class="language-js">{default: default} := import(&quot;std&quot;)
+<pre><code class="language-js">{default: default} := import("std")
 
 func some_func(a, b) {
-    b = default(b, &quot;Hello&quot;)
+    b = default(b, "Hello")
 }
 </code></pre>
 <h3 id="rest-parameters"><a class="header" href="#rest-parameters">Rest Parameters</a></h3>
 <p>You can add <code>+</code> after parameter name if you are unsure about the number of arguments to pass in the functions.</p>
-<pre><code class="language-js">{each: each} := import(&quot;std&quot;)
+<pre><code class="language-js">{each: each} := import("std")
 
 func sum(nums+) {
     reduce(nums, 0) &lt;| func(accumulator, elem) accumulator + elem
@@ -190,7 +219,7 @@ sum(1, 4, 5, 3, 6)
 <p>The reverse situation occurs when the arguments are already in a list but need to be unpacked for a function call requiring separate arguments.
 For instance, the <a href="./library/std.html#rangestart-end-step"><code>range()</code></a> function expects separate <code>start</code> and <code>end</code> arguments.
 If they are not available separately, write the function call with the <code>...</code> operator to unpack the arguments out of a list.</p>
-<pre><code class="language-js">{range: range} := import(&quot;std&quot;)
+<pre><code class="language-js">{range: range} := import("std")
 
 args := [1, 5]
 range(...args) // [1, 2, 3, 4]
@@ -200,20 +229,20 @@ range(...args) // [1, 2, 3, 4]
 This is similar in functionality to the same operator in Elixir or F#.</p>
 <p>The pipe operator allows you to chain function calls without using a plethora of parenthesis.</p>
 <pre><code class="language-js">names := []
-append(append(append(append(names, &quot;Nobu&quot;), &quot;Sol&quot;), &quot;Damian&quot;), &quot;Thomas&quot;)
-names // [&quot;Nobu&quot;, &quot;Sol&quot;, &quot;Damian&quot;, &quot;Thomas&quot;]
+append(append(append(append(names, "Nobu"), "Sol"), "Damian"), "Thomas")
+names // ["Nobu", "Sol", "Damian", "Thomas"]
 </code></pre>
 <p>This can be expressed more naturally using the pipe operator, eliminating the need to track parenthesis closure.</p>
 <pre><code class="language-js">names
-|&gt; append(&quot;Nobu&quot;)
-|&gt; append(&quot;Sol&quot;)
-|&gt; append(&quot;Damian&quot;)
-|&gt; append(&quot;Thomas&quot;)
+|&gt; append("Nobu")
+|&gt; append("Sol")
+|&gt; append("Damian")
+|&gt; append("Thomas")
 </code></pre>
 <p>Each line of this expression applies the function to the result of the previous line.</p>
 <h2 id="callback-functions"><a class="header" href="#callback-functions">Callback Functions</a></h2>
 <p>A callback function is a function passed into another function as an argument, which is then invoked inside the outer function.</p>
-<pre><code class="language-js">std := import(&quot;std&quot;)
+<pre><code class="language-js">std := import("std")
 std.range(0, 11) |&gt; std.each() &lt;~ (elem, index) {
     // do something
 }
@@ -231,11 +260,11 @@ std.range(0, 11) |&gt; std.each() &lt;| func(elem, index) {
 <h2 id="decorators"><a class="header" href="#decorators">Decorators</a></h2>
 <p>Decorators are wrapper functions that modify the functionality of other functions.</p>
 <p>This is an example of an example.</p>
-<pre><code class="language-js">{upper: upper} := import(&quot;strings&quot;)
+<pre><code class="language-js">{upper: upper} := import("strings")
 
 func shout(f) {
     func (name) {
-        f(upper(name) + &quot;!&quot;)
+        f(upper(name) + "!")
     }
 }
 
@@ -244,7 +273,7 @@ func print_name(name) {
     println(name)
 }
 
-print_name(&quot;Nobu&quot;) // prints out &quot;NOBU!&quot;
+print_name("Nobu") // prints out "NOBU!"
 </code></pre>
 <h2 id="anonymous-functions"><a class="header" href="#anonymous-functions">Anonymous Functions</a></h2>
 <p>Anonymous functions can be defined with a similar syntax:</p>
@@ -271,7 +300,7 @@ print_name(&quot;Nobu&quot;) // prints out &quot;NOBU!&quot;
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="match.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="match.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -285,7 +314,7 @@ print_name(&quot;Nobu&quot;) // prints out &quot;NOBU!&quot;
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="match.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="match.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

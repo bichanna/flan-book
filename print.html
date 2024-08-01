@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>The Impala Book</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex">
 
 
         <!-- Custom HTML head -->
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -32,7 +32,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -62,42 +62,71 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="try.html"><strong aria-hidden="true">14.</strong> Try Expression</a></li><li class="chapter-item expanded "><a href="macros.html"><strong aria-hidden="true">15.</strong> Macros</a></li><li class="chapter-item expanded "><a href="std_library.html"><strong aria-hidden="true">16.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/builtins.html"><strong aria-hidden="true">16.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="library/fmt.html"><strong aria-hidden="true">16.2.</strong> fmt</a></li><li class="chapter-item expanded "><a href="library/json.html"><strong aria-hidden="true">16.3.</strong> json</a></li><li class="chapter-item expanded "><a href="library/math.html"><strong aria-hidden="true">16.4.</strong> math</a></li><li class="chapter-item expanded "><a href="library/range.html"><strong aria-hidden="true">16.5.</strong> range</a></li><li class="chapter-item expanded "><a href="library/std.html"><strong aria-hidden="true">16.6.</strong> std</a></li><li class="chapter-item expanded "><a href="library/string.html"><strong aria-hidden="true">16.7.</strong> strings</a></li></ol></li><li class="chapter-item expanded "><a href="experimental/experimental.html"><strong aria-hidden="true">17.</strong> Experimental Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="experimental/references.html"><strong aria-hidden="true">17.1.</strong> References</a></li></ol></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -155,15 +184,15 @@
 <h3 id="types"><a class="header" href="#types">Types</a></h3>
 <p>Impala has 7 primitive types and 3 complex ones:</p>
 <pre><code class="language-js">null         // Null
-_            // &quot;Empty&quot; value, equal to everything
+_            // "Empty" value, equal to everything
 1, 2, 4      // Integers
 3.45         // Floats
 true, false  // Booleans
-&quot;Hello!&quot;     // Strings
+"Hello!"     // Strings
 :ok          // Atoms
 
-[:error, 1, &quot;blah&quot;, false] // Lists
-{age: 16, name: &quot;Nobu&quot;}    // Objects
+[:error, 1, "blah", false] // Lists
+{age: 16, name: "Nobu"}    // Objects
 func (x, y) x + y          // Functions
 </code></pre>
 <h3 id="assignment"><a class="header" href="#assignment">Assignment</a></h3>
@@ -172,11 +201,11 @@ func (x, y) x + y          // Functions
 [a, b] := [123, 456] // a is 123, and b is 456
 
 {
-    full_name: name, // name is &quot;Nobuharu Shimazu&quot;
-    email_address: email, // email is &quot;nobu.bichanna@gmail.com&quot;
+    full_name: name, // name is "Nobuharu Shimazu"
+    email_address: email, // email is "nobu.bichanna@gmail.com"
 } := {
-    full_name: &quot;Nobuharu Shimazu&quot;,
-    email_address: &quot;nobu.bichanna@gmail.com&quot;
+    full_name: "Nobuharu Shimazu",
+    email_address: "nobu.bichanna@gmail.com"
 }
 </code></pre>
 <p>Reassignment operator <code>=</code>:</p>
@@ -185,22 +214,22 @@ age = 16 // age is now 16
 </code></pre>
 <h3 id="control-flows"><a class="header" href="#control-flows">Control Flows</a></h3>
 <p><code>match</code> expression is the only control flow in Impala.</p>
-<pre><code class="language-js">name := &quot;Nobu&quot;
+<pre><code class="language-js">name := "Nobu"
 match name {
-    &quot;Nobu&quot; -&gt; println(&quot;Cool name!&quot;),
-    &quot;Sol&quot; -&gt; println(&quot;Nice name.&quot;),
-    &quot;Damian&quot; -&gt; println(&quot;Eh, nice, I guess?&quot;),
-    _ -&gt; println(&quot;Hello, &quot; + name),
+    "Nobu" -&gt; println("Cool name!"),
+    "Sol" -&gt; println("Nice name."),
+    "Damian" -&gt; println("Eh, nice, I guess?"),
+    _ -&gt; println("Hello, " + name),
 }
 </code></pre>
 <p>But there is also a short-hand <code>match</code>, which is known as the ternary operator.</p>
 <pre><code class="language-js">damian_stinks := false
-command := damian_stinks ? &quot;go take a shower&quot; : &quot;go take a nap&quot;
+command := damian_stinks ? "go take a shower" : "go take a nap"
 
 // de-sugars to this:
 command = match damian_stinks {
-    true -&gt; &quot;go take a shower&quot;,
-    _ -&gt; &quot;go take a nap&quot;,
+    true -&gt; "go take a shower",
+    _ -&gt; "go take a nap",
 }
 </code></pre>
 <h3 id="functions"><a class="header" href="#functions">Functions</a></h3>
@@ -241,19 +270,19 @@ add := func(x, y) x + y
 <div style="break-before: page; page-break-before: always;"></div><h1 id="strings-and-atoms"><a class="header" href="#strings-and-atoms">Strings And Atoms</a></h1>
 <h2 id="strings"><a class="header" href="#strings">Strings</a></h2>
 <p>In Impala, strings can be written as text surrounded by double quotes.</p>
-<pre><code class="language-js">&quot;This is a string&quot;
+<pre><code class="language-js">"This is a string"
 </code></pre>
 <p>Also, they can span multiple lines.</p>
-<pre><code class="language-js">&quot;Multi-line
-string!&quot;
+<pre><code class="language-js">"Multi-line
+string!"
 </code></pre>
 <p>Under the hood, strings are just Rust <code>String</code>s, which are encoded with <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a>, and are able to contain any valid unicode.</p>
-<pre><code class="language-js">&quot;こんちわ impala👺&quot;
+<pre><code class="language-js">"こんちわ impala👺"
 </code></pre>
 <h3 id="concatenation"><a class="header" href="#concatenation">Concatenation</a></h3>
 <p>The addition operator can be used to join strings together, but not atoms:</p>
-<pre><code class="language-js">name = &quot;Nobu&quot;
-name + &quot;haru&quot; // &quot;Nobuharu&quot;
+<pre><code class="language-js">name = "Nobu"
+name + "haru" // "Nobuharu"
 </code></pre>
 <h3 id="escape-sequences"><a class="header" href="#escape-sequences">Escape Sequences</a></h3>
 <p>Impala supports common string escape sequences. Here's all of them:</p>
@@ -261,17 +290,17 @@ name + &quot;haru&quot; // &quot;Nobuharu&quot;
 <tr><td>\n</td><td>Newline</td></tr>
 <tr><td>\r</td><td>Carriage Return</td></tr>
 <tr><td>\t</td><td>Tab</td></tr>
-<tr><td>\&quot;</td><td>Double Quote</td></tr>
+<tr><td>\"</td><td>Double Quote</td></tr>
 <tr><td>\\</td><td>Backslash</td></tr>
 <tr><td>\0</td><td>Null Terminator</td></tr>
 </tbody></table>
 </div>
-<p>For example, to include double quote (<code>&quot;</code>) character in a string literal, it must be escaped by placing a backslash (<code>\</code>) character before it.</p>
-<pre><code class="language-js">&quot;Here's a double quote: \&quot;&quot;
+<p>For example, to include double quote (<code>"</code>) character in a string literal, it must be escaped by placing a backslash (<code>\</code>) character before it.</p>
+<pre><code class="language-js">"Here's a double quote: \""
 </code></pre>
 <p>Another example:</p>
 <pre><code class="language-js">// A Windows filepath C:\Users\Nobu
-&quot;C:\\Users\\Nobu&quot;
+"C:\\Users\\Nobu"
 </code></pre>
 <h2 id="atoms"><a class="header" href="#atoms">Atoms</a></h2>
 <p>For immutable strings, use atoms:</p>
@@ -303,7 +332,7 @@ not false // =&gt; true
 <div style="break-before: page; page-break-before: always;"></div><h1 id="integers-and-floats"><a class="header" href="#integers-and-floats">Integers And Floats</a></h1>
 <p>Impala's main number types are Integers and Floats.</p>
 <h2 id="integers"><a class="header" href="#integers">Integers</a></h2>
-<p>Integers are &quot;whole&quot; numbers. Hexadecimal integers start with <code>0x</code>.</p>
+<p>Integers are "whole" numbers. Hexadecimal integers start with <code>0x</code>.</p>
 <pre><code class="language-js">15
 -83
 0xBADC0FFEE // 50159747054
@@ -344,22 +373,22 @@ not false // =&gt; true
 null &lt;= 7.3  // =&gt; false
 </code></pre>
 <h2 id="empty"><a class="header" href="#empty">Empty</a></h2>
-<p><code>_</code> is an &quot;empty&quot; value, which is equal to anything.</p>
+<p><code>_</code> is an "empty" value, which is equal to anything.</p>
 <pre><code class="language-js">_ &gt;= 123     // =&gt; true
-_ == &quot;hello&quot; // =&gt; true
+_ == "hello" // =&gt; true
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="lists"><a class="header" href="#lists">Lists</a></h2>
 <p>Lists are ordered collections of values. They're one of the most common data structures in Impala.</p>
 <p>Lists are <em>heterogeneous</em>, meaning the elements of a list can be of different types.</p>
-<pre><code class="language-js">[:err, &quot;something wrong happened&quot;]
-[[&quot;abc&quot;, &quot;hello&quot;], 23, 3.14]
+<pre><code class="language-js">[:err, "something wrong happened"]
+[["abc", "hello"], 23, 3.14]
 </code></pre>
 <p>Under the hood, lists are just Rust <code>Vector</code>s.</p>
 <p>A built-in function <a href="./library/builtins.html#appendxs-x"><code>append</code></a> is provided to append a value to a list.</p>
-<pre><code class="language-js">names := [&quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;]
-names = append(names, &quot;Sol&quot;)
+<pre><code class="language-js">names := ["Nobu", "Damian", "Thomas"]
+names = append(names, "Sol")
 
-names // [&quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Sol&quot;]
+names // ["Nobu", "Damian", "Thomas", "Sol"]
 </code></pre>
 <p>You can index an element in a list by using <code>.</code>.</p>
 <pre><code class="language-js">ages := [16, 15, 15, 14]
@@ -368,9 +397,9 @@ ages.0 // 16
 <div style="break-before: page; page-break-before: always;"></div><h1 id="objects"><a class="header" href="#objects">Objects</a></h1>
 <p>An object is used to store various keyed collections and more complex entities.</p>
 <pre><code class="language-js">nobu := {
-    name: &quot;Nobu&quot;,
+    name: "Nobu",
     cool?: true,
-    email: &quot;nobu.bichanna@gmail.com&quot;,
+    email: "nobu.bichanna@gmail.com",
 }
 </code></pre>
 <p>Once you have an object, the attributes contained can be accessed using the <code>.something</code> accessor syntax.</p>
@@ -380,9 +409,9 @@ ages.0 // 16
 <p>The immutable assignment operator <code>:=</code> binds values on the right side to names on the left, potentially by destructuring an object or list. For example:</p>
 <pre><code class="language-js">a : = 1 // a is 1
 
-[b, c] := [4, &quot;string&quot;] // b is 4, and c is &quot;string&quot;
+[b, c] := [4, "string"] // b is 4, and c is "string"
 
-{first_name: name} := {first_name: &quot;Nobuharu&quot;, last_name: &quot;Shimazu&quot;} // name is &quot;Nobuharu&quot;
+{first_name: name} := {first_name: "Nobuharu", last_name: "Shimazu"} // name is "Nobuharu"
 </code></pre>
 <p>When you want to define a global mutable variable, you can use <code>$=</code> operator.</p>
 <pre><code class="language-js">a $= 100
@@ -394,7 +423,7 @@ If the variable doesn't exist in the current scope, the operator ascends up pare
 m := 2
 {
     n = 3
-    m := 4 // variables defined with := operator are mutable
+    m := 4 // local variables defined with := operator are mutable
 }
 n // 3
 m // 2
@@ -403,7 +432,7 @@ m // 2
 <h2 id="named-functions"><a class="header" href="#named-functions">Named Functions</a></h2>
 <p>Named functions in Impala are defined using the <code>func</code> keyword.</p>
 <pre><code class="language-js">func greet(name) {
-    println(&quot;Hello, &quot; + name + &quot;!&quot;)
+    println("Hello, " + name + "!")
 }
 </code></pre>
 <p>Functions in Impala are first class values and can be assigned to variables, passed to functions, or anything else you might do with any other data type.</p>
@@ -422,15 +451,15 @@ func add_two(x) twice(add_one, x)
 some_func(:hello) // a = :hello and b = null
 </code></pre>
 <p>There is <a href="./library/std.html#defaultx-base"><code>default</code></a> function in <a href="./library/std.html"><code>std</code> module</a>.</p>
-<pre><code class="language-js">{default: default} := import(&quot;std&quot;)
+<pre><code class="language-js">{default: default} := import("std")
 
 func some_func(a, b) {
-    b = default(b, &quot;Hello&quot;)
+    b = default(b, "Hello")
 }
 </code></pre>
 <h3 id="rest-parameters"><a class="header" href="#rest-parameters">Rest Parameters</a></h3>
 <p>You can add <code>+</code> after parameter name if you are unsure about the number of arguments to pass in the functions.</p>
-<pre><code class="language-js">{each: each} := import(&quot;std&quot;)
+<pre><code class="language-js">{each: each} := import("std")
 
 func sum(nums+) {
     reduce(nums, 0) &lt;| func(accumulator, elem) accumulator + elem
@@ -442,7 +471,7 @@ sum(1, 4, 5, 3, 6)
 <p>The reverse situation occurs when the arguments are already in a list but need to be unpacked for a function call requiring separate arguments.
 For instance, the <a href="./library/std.html#rangestart-end-step"><code>range()</code></a> function expects separate <code>start</code> and <code>end</code> arguments.
 If they are not available separately, write the function call with the <code>...</code> operator to unpack the arguments out of a list.</p>
-<pre><code class="language-js">{range: range} := import(&quot;std&quot;)
+<pre><code class="language-js">{range: range} := import("std")
 
 args := [1, 5]
 range(...args) // [1, 2, 3, 4]
@@ -452,20 +481,20 @@ range(...args) // [1, 2, 3, 4]
 This is similar in functionality to the same operator in Elixir or F#.</p>
 <p>The pipe operator allows you to chain function calls without using a plethora of parenthesis.</p>
 <pre><code class="language-js">names := []
-append(append(append(append(names, &quot;Nobu&quot;), &quot;Sol&quot;), &quot;Damian&quot;), &quot;Thomas&quot;)
-names // [&quot;Nobu&quot;, &quot;Sol&quot;, &quot;Damian&quot;, &quot;Thomas&quot;]
+append(append(append(append(names, "Nobu"), "Sol"), "Damian"), "Thomas")
+names // ["Nobu", "Sol", "Damian", "Thomas"]
 </code></pre>
 <p>This can be expressed more naturally using the pipe operator, eliminating the need to track parenthesis closure.</p>
 <pre><code class="language-js">names
-|&gt; append(&quot;Nobu&quot;)
-|&gt; append(&quot;Sol&quot;)
-|&gt; append(&quot;Damian&quot;)
-|&gt; append(&quot;Thomas&quot;)
+|&gt; append("Nobu")
+|&gt; append("Sol")
+|&gt; append("Damian")
+|&gt; append("Thomas")
 </code></pre>
 <p>Each line of this expression applies the function to the result of the previous line.</p>
 <h2 id="callback-functions"><a class="header" href="#callback-functions">Callback Functions</a></h2>
 <p>A callback function is a function passed into another function as an argument, which is then invoked inside the outer function.</p>
-<pre><code class="language-js">std := import(&quot;std&quot;)
+<pre><code class="language-js">std := import("std")
 std.range(0, 11) |&gt; std.each() &lt;~ (elem, index) {
     // do something
 }
@@ -483,11 +512,11 @@ std.range(0, 11) |&gt; std.each() &lt;| func(elem, index) {
 <h2 id="decorators"><a class="header" href="#decorators">Decorators</a></h2>
 <p>Decorators are wrapper functions that modify the functionality of other functions.</p>
 <p>This is an example of an example.</p>
-<pre><code class="language-js">{upper: upper} := import(&quot;strings&quot;)
+<pre><code class="language-js">{upper: upper} := import("strings")
 
 func shout(f) {
     func (name) {
-        f(upper(name) + &quot;!&quot;)
+        f(upper(name) + "!")
     }
 }
 
@@ -496,7 +525,7 @@ func print_name(name) {
     println(name)
 }
 
-print_name(&quot;Nobu&quot;) // prints out &quot;NOBU!&quot;
+print_name("Nobu") // prints out "NOBU!"
 </code></pre>
 <h2 id="anonymous-functions"><a class="header" href="#anonymous-functions">Anonymous Functions</a></h2>
 <p>Anonymous functions can be defined with a similar syntax:</p>
@@ -516,49 +545,49 @@ print_name(&quot;Nobu&quot;) // prints out &quot;NOBU!&quot;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="match-expression"><a class="header" href="#match-expression">Match Expression</a></h1>
 <p>The <code>match</code> expression is the most common kind of flow control in Impala code.
-It allows us to say &quot;if the data has this shape then do that&quot;, which we call <em>pattern matching</em>.</p>
+It allows us to say "if the data has this shape then do that", which we call <em>pattern matching</em>.</p>
 <p>Here, we match on an Int and return a specific string for the values 0, 1, and 2.
 The final pattern n matches any other value that did not match any of the previous patterns.</p>
 <pre><code class="language-js">match some_number {
-  0 -&gt; &quot;zero&quot;,
-  1 -&gt; &quot;one&quot;,
-  2 -&gt; &quot;two&quot;,
-  _ -&gt; &quot;some other number&quot;, // This matches anything
+  0 -&gt; "zero",
+  1 -&gt; "one",
+  2 -&gt; "two",
+  _ -&gt; "some other number", // This matches anything
 }
 </code></pre>
 <p>Pattern matching on a Boolean value is the Impala alternative to the <code>if else</code> statement found in other languages.</p>
 <pre><code class="language-js">match some_bool {
-  true -&gt; &quot;It's true.&quot;,
-  false -&gt; &quot;It's not true.&quot;,
+  true -&gt; "It's true.",
+  false -&gt; "It's not true.",
 }
 </code></pre>
 <p>Impala's <code>match</code> is an expression, meaning it returns a value and can be used anywhere we would use a value.
 For example, we can name the value of a match expression with a variable binding.</p>
 <pre><code class="language-js">description := match true {
-    true -&gt; &quot;blah blah&quot;,
-    false -&gt; &quot;halb halb&quot;,
+    true -&gt; "blah blah",
+    false -&gt; "halb halb",
 }
 
-description // &quot;blah blah&quot;
+description // "blah blah"
 </code></pre>
 <h2 id="destructuring"><a class="header" href="#destructuring">Destructuring</a></h2>
 <p>A <code>match</code> expression can be used to destructure values that contain other values, such as lists and objects.</p>
 <pre><code class="language-js">match [number % 3, number % 5] {
-    [0, 0] -&gt; &quot;FizzBuzz&quot;,
-    [0, _] -&gt; &quot;Fizz&quot;,
-    [_, 0] -&gt; &quot;Buzz&quot;,
+    [0, 0] -&gt; "FizzBuzz",
+    [0, _] -&gt; "Fizz",
+    [_, 0] -&gt; "Buzz",
     [a, b] -&gt; a + b,
 }
 </code></pre>
 <h2 id="ternary-operator"><a class="header" href="#ternary-operator">Ternary Operator</a></h2>
 <p>There is also a short-hand match, which is known as the ternary operator.</p>
 <pre><code class="language-js">damian_stinks := false
-command := damian_stinks ? &quot;go take a shower&quot; : &quot;go take a nap&quot;
+command := damian_stinks ? "go take a shower" : "go take a nap"
 
 // de-sugars to this:
 command := match damian_stinks {
-    true -&gt; &quot;go take a shower&quot;,
-    _ -&gt; &quot;go take a nap&quot;,
+    true -&gt; "go take a shower",
+    _ -&gt; "go take a nap",
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="modules"><a class="header" href="#modules">Modules</a></h1>
@@ -569,30 +598,30 @@ Functions annotated with <code>public</code> keyword are public functions, meani
 
 // public function func_in_a
 public func func_in_a() {
-    &quot;Hello from a_module&quot;
+    "Hello from a_module"
 }
 </code></pre>
 <p>Here, we have a function <code>func_in_a</code> in module <code>src/a_module</code>.</p>
 <p>From module <code>src/entry</code>, you can import the module <code>src/a_module</code> like this.</p>
 <pre><code class="language-js">// src/entry.impl
 
-a_mod := import(&quot;src/a_module&quot;)
+a_mod := import("src/a_module")
 
-a_mod.func_in_a() // &quot;Hello from a_module&quot;
+a_mod.func_in_a() // "Hello from a_module"
 </code></pre>
 <p>You can similarly import the module <code>src/a_module</code> from another module <code>src/directory/b_module</code>, relative to the <code>src/entry</code> module.</p>
 <pre><code class="language-js">// src/directory/b_module.impl
 
-a_mod := import(&quot;src/a_module&quot;)
+a_mod := import("src/a_module")
 
-a_mod.func_in_a() // &quot;Hello from a_module&quot;
+a_mod.func_in_a() // "Hello from a_module"
 </code></pre>
 <p>Because <code>import</code> function returns an object containing public variables and functions, you can import specific functions like so:</p>
 <pre><code class="language-js">// src/entry.impl
 
-{func_in_a: func_from_a} := import(&quot;src/a_module&quot;)
+{func_in_a: func_from_a} := import("src/a_module")
 
-func_from_a() // &quot;Hello from a_module&quot;
+func_from_a() // "Hello from a_module"
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="exceptions"><a class="header" href="#exceptions">Exceptions</a></h1>
 <p>Until now errors have never been mentioned, but if you have tried out the examples you have probably seen some.
@@ -600,7 +629,7 @@ There are two distinguishable kinds of errors: <em>syntax errors</em> and <em>ex
 <h2 id="syntax-errors"><a class="header" href="#syntax-errors">Syntax Errors</a></h2>
 <p>Syntax errors, also known as parsing errors, are perhaps the most common kind of complaint you get while you are still learning Impala.</p>
 <pre><code class="language-js">some_file:1:14 error: expected ']'
-names[&quot;hello&quot;
+names["hello"
 </code></pre>
 <h2 id="runtime-exceptions"><a class="header" href="#runtime-exceptions">Runtime Exceptions</a></h2>
 <p>Even if an expression is syntactically correct, it may cause an error when an attempt is made to execute it:</p>
@@ -611,8 +640,8 @@ n := 10 / 0
 <p>It is possible to write programs that handle exceptions. The previous line of code can be handled like this:</p>
 <pre><code class="language-js">result := unsafe (10 / 0)
 match error?(result) {
-    true -&gt; println!(&quot;Math still works!&quot;),
-    false -&gt; println!(&quot;Math is broken :(&quot;),
+    true -&gt; println!("Math still works!"),
+    false -&gt; println!("Math is broken :("),
 }
 </code></pre>
 <p>If an expression evaluates without any errors, the <code>unsafe</code> expression returns the value in <code>value</code> property:</p>
@@ -624,17 +653,17 @@ result // { error_type: null, error_message: null, value: 1 }
 <p>An exception is just an object that has three properties: <code>error_type</code>, <code>error_message</code>, and <code>value</code>. For example:</p>
 <pre><code class="language-js">{
     error_type: :zero_division,
-    error_message: &quot;division by zero&quot;,
+    error_message: "division by zero",
     value: null
 }
 </code></pre>
 <h3 id="user-defined-runtime-errors"><a class="header" href="#user-defined-runtime-errors">User-defined Runtime Errors</a></h3>
 <p>Programs may name their own exceptions by creating a new exception:</p>
-<pre><code class="language-js">error(:user_defined, &quot;user-defined error!&quot;)
+<pre><code class="language-js">error(:user_defined, "user-defined error!")
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="try-expression"><a class="header" href="#try-expression">Try Expression</a></h1>
 <p>In Impala, this is how you would typically handle runtime exceptions:</p>
-<pre><code class="language-js">result := unsafe some_func(&quot;abc&quot;)
+<pre><code class="language-js">result := unsafe some_func("abc")
 match error?(result) {
     true -&gt; {
         // error handling
@@ -646,7 +675,7 @@ match error?(result) {
 </code></pre>
 <p>It's quite tedious to write all of that code. That's when <code>try</code> expression comes in handy.</p>
 <p>The code above can be rewritten with a <code>try</code> expression like this:</p>
-<pre><code class="language-js">result := unsafe some_func(&quot;abc&quot;)
+<pre><code class="language-js">result := unsafe some_func("abc")
 try result {
     // error handling
 } else {
@@ -679,8 +708,8 @@ as well as modules written in Impala that provide standardized solutions for man
 All of them are listed here.</p>
 <ul>
 <li><a href="library/builtins.html#absx"><code>abs</code></a></li>
-<li><a href="library/builtins.html#importx"><code>import</code></a> </li>
-<li><a href="library/builtins.html#intx"><code>int</code></a> </li>
+<li><a href="library/builtins.html#importx"><code>import</code></a></li>
+<li><a href="library/builtins.html#intx"><code>int</code></a></li>
 <li><a href="library/builtins.html#floatx"><code>float</code></a></li>
 <li><a href="library/builtins.html#stringx"><code>string</code></a></li>
 <li><a href="library/builtins.html#atomx"><code>atom</code></a></li>
@@ -721,7 +750,7 @@ type(pi) // :float
 </code></pre>
 <h2 id="lenxs"><a class="header" href="#lenxs"><code>len(xs)</code></a></h2>
 <p><code>len</code>returns the length of a string, a list, or an object.</p>
-<pre><code class="language-js">list := [&quot;Hello&quot;, &quot;World&quot;]
+<pre><code class="language-js">list := ["Hello", "World"]
 len(list) // 2
 </code></pre>
 <h2 id="appendxs-x"><a class="header" href="#appendxs-x"><code>append(xs, x)</code></a></h2>
@@ -749,13 +778,13 @@ popped := pop!(list) // popped is 3
 </code></pre>
 <h2 id="keysobj"><a class="header" href="#keysobj"><code>keys(obj)</code></a></h2>
 <p><code>keys</code> returns a list of the keys of the object <code>obj</code>.</p>
-<pre><code class="language-js">obj := {name: &quot;Nobu&quot;, email: &quot;nobu.bichanna@gmail.com&quot;}
+<pre><code class="language-js">obj := {name: "Nobu", email: "nobu.bichanna@gmail.com"}
 keys(obj) // [:name, :email]
 </code></pre>
 <h2 id="valuesobj"><a class="header" href="#valuesobj"><code>values(obj)</code></a></h2>
 <p><code>values</code> returns a list of the values of the object <code>obj</code>.</p>
-<pre><code class="language-js">obj := {name: &quot;Nobu&quot;, email: &quot;nobu.bichanna@gmail.com&quot;}
-values(obj) // [&quot;Nobu&quot;, &quot;nobu.bichanna@gmail.com&quot;]
+<pre><code class="language-js">obj := {name: "Nobu", email: "nobu.bichanna@gmail.com"}
+values(obj) // ["Nobu", "nobu.bichanna@gmail.com"]
 </code></pre>
 <h2 id="args"><a class="header" href="#args"><code>args()</code></a></h2>
 <p><code>args</code> returns a list of command line arguments.</p>
@@ -763,37 +792,37 @@ values(obj) // [&quot;Nobu&quot;, &quot;nobu.bichanna@gmail.com&quot;]
 <p><code>env</code> returns all environment variables as an object.</p>
 <h2 id="getobj-key"><a class="header" href="#getobj-key"><code>get(obj, key)</code></a></h2>
 <p><code>get</code> returns the value of the item with the key <code>key</code>, which could be an atom or a string. It is unsafe (might throw an error).</p>
-<pre><code class="language-js">obj := {name: &quot;Nobu&quot;}
-get(obj, :name) // &quot;Nobu&quot;
+<pre><code class="language-js">obj := {name: "Nobu"}
+get(obj, :name) // "Nobu"
 </code></pre>
 <h2 id="printx"><a class="header" href="#printx"><code>print(x)</code></a></h2>
 <p><code>print</code> prints <code>x</code> to the standard output stream.</p>
-<pre><code class="language-js">print(&quot;Hello, world\n&quot;)
+<pre><code class="language-js">print("Hello, world\n")
 </code></pre>
 <h2 id="printlnx"><a class="header" href="#printlnx"><code>println(x)</code></a></h2>
 <p><code>println</code> prints <code>x</code> to the standard output stream with a new line at the end.</p>
-<pre><code class="language-js">println(&quot;Hello, world&quot;)
+<pre><code class="language-js">println("Hello, world")
 </code></pre>
 <h2 id="eprintx"><a class="header" href="#eprintx"><code>eprint(x)</code></a></h2>
 <p><code>eprint</code> prints <code>x</code> to the standard error stream.</p>
-<pre><code class="language-js">eprint(&quot;something wrong happened!\n&quot;)
+<pre><code class="language-js">eprint("something wrong happened!\n")
 </code></pre>
 <h2 id="eprintlnx"><a class="header" href="#eprintlnx"><code>eprintln(x)</code></a></h2>
 <p><code>eprintln</code> prints <code>x</code> to the standard error stream with a new line at the end.`</p>
-<pre><code class="language-js">eprintln(&quot;something wrong happened!&quot;)
+<pre><code class="language-js">eprintln("something wrong happened!")
 </code></pre>
 <h2 id="errort-msg"><a class="header" href="#errort-msg"><code>error(t, msg)</code></a></h2>
 <p><code>error</code> creates a new error with type <code>t</code> and <code>msg</code>.</p>
-<pre><code class="language-js">err := unsafe error(:some_error, &quot;some error!&quot;)
+<pre><code class="language-js">err := unsafe error(:some_error, "some error!")
 err.error_type    // :some_error
-err.error_message // &quot;some error!&quot;
+err.error_message // "some error!"
 </code></pre>
 <h2 id="errorx"><a class="header" href="#errorx"><code>error?(x)</code></a></h2>
 <p><code>error?</code> checks if <code>x</code> is an error object and contains error type and message.</p>
 <pre><code class="language-js">result := unsafe (10 / 0)
 match error?(result) {
-    true -&gt; &quot;Math still works!&quot;,
-    false -&gt; &quot;Math is broken ;(&quot;,
+    true -&gt; "Math still works!",
+    false -&gt; "Math is broken ;(",
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fmt"><a class="header" href="#fmt"><code>fmt</code></a></h1>
@@ -804,19 +833,19 @@ match error?(result) {
 <li><a href="library/fmt.html#printlnraw-values"><code>println</code></a></li>
 </ul>
 <h2 id="formatraw-values"><a class="header" href="#formatraw-values"><code>format(raw, values+)</code></a></h2>
-<p><code>format</code> returns the format string <code>raw</code>, where each substring of the form &quot;{}&quot; has been replaced by the corresponding value given in the arguments.</p>
-<pre><code class="language-js">name := &quot;Nobu&quot;
-format(&quot;Hello, {}!&quot;, name) // &quot;Hello, Nobu!&quot;
+<p><code>format</code> returns the format string <code>raw</code>, where each substring of the form "{}" has been replaced by the corresponding value given in the arguments.</p>
+<pre><code class="language-js">name := "Nobu"
+format("Hello, {}!", name) // "Hello, Nobu!"
 </code></pre>
 <h2 id="printraw-values"><a class="header" href="#printraw-values"><code>print(raw, values+)</code></a></h2>
 <p><code>print</code> prints the result of <code>format(raw, values+)</code> to the standard output stream.</p>
 <pre><code class="language-js">// Don't be confused with built-in function `print`!
-fmt.print(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!
+fmt.print("Hello, {}!", "Nobu") // Hello, Nobu!
 </code></pre>
 <h2 id="printlnraw-values"><a class="header" href="#printlnraw-values"><code>println(raw, values+)</code></a></h2>
 <p><code>println</code> prints the result of <code>format(raw, values+)</code> to the standard output stream with a newline.</p>
 <pre><code class="language-js">// Don't be confused with built-in function `println`!
-fmt.println(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!\n
+fmt.println("Hello, {}!", "Nobu") // Hello, Nobu!\n
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="json"><a class="header" href="#json"><code>json</code></a></h1>
 <p><code>json</code> module implements a JSON parser and serializer for Impala values.</p>
@@ -827,37 +856,37 @@ fmt.println(&quot;Hello, {}!&quot;, &quot;Nobu&quot;) // Hello, Nobu!\n
 <li><a href="library/json.html#parses"><code>parse</code></a></li>
 </ul>
 <h2 id="escape_charc"><a class="header" href="#escape_charc"><code>escape_char(c)</code></a></h2>
-<p>string escape '&quot;'</p>
-<pre><code class="language-js">escape_char(&quot;   &quot;) // &quot;\\t&quot;
+<p>string escape '"'</p>
+<pre><code class="language-js">escape_char("   ") // "\\t"
 </code></pre>
 <h2 id="escapes"><a class="header" href="#escapes"><code>escape(s)</code></a></h2>
 <p>escapes whole string</p>
-<pre><code class="language-js">escape(&quot;Hello\nWorld&quot;) // &quot;Hello\\nWorld&quot;
+<pre><code class="language-js">escape("Hello\nWorld") // "Hello\\nWorld"
 </code></pre>
 <h2 id="serializec-pretty"><a class="header" href="#serializec-pretty"><code>serialize(c, pretty)</code></a></h2>
 <p><code>serialize</code> takes a Impala value and returns its JSON representation. If <code>pretty</code> is <code>true</code>, <code>serialize</code> prettifies the JSON representation. <code>pretty</code> defaults to <code>false</code>.</p>
 <pre><code class="language-js">obj := {
-    name: &quot;nobu&quot;,
-    email: &quot;nobu.bichanna@gmail.com&quot;,
+    name: "nobu",
+    email: "nobu.bichanna@gmail.com",
     cool?: true,
     siblings: 1
 }
 serialize(obj, true)
 /*
     {
-        &quot;name&quot;: &quot;nobu&quot;,
-        &quot;email&quot;: &quot;nobu.bichanna@gmail.com&quot;,
-        &quot;is_cool&quot;: true,
-        &quot;siblings&quot;: 1
+        "name": "nobu",
+        "email": "nobu.bichanna@gmail.com",
+        "is_cool": true,
+        "siblings": 1
     }
 */
 </code></pre>
 <h2 id="parses"><a class="header" href="#parses"><code>parse(s)</code></a></h2>
 <p><code>parse</code> takes a potentially valid JSON string, and returns its Impala representation if valid JSON, or throws an error if the parse fails.</p>
-<pre><code class="language-js">parse(&quot;{\&quot;name\&quot;: \&quot;nobu\&quot;, \&quot;is_cool\&quot;: true}&quot;)
+<pre><code class="language-js">parse("{\"name\": \"nobu\", \"is_cool\": true}")
 /*
     {
-        name: &quot;nobu&quot;,
+        name: "nobu",
         is_cool: true
     }
 */
@@ -947,7 +976,7 @@ clamp(9, 3, 8) // 8
 <pre><code class="language-js">mean([2, 3, 4]) // 3
 </code></pre>
 <h2 id="medianxs"><a class="header" href="#medianxs"><code>median(xs)</code></a></h2>
-<p><code>median</code> returns the median, or &quot;middle value&quot;, of all given values.
+<p><code>median</code> returns the median, or "middle value", of all given values.
 If there is an even number of values given, median computes the mean of the middle two values in the list. If the list is empty, median returns <code>null</code>.</p>
 <pre><code class="language-js">median([3, 4, 1, 7, 5]) // 4
 </code></pre>
@@ -1015,14 +1044,14 @@ list // [90, 91, 92, 93, 94, 95, 96, 96, 97, 98, 99]
 <h2 id="reducer-seed-f"><a class="header" href="#reducer-seed-f"><code>reduce(r, seed, f)</code></a></h2>
 <p><code>reduce</code> accumulates elements of the range object <code>r</code> on a value, starting with <code>seed</code> and passing it to the reducer function <code>f</code>.
 The reducer receives arguments <code>(accumulator, element, index)</code>.</p>
-<pre><code class="language-js">// example &quot;sum&quot; function
+<pre><code class="language-js">// example "sum" function
 func sum(start, stop, step) {
     step = default(step, 1)
     range.range(start, stop, step) |&gt; range.reduce(0) &lt;~ (acc, elem) acc + elem
 }
 </code></pre>
 <h2 id="slicer-min-max"><a class="header" href="#slicer-min-max"><code>slice(r, min, max)</code></a></h2>
-<p><code>slice</code> takes a range object <code>r</code> and returns a &quot;slice&quot; (list) of the original from the range <code>[min, max)</code>.
+<p><code>slice</code> takes a range object <code>r</code> and returns a "slice" (list) of the original from the range <code>[min, max)</code>.
 The slice is a copy, and mutating it will not mutate the original.</p>
 <p>Both <code>min</code> and <code>max</code> are optional and will default to <code>0</code> and <code>len(xs)</code> respectively.</p>
 <pre><code class="language-js">slice(range(0, 100), 5, 11) // [6, 7, 8, 9, 10]
@@ -1071,13 +1100,13 @@ The slice is a copy, and mutating it will not mutate the original.</p>
 </ul>
 <h2 id="identityx"><a class="header" href="#identityx"><code>identity(x)</code></a></h2>
 <p><code>identity</code> returns its first argument.</p>
-<pre><code class="language-js">&quot;Hello&quot; == identity(&quot;Hello&quot;) // true
+<pre><code class="language-js">"Hello" == identity("Hello") // true
 </code></pre>
 <h2 id="isx"><a class="header" href="#isx"><code>is(x)</code></a></h2>
 <p><code>is</code> returns a predicate that reports whether its argument is equal to <code>x</code>.</p>
 <pre><code class="language-js">f := is(2)
 f(2)   // true
-f(&quot;a&quot;) // false
+f("a") // false
 </code></pre>
 <h2 id="defaultx-base"><a class="header" href="#defaultx-base"><code>default(x, base)</code></a></h2>
 <p><code>default</code> returns <code>x</code> if <code>x</code> is not <code>null</code>, or <code>base</code> otherwise. It is useful when taking optional arguments in functions with default values.</p>
@@ -1089,14 +1118,14 @@ f(&quot;a&quot;) // false
 </code></pre>
 <h2 id="to_hexn"><a class="header" href="#to_hexn"><code>to_hex(n)</code></a></h2>
 <p><code>to_hex</code> takes a number and returns its hexadecimal representation in a string. It fails for negative values.</p>
-<pre><code class="language-js">to_hex(50159747054) // &quot;BADC0FFEE&quot;
+<pre><code class="language-js">to_hex(50159747054) // "BADC0FFEE"
 </code></pre>
 <h2 id="from_hexs"><a class="header" href="#from_hexs"><code>from_hex(s)</code></a></h2>
 <p><code>from_hex</code> takes a hexadecimal representation of a number and parses it to an integer. It returns <code>null</code> if the input is not a valid hexadecimal number.</p>
-<pre><code class="language-js">from_hex(&quot;BADC0FFEE&quot;) // 50159747054
+<pre><code class="language-js">from_hex("BADC0FFEE") // 50159747054
 </code></pre>
 <h2 id="clampmin-max-n-m"><a class="header" href="#clampmin-max-n-m"><code>clamp(min, max, n, m)</code></a></h2>
-<p><code>clamp</code> takes values <code>n</code>, <code>m</code> and &quot;clamps&quot; or constrains it to the range [<code>min</code>, <code>max</code>], inclusive. If <code>n &gt; m</code>, <code>n</code> takes priority and clams <code>m</code> down to the lower
+<p><code>clamp</code> takes values <code>n</code>, <code>m</code> and "clamps" or constrains it to the range [<code>min</code>, <code>max</code>], inclusive. If <code>n &gt; m</code>, <code>n</code> takes priority and clams <code>m</code> down to the lower
 value. In the returned value, the following are guaranteed:</p>
 <ul>
 <li><code>min &lt;= n &lt;= max</code></li>
@@ -1104,11 +1133,11 @@ value. In the returned value, the following are guaranteed:</p>
 <li><code>n &lt;= m</code></li>
 </ul>
 <h2 id="slicexs-min-max"><a class="header" href="#slicexs-min-max"><code>slice(xs, min, max)</code></a></h2>
-<p><code>slice</code> takes an iterable <code>xs</code> (string or list) and returns a &quot;slice&quot; of the original from the range [<code>min</code>, <code>max</code>).
+<p><code>slice</code> takes an iterable <code>xs</code> (string or list) and returns a "slice" of the original from the range [<code>min</code>, <code>max</code>).
 The slice is a copy, and mutating it will not mutate the original.</p>
 <p>Both <code>min</code> and <code>max</code> are optional and will default to <code>0</code> and <code>len(xs)</code> respectively.</p>
-<pre><code class="language-js">name := &quot;Sol David&quot;
-slice(name, 0, 3) // &quot;Sol&quot;
+<pre><code class="language-js">name := "Sol David"
+slice(name, 0, 3) // "Sol"
 </code></pre>
 <h2 id="clonex"><a class="header" href="#clonex"><code>clone(x)</code></a></h2>
 <p><code>clone</code> takes any Impala value and produces a shallow copy of it that will not mutate if the original mutates.</p>
@@ -1136,14 +1165,14 @@ If <code>f</code> is a function, it receives arguments (<code>element</code>, <c
 <p><code>each</code> calls the given iterator function <code>f</code> for each element of the given iterable <code>xs</code>.
 The iterator function receives arguments (<code>element</code>, <code>index</code>).</p>
 <pre><code class="language-js">[1, 2, 3] |&gt; each() &lt;~ (element, index) print(element)
-// prints &quot;123&quot; to the console
+// prints "123" to the console
 </code></pre>
 <h2 id="ifcond-then-else"><a class="header" href="#ifcond-then-else"><code>if(cond, then, else)</code></a></h2>
 <p>When <code>cond</code> is <code>true</code>, predicate <code>then</code> gets called. When <code>cond</code> is <code>false</code>, predicate <code>else</code> gets called.</p>
-<pre><code class="language-js">if(&quot;abc&quot; == &quot;abc&quot;, -&gt; {
-    println(&quot;gets executed&quot;)
+<pre><code class="language-js">if("abc" == "abc", -&gt; {
+    println("gets executed")
 }) &lt;~ () {
-    println(&quot;don't get executed&quot;)
+    println("don't get executed")
 }
 </code></pre>
 <h2 id="filterxs-f"><a class="header" href="#filterxs-f"><code>filter(xs, f)</code></a></h2>
@@ -1155,7 +1184,7 @@ list // [23, 45]
 <h2 id="reducexs-seed-f"><a class="header" href="#reducexs-seed-f"><code>reduce(xs, seed, f)</code></a></h2>
 <p><code>reduce</code> accumulates elements of the iterable <code>xs</code> on a value, starting with <code>seed</code> and passing it to the reducer function <code>f</code>.
 The reducer receives arguments (<code>accumulator</code>, <code>element</code>, <code>index</code>).</p>
-<pre><code class="language-js">// an example &quot;sum&quot; function implemented with reduce
+<pre><code class="language-js">// an example "sum" function implemented with reduce
 numbers |&gt; reduce(0) &lt;~ (accumulator, elem) accumulator + elem
 </code></pre>
 <h2 id="flattenxs"><a class="header" href="#flattenxs"><code>flatten(xs)</code></a></h2>
@@ -1166,18 +1195,18 @@ flatten(list) // [1, 2, 3, 4, 5, 6, 7]
 <h2 id="appendxs-ys"><a class="header" href="#appendxs-ys"><code>append(xs, ys)</code></a></h2>
 <p><code>append</code> joins two iterable values (strings or lists) together, mutating the first argument <code>xs</code>.
 If mutation is not desired, use <code>std.join</code>.</p>
-<pre><code class="language-js">names := [&quot;Nobu&quot;, &quot;Damian&quot;]
-append(names, [&quot;Sol&quot;, &quot;Thomas&quot;])
-names // [&quot;Nobu&quot;, &quot;Damian&quot;, &quot;Sol&quot;, &quot;Thomas&quot;]
+<pre><code class="language-js">names := ["Nobu", "Damian"]
+append(names, ["Sol", "Thomas"])
+names // ["Nobu", "Damian", "Sol", "Thomas"]
 </code></pre>
 <h2 id="joinxs-ys"><a class="header" href="#joinxs-ys"><code>join(xs, ys)</code></a></h2>
 <p><code>join</code> joins two iterable values (strings or lists) together, while mutating neither values. If efficiency is desired, used <code>std.append</code>.</p>
-<pre><code class="language-js">names := [&quot;Nobu&quot;, &quot;Damian&quot;]
-join(names, [&quot;Sol&quot;, &quot;Thomas&quot;]) // [&quot;Nobu&quot;, &quot;Damian&quot;, &quot;Sol&quot;, &quot;Thomas&quot;]
-names // [&quot;Nobu&quot;, &quot;Damian&quot;], not mutated
+<pre><code class="language-js">names := ["Nobu", "Damian"]
+join(names, ["Sol", "Thomas"]) // ["Nobu", "Damian", "Sol", "Thomas"]
+names // ["Nobu", "Damian"], not mutated
 </code></pre>
 <h2 id="zipxs-ys-zipper"><a class="header" href="#zipxs-ys-zipper"><code>zip(xs, ys, zipper)</code></a></h2>
-<p><code>zip</code> &quot;zips&quot; together each pair of items from two iterables. If the zipper function is not given, each pair of items are put into a 2-element list.
+<p><code>zip</code> "zips" together each pair of items from two iterables. If the zipper function is not given, each pair of items are put into a 2-element list.
 Otherwise, <code>zipper</code> is called on each pair of items and the result is placed into the resulting list.</p>
 <pre><code class="language-js">zip([1, 2, 3], [4, 5, 6]) // =&gt; [[1, 2], [3, 4], [5, 6]]
 
@@ -1198,51 +1227,51 @@ unique(list) // [1, 2, 3]
 </code></pre>
 <h2 id="firstxs"><a class="header" href="#firstxs"><code>first(xs)</code></a></h2>
 <p><code>first</code> returns the first item in an iterable. It's trivial, but useful to have in the stdlib for use in pipelines or iterators.</p>
-<pre><code class="language-js">name := &quot;Nobu&quot;
-first(name) // &quot;N&quot;
+<pre><code class="language-js">name := "Nobu"
+first(name) // "N"
 </code></pre>
 <h2 id="lastxs"><a class="header" href="#lastxs"><code>last(xs)</code></a></h2>
 <p><code>last</code> returns the last item in an iterable. It's trivial, but useful to have in the stdlib for use in pipelines or iterators.</p>
-<pre><code class="language-js">name := &quot;Nobu&quot;
-last(name) // &quot;u&quot;
+<pre><code class="language-js">name := "Nobu"
+last(name) // "u"
 </code></pre>
 <h2 id="takexs-n"><a class="header" href="#takexs-n"><code>take(xs, n)</code></a></h2>
 <p><code>take</code> accepts an iterable and returns a version of it containing the first N elements.</p>
-<pre><code class="language-js">email := &quot;nobu.bichanna@gmail.com&quot;
-take(email, 4) // &quot;nobu&quot;
+<pre><code class="language-js">email := "nobu.bichanna@gmail.com"
+take(email, 4) // "nobu"
 </code></pre>
 <h2 id="take_lastxs-n"><a class="header" href="#take_lastxs-n"><code>take_last(xs, n)</code></a></h2>
 <p><code>take_last</code> accepts an iterable and returns a version of it containing the last N elements.</p>
-<pre><code class="language-js">email := &quot;nobu.bichanna@gmail.com&quot;
-take_last(email, 9) // &quot;gmail.com&quot;
+<pre><code class="language-js">email := "nobu.bichanna@gmail.com"
+take_last(email, 9) // "gmail.com"
 </code></pre>
 <h2 id="findxs-pred"><a class="header" href="#findxs-pred"><code>find(xs, pred)</code></a></h2>
 <p><code>find</code> returns the index of the first item in the iterable <code>xs</code> for which the predicate returns <code>true</code>. If no match is found, find returns <code>-1</code>.</p>
-<pre><code class="language-js">nobu? := is(&quot;Nobu&quot;)
-names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
+<pre><code class="language-js">nobu? := is("Nobu")
+names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
 find(names, nobu?) // 1
 </code></pre>
 <h2 id="rfindxs-pred"><a class="header" href="#rfindxs-pred"><code>rfind(xs, pred)</code></a></h2>
 <p><code>rfind</code> returns the index of the last item in the iterable <code>xs</code> for which the predicate returns <code>true</code>, searching backwards from the end.
 If no match is found, <code>rfind</code> returns <code>-1</code>.</p>
-<pre><code class="language-js">nobu? := is(&quot;Nobu&quot;)
-names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
+<pre><code class="language-js">nobu? := is("Nobu")
+names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
 rfind(names, nobu?) // 5
 </code></pre>
 <h2 id="index_ofxs-x"><a class="header" href="#index_ofxs-x"><code>index_of(xs, x)</code></a></h2>
 <p><code>index_of</code> returns the index of the first item equal to <code>x</code> in the iterable <code>xs</code>. If no match is found, <code>index_of</code> returns <code>-1</code>.</p>
-<pre><code class="language-js">names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
-index_of(names, &quot;Nobu&quot;) // 1
+<pre><code class="language-js">names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+index_of(names, "Nobu") // 1
 </code></pre>
 <h2 id="rindex_ofxs-x"><a class="header" href="#rindex_ofxs-x"><code>rindex_of(xs, x)</code></a></h2>
 <p>// <code>rindex_of</code> returns the index of the last item equal to <code>x</code> in the iterable <code>xs</code>, searching backwards from the end. If no match is found, <code>rindex_of</code> returns <code>-1</code>.</p>
-<pre><code class="language-js">names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
-index_of(names, &quot;Nobu&quot;) // 5
+<pre><code class="language-js">names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+index_of(names, "Nobu") // 5
 </code></pre>
 <h2 id="containsxs-x"><a class="header" href="#containsxs-x"><code>contains?(xs, x)</code></a></h2>
 <p><code>contains?</code> reports whether an iterable contains an item equal to <code>x</code>.</p>
-<pre><code class="language-js">names := [&quot;Sol&quot;, &quot;Nobu&quot;, &quot;Damian&quot;, &quot;Thomas&quot;, &quot;Maks&quot;, &quot;Nobu&quot;]
-contains?(names, &quot;Nobu&quot;) // true
+<pre><code class="language-js">names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+contains?(names, "Nobu") // true
 </code></pre>
 <h2 id="loopmax-f"><a class="header" href="#loopmax-f"><code>loop(max, f)</code></a></h2>
 <p><code>loop</code> takes a loop count <code>max</code> and a callback, and invokes the callback <code>max</code> times.
@@ -1251,8 +1280,8 @@ It can be used to infinitely loop if <code>max &lt; 0</code>. Callback is called
 <li><code>count</code>: the current loop count starting from <code>0</code></li>
 <li><code>breaker</code>: a function to be called to exit early from the loop, which takes an optional return value to be returned by the <code>loop()</code> call</li>
 </ul>
-<pre><code class="language-js">loop(100) &lt;~ (count, breaker) { // prints &quot;Hello, world!&quot; to the console 100 times
-    println(&quot;Hello, world!&quot;)
+<pre><code class="language-js">loop(100) &lt;~ (count, breaker) { // prints "Hello, world!" to the console 100 times
+    println("Hello, world!")
 }
 </code></pre>
 <h2 id="aloopmax-f-done"><a class="header" href="#aloopmax-f-done"><code>aloop(max, f, done)</code></a></h2>
@@ -1309,97 +1338,97 @@ list // [1, 2, 3, 4, 5]
 </ul>
 <h2 id="upperc"><a class="header" href="#upperc"><code>upper?(c)</code></a></h2>
 <p><code>upper?</code> reports whether a given char is an uppercase ASCII letter.</p>
-<pre><code class="language-js">upper?(&quot;a&quot;) // false
-upper?(&quot;A&quot;) // true
+<pre><code class="language-js">upper?("a") // false
+upper?("A") // true
 </code></pre>
 <h2 id="uppers"><a class="header" href="#uppers"><code>upper(s)</code></a></h2>
 <p><code>upper</code> returns the uppercase string from the given string <code>s</code>.</p>
-<pre><code class="language-js">upper(&quot;nobu&quot;) // &quot;NOBU&quot;
+<pre><code class="language-js">upper("nobu") // "NOBU"
 </code></pre>
 <h2 id="lowerc"><a class="header" href="#lowerc"><code>lower?(c)</code></a></h2>
 <p><code>lower?</code> reports whether a given char is a lowercase ASCII letter.</p>
-<pre><code class="language-js">lower?(&quot;a&quot;) // true
-lower?(&quot;A&quot;) // false
+<pre><code class="language-js">lower?("a") // true
+lower?("A") // false
 </code></pre>
 <h2 id="lowers"><a class="header" href="#lowers"><code>lower(s)</code></a></h2>
 <p><code>lower</code> returns the lowercase string from the given string <code>s</code>.</p>
-<pre><code class="language-js">lower(&quot;NOBU&quot;) // &quot;nobu&quot;
+<pre><code class="language-js">lower("NOBU") // "nobu"
 </code></pre>
 <h2 id="digitc"><a class="header" href="#digitc"><code>digit?(c)</code></a></h2>
 <p><code>digit?</code> reports whether a given char is an ASCII digit.</p>
-<pre><code class="language-js">digit?(&quot;1&quot;) // true
-digit?(&quot;a&quot;) // false
+<pre><code class="language-js">digit?("1") // true
+digit?("a") // false
 </code></pre>
 <h2 id="spacec"><a class="header" href="#spacec"><code>space?(c)</code></a></h2>
 <p><code>space?</code> reports whether a given char is an ASCII whitespace.</p>
-<pre><code class="language-js">space?(&quot;\n&quot;) // true
-space?(&quot;a&quot;) // false
+<pre><code class="language-js">space?("\n") // true
+space?("a") // false
 </code></pre>
 <h2 id="letterc"><a class="header" href="#letterc"><code>letter?(c)</code></a></h2>
 <p><code>letter?</code> reports whether a given char is an ASCII letter.</p>
-<pre><code class="language-js">letter?(&quot;a&quot;) // true
-letter?(&quot;A&quot;) // true
+<pre><code class="language-js">letter?("a") // true
+letter?("A") // true
 </code></pre>
 <h2 id="wordc"><a class="header" href="#wordc"><code>word?(c)</code></a></h2>
 <p><code>word?</code> reports whether a given char is a letter or a digit.</p>
-<pre><code class="language-js">word?(&quot;1&quot;) // true
-word?(&quot;a&quot;) // true
+<pre><code class="language-js">word?("1") // true
+word?("a") // true
 </code></pre>
 <h2 id="joinstrings-joiner"><a class="header" href="#joinstrings-joiner"><code>join(strings, joiner)</code></a></h2>
 <p><code>join</code> concatenates together a list of strings into a single string, where each original string in the list is separated by <code>joiner</code>.
 Joiner is the empty string by default.</p>
-<pre><code class="language-js">join([&quot;Nobu&quot;, &quot;Shimazu&quot;], &quot; &quot;) // &quot;Nobu Shimazu&quot;
+<pre><code class="language-js">join(["Nobu", "Shimazu"], " ") // "Nobu Shimazu"
 </code></pre>
 <h2 id="starts_withs-prefix"><a class="header" href="#starts_withs-prefix"><code>starts_with?(s, prefix)</code></a></h2>
 <p><code>starts_with?</code> reports whether a string starts with the substring <code>prefix</code>.</p>
-<pre><code class="language-js">starts_with?(&quot;abcdefg&quot;, &quot;abc&quot;) // true
+<pre><code class="language-js">starts_with?("abcdefg", "abc") // true
 </code></pre>
 <h2 id="ends_withs-suffix"><a class="header" href="#ends_withs-suffix"><code>ends_with?(s, suffix)</code></a></h2>
 <p><code>ends_with?</code> reports whether a string ends with the substring <code>suffix</code>.</p>
-<pre><code class="language-js">ends_with?(&quot;abcdefg&quot;, &quot;efg&quot;) // true
+<pre><code class="language-js">ends_with?("abcdefg", "efg") // true
 </code></pre>
 <h2 id="index_ofs-substr"><a class="header" href="#index_ofs-substr"><code>index_of(s, substr)</code></a></h2>
 <p><code>index_of</code> returns the first index at which the given substring <code>substr</code> appears in the string <code>s</code>. If the substring does not exist, it returns <code>-1</code>.</p>
-<pre><code class="language-js">index_of(&quot;nobu.bichanna@gmail.com&quot;, &quot;bichanna&quot;) // 5
+<pre><code class="language-js">index_of("nobu.bichanna@gmail.com", "bichanna") // 5
 </code></pre>
 <h2 id="rindex_ofs-substr"><a class="header" href="#rindex_ofs-substr"><code>rindex_of(s, substr)</code></a></h2>
 <p><code>rindex_of</code> returns the last index at which the given substring <code>substr</code> appears in the string <code>s</code>. If the substring does not exist, it returns <code>-1</code>.</p>
-<pre><code class="language-js">rindex_of(&quot;nobu.bichanna@gmail.com&quot;, &quot;a&quot;) // 16 
+<pre><code class="language-js">rindex_of("nobu.bichanna@gmail.com", "a") // 16 
 </code></pre>
 <h2 id="containss-substr"><a class="header" href="#containss-substr"><code>contains?(s, substr)</code></a></h2>
 <p><code>contains?</code> reports whether the string <code>s</code> contains the substring <code>substr</code>.</p>
-<pre><code class="language-js">contains?(&quot;nobu.bichanna@gmail.com&quot;, &quot;com&quot;) // true
-contains?(&quot;nobu.bichanna@gmail.com&quot;, &quot;asd&quot;) // false
+<pre><code class="language-js">contains?("nobu.bichanna@gmail.com", "com") // true
+contains?("nobu.bichanna@gmail.com", "asd") // false
 </code></pre>
 <h2 id="replaces-old-new"><a class="header" href="#replaces-old-new"><code>replace(s, old, new)</code></a></h2>
 <p><code>replace</code> returns a string where all occurrences of the substring <code>old</code> has been replaced by <code>new</code> in the string <code>s</code>. It does nothing for empty strings.</p>
-<pre><code class="language-js">replace(&quot;catcatcat&quot;, &quot;t&quot;, &quot;ts&quot;) // &quot;catscatscats&quot;
+<pre><code class="language-js">replace("catcatcat", "t", "ts") // "catscatscats"
 </code></pre>
 <h2 id="splits-sep"><a class="header" href="#splits-sep"><code>split(s, sep)</code></a></h2>
 <p><code>split</code> splits the string <code>s</code> by every occurrence of the substring <code>sep</code> in it, and returns the result as a list of strings.
 If <code>sep</code> is not specified, split returns a list of every character in the string in order.</p>
-<pre><code class="language-js">split(&quot;blah blah blah&quot;, &quot; &quot;) // [&quot;blah&quot;, &quot;blah&quot;, &quot;blah&quot;]
+<pre><code class="language-js">split("blah blah blah", " ") // ["blah", "blah", "blah"]
 </code></pre>
 <h2 id="pad_starts-n-pad"><a class="header" href="#pad_starts-n-pad"><code>pad_start(s, n, pad)</code></a></h2>
 <p><code>pad_start</code> prepends the string <code>s</code> with one or more repetitions of pad until the total string is at least <code>n</code> characters long. If <code>len(s) &gt; n</code>, it returns <code>s</code>.</p>
-<pre><code class="language-js">pad_start(&quot;hello&quot;, 2, &quot;-&quot;) // &quot;--hello&quot;
+<pre><code class="language-js">pad_start("hello", 2, "-") // "--hello"
 </code></pre>
 <h2 id="pad_ends-n-pad"><a class="header" href="#pad_ends-n-pad"><code>pad_end(s, n, pad)</code></a></h2>
 <p><code>trim_end</code> removes any (potentially repeated) occurrences of the string <code>suffix</code> from the end of string <code>s</code>.</p>
-<pre><code class="language-js">pad_end(&quot;hello&quot;, 2, &quot;-&quot;) // &quot;hello--&quot;
+<pre><code class="language-js">pad_end("hello", 2, "-") // "hello--"
 </code></pre>
 <h2 id="trim_starts-prefix"><a class="header" href="#trim_starts-prefix"><code>trim_start(s, prefix)</code></a></h2>
 <p><code>trim_start</code> removes any (potentially repeated) occurrences of the string <code>prefix</code> from the beginning of string <code>s</code>.</p>
-<pre><code class="language-js">trim_start(&quot;Nobuharu&quot;, &quot;Nobu&quot;) // &quot;haru&quot;
+<pre><code class="language-js">trim_start("Nobuharu", "Nobu") // "haru"
 </code></pre>
 <h2 id="trim_ends-suffix"><a class="header" href="#trim_ends-suffix"><code>trim_end(s, suffix)</code></a></h2>
 <p><code>trim_end</code> removes any (potentially repeated) occurrences of the string <code>suffix</code> from the end of string <code>s</code>.</p>
-<pre><code class="language-js">trim_end(&quot;Nobuharu&quot;, &quot;ru&quot;) // &quot;Nobuha&quot;
+<pre><code class="language-js">trim_end("Nobuharu", "ru") // "Nobuha"
 </code></pre>
 <h2 id="trims-part"><a class="header" href="#trims-part"><code>trim(s, part)</code></a></h2>
 <p><code>trim</code> removes any (potentially repeated) ocucrrences of the string <code>part</code> from either end of the string <code>s</code>.
 If <code>part</code> is not specified, trim removes all whitespace from either end of the string <code>s</code>.</p>
-<pre><code class="language-js">trim(&quot;  Hello  &quot;) // &quot;Hello&quot;
+<pre><code class="language-js">trim("  Hello  ") // "Hello"
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="experimental-features"><a class="header" href="#experimental-features">Experimental Features</a></h1>
 <p>In the following chapters, we'll introduce unimplemented features of Impala.</p>
@@ -1407,7 +1436,7 @@ If <code>part</code> is not specified, trim removes all whitespace from either e
 <div style="break-before: page; page-break-before: always;"></div><h1 id="references"><a class="header" href="#references">References</a></h1>
 <p>A reference is a name that refers to the specific location in memory of a value.
 References take the form of variables and attributes.</p>
-<pre><code class="language-js">{println: fprintln} := import(&quot;fmt&quot;)
+<pre><code class="language-js">{println: fprintln} := import("fmt")
 
 func swap(a, b) {
     tmp := deref a // *a in C
@@ -1419,7 +1448,7 @@ a := 1
 b := 2
 swap(ref a, ref b) // swap(&amp;a, &amp;b) in C
 
-fprintln(&quot;a = {} and b = {}&quot;) // &quot;a = 2 and b = 1&quot;
+fprintln("a = {} and b = {}") // "a = 2 and b = 1"
 </code></pre>
 <p>Keywords introduced in the snippet above are <code>ref</code>, <code>deref</code>, and <code>&lt;-</code>:</p>
 <ul>

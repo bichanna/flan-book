@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -31,7 +31,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -61,42 +61,71 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded "><a href="language_tour.html"><strong aria-hidden="true">1.</strong> Language Tour</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.</strong> Comments</a></li><li class="chapter-item expanded "><a href="strings.html"><strong aria-hidden="true">3.</strong> Strings & Atoms</a></li><li class="chapter-item expanded "><a href="booleans.html"><strong aria-hidden="true">4.</strong> Booleans</a></li><li class="chapter-item expanded "><a href="ints_floats.html"><strong aria-hidden="true">5.</strong> Integers & Floats</a></li><li class="chapter-item expanded "><a href="empty.html"><strong aria-hidden="true">6.</strong> Null & Empty</a></li><li class="chapter-item expanded "><a href="lists.html"><strong aria-hidden="true">7.</strong> Lists</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">8.</strong> Objects</a></li><li class="chapter-item expanded "><a href="assignment.html"><strong aria-hidden="true">9.</strong> Assignment</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">10.</strong> Functions</a></li><li class="chapter-item expanded "><a href="match.html" class="active"><strong aria-hidden="true">11.</strong> Match Expression</a></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="unsafe.html"><strong aria-hidden="true">13.</strong> Exceptions</a></li><li class="chapter-item expanded "><a href="try.html"><strong aria-hidden="true">14.</strong> Try Expression</a></li><li class="chapter-item expanded "><a href="macros.html"><strong aria-hidden="true">15.</strong> Macros</a></li><li class="chapter-item expanded "><a href="std_library.html"><strong aria-hidden="true">16.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/builtins.html"><strong aria-hidden="true">16.1.</strong> Built-in Functions</a></li><li class="chapter-item expanded "><a href="library/fmt.html"><strong aria-hidden="true">16.2.</strong> fmt</a></li><li class="chapter-item expanded "><a href="library/json.html"><strong aria-hidden="true">16.3.</strong> json</a></li><li class="chapter-item expanded "><a href="library/math.html"><strong aria-hidden="true">16.4.</strong> math</a></li><li class="chapter-item expanded "><a href="library/range.html"><strong aria-hidden="true">16.5.</strong> range</a></li><li class="chapter-item expanded "><a href="library/std.html"><strong aria-hidden="true">16.6.</strong> std</a></li><li class="chapter-item expanded "><a href="library/string.html"><strong aria-hidden="true">16.7.</strong> strings</a></li></ol></li><li class="chapter-item expanded "><a href="experimental/experimental.html"><strong aria-hidden="true">17.</strong> Experimental Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="experimental/references.html"><strong aria-hidden="true">17.1.</strong> References</a></li></ol></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -149,49 +178,49 @@
                     <main>
                         <h1 id="match-expression"><a class="header" href="#match-expression">Match Expression</a></h1>
 <p>The <code>match</code> expression is the most common kind of flow control in Impala code.
-It allows us to say &quot;if the data has this shape then do that&quot;, which we call <em>pattern matching</em>.</p>
+It allows us to say "if the data has this shape then do that", which we call <em>pattern matching</em>.</p>
 <p>Here, we match on an Int and return a specific string for the values 0, 1, and 2.
 The final pattern n matches any other value that did not match any of the previous patterns.</p>
 <pre><code class="language-js">match some_number {
-  0 -&gt; &quot;zero&quot;,
-  1 -&gt; &quot;one&quot;,
-  2 -&gt; &quot;two&quot;,
-  _ -&gt; &quot;some other number&quot;, // This matches anything
+  0 -&gt; "zero",
+  1 -&gt; "one",
+  2 -&gt; "two",
+  _ -&gt; "some other number", // This matches anything
 }
 </code></pre>
 <p>Pattern matching on a Boolean value is the Impala alternative to the <code>if else</code> statement found in other languages.</p>
 <pre><code class="language-js">match some_bool {
-  true -&gt; &quot;It's true.&quot;,
-  false -&gt; &quot;It's not true.&quot;,
+  true -&gt; "It's true.",
+  false -&gt; "It's not true.",
 }
 </code></pre>
 <p>Impala's <code>match</code> is an expression, meaning it returns a value and can be used anywhere we would use a value.
 For example, we can name the value of a match expression with a variable binding.</p>
 <pre><code class="language-js">description := match true {
-    true -&gt; &quot;blah blah&quot;,
-    false -&gt; &quot;halb halb&quot;,
+    true -&gt; "blah blah",
+    false -&gt; "halb halb",
 }
 
-description // &quot;blah blah&quot;
+description // "blah blah"
 </code></pre>
 <h2 id="destructuring"><a class="header" href="#destructuring">Destructuring</a></h2>
 <p>A <code>match</code> expression can be used to destructure values that contain other values, such as lists and objects.</p>
 <pre><code class="language-js">match [number % 3, number % 5] {
-    [0, 0] -&gt; &quot;FizzBuzz&quot;,
-    [0, _] -&gt; &quot;Fizz&quot;,
-    [_, 0] -&gt; &quot;Buzz&quot;,
+    [0, 0] -&gt; "FizzBuzz",
+    [0, _] -&gt; "Fizz",
+    [_, 0] -&gt; "Buzz",
     [a, b] -&gt; a + b,
 }
 </code></pre>
 <h2 id="ternary-operator"><a class="header" href="#ternary-operator">Ternary Operator</a></h2>
 <p>There is also a short-hand match, which is known as the ternary operator.</p>
 <pre><code class="language-js">damian_stinks := false
-command := damian_stinks ? &quot;go take a shower&quot; : &quot;go take a nap&quot;
+command := damian_stinks ? "go take a shower" : "go take a nap"
 
 // de-sugars to this:
 command := match damian_stinks {
-    true -&gt; &quot;go take a shower&quot;,
-    _ -&gt; &quot;go take a nap&quot;,
+    true -&gt; "go take a shower",
+    _ -&gt; "go take a nap",
 }
 </code></pre>
 
@@ -203,7 +232,7 @@ command := match damian_stinks {
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="modules.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="modules.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -217,7 +246,7 @@ command := match damian_stinks {
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="modules.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="modules.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
