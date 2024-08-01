@@ -229,13 +229,13 @@ range(...args) // [1, 2, 3, 4]
 This is similar in functionality to the same operator in Elixir or F#.</p>
 <p>The pipe operator allows you to chain function calls without using a plethora of parenthesis.</p>
 <pre><code class="language-js">names := []
-append(append(append(append(names, "Nobu"), "Sol"), "Damian"), "Thomas")
-names // ["Nobu", "Sol", "Damian", "Thomas"]
+append(append(append(append(names, "Nobu"), "Anna"), "Damian"), "Thomas")
+names // ["Nobu", "Anna", "Damian", "Thomas"]
 </code></pre>
 <p>This can be expressed more naturally using the pipe operator, eliminating the need to track parenthesis closure.</p>
 <pre><code class="language-js">names
 |&gt; append("Nobu")
-|&gt; append("Sol")
+|&gt; append("Anna")
 |&gt; append("Damian")
 |&gt; append("Thomas")
 </code></pre>

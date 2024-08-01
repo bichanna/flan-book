@@ -252,8 +252,8 @@ value. In the returned value, the following are guaranteed:</p>
 <p><code>slice</code> takes an iterable <code>xs</code> (string or list) and returns a "slice" of the original from the range [<code>min</code>, <code>max</code>).
 The slice is a copy, and mutating it will not mutate the original.</p>
 <p>Both <code>min</code> and <code>max</code> are optional and will default to <code>0</code> and <code>len(xs)</code> respectively.</p>
-<pre><code class="language-js">name := "Sol David"
-slice(name, 0, 3) // "Sol"
+<pre><code class="language-js">name := "Anna David"
+slice(name, 0, 3) // "Anna"
 </code></pre>
 <h2 id="clonex"><a class="header" href="#clonex"><code>clone(x)</code></a></h2>
 <p><code>clone</code> takes any Flan value and produces a shallow copy of it that will not mutate if the original mutates.</p>
@@ -312,13 +312,13 @@ flatten(list) // [1, 2, 3, 4, 5, 6, 7]
 <p><code>append</code> joins two iterable values (strings or lists) together, mutating the first argument <code>xs</code>.
 If mutation is not desired, use <code>std.join</code>.</p>
 <pre><code class="language-js">names := ["Nobu", "Damian"]
-append(names, ["Sol", "Thomas"])
-names // ["Nobu", "Damian", "Sol", "Thomas"]
+append(names, ["Anna", "Thomas"])
+names // ["Nobu", "Damian", "Anna", "Thomas"]
 </code></pre>
 <h2 id="joinxs-ys"><a class="header" href="#joinxs-ys"><code>join(xs, ys)</code></a></h2>
 <p><code>join</code> joins two iterable values (strings or lists) together, while mutating neither values. If efficiency is desired, used <code>std.append</code>.</p>
 <pre><code class="language-js">names := ["Nobu", "Damian"]
-join(names, ["Sol", "Thomas"]) // ["Nobu", "Damian", "Sol", "Thomas"]
+join(names, ["Anna", "Thomas"]) // ["Nobu", "Damian", "Anna", "Thomas"]
 names // ["Nobu", "Damian"], not mutated
 </code></pre>
 <h2 id="zipxs-ys-zipper"><a class="header" href="#zipxs-ys-zipper"><code>zip(xs, ys, zipper)</code></a></h2>
@@ -364,29 +364,29 @@ take_last(email, 9) // "gmail.com"
 <h2 id="findxs-pred"><a class="header" href="#findxs-pred"><code>find(xs, pred)</code></a></h2>
 <p><code>find</code> returns the index of the first item in the iterable <code>xs</code> for which the predicate returns <code>true</code>. If no match is found, find returns <code>-1</code>.</p>
 <pre><code class="language-js">nobu? := is("Nobu")
-names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+names := ["Anna", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
 find(names, nobu?) // 1
 </code></pre>
 <h2 id="rfindxs-pred"><a class="header" href="#rfindxs-pred"><code>rfind(xs, pred)</code></a></h2>
 <p><code>rfind</code> returns the index of the last item in the iterable <code>xs</code> for which the predicate returns <code>true</code>, searching backwards from the end.
 If no match is found, <code>rfind</code> returns <code>-1</code>.</p>
 <pre><code class="language-js">nobu? := is("Nobu")
-names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+names := ["Anna", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
 rfind(names, nobu?) // 5
 </code></pre>
 <h2 id="index_ofxs-x"><a class="header" href="#index_ofxs-x"><code>index_of(xs, x)</code></a></h2>
 <p><code>index_of</code> returns the index of the first item equal to <code>x</code> in the iterable <code>xs</code>. If no match is found, <code>index_of</code> returns <code>-1</code>.</p>
-<pre><code class="language-js">names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+<pre><code class="language-js">names := ["Anna", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
 index_of(names, "Nobu") // 1
 </code></pre>
 <h2 id="rindex_ofxs-x"><a class="header" href="#rindex_ofxs-x"><code>rindex_of(xs, x)</code></a></h2>
 <p>// <code>rindex_of</code> returns the index of the last item equal to <code>x</code> in the iterable <code>xs</code>, searching backwards from the end. If no match is found, <code>rindex_of</code> returns <code>-1</code>.</p>
-<pre><code class="language-js">names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+<pre><code class="language-js">names := ["Anna", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
 index_of(names, "Nobu") // 5
 </code></pre>
 <h2 id="containsxs-x"><a class="header" href="#containsxs-x"><code>contains?(xs, x)</code></a></h2>
 <p><code>contains?</code> reports whether an iterable contains an item equal to <code>x</code>.</p>
-<pre><code class="language-js">names := ["Sol", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
+<pre><code class="language-js">names := ["Anna", "Nobu", "Damian", "Thomas", "Maks", "Nobu"]
 contains?(names, "Nobu") // true
 </code></pre>
 <h2 id="loopmax-f"><a class="header" href="#loopmax-f"><code>loop(max, f)</code></a></h2>
